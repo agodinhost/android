@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <item name="actionbar_compat" type="id"/>
+    <item name="actionbar_compat_container" type="id"/>
+    <item name="actionbar_compat_logo" type="id"/>
+    <item name="actionbar_compat_text" type="id"/>
+
+</resources>

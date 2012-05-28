@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout style="@style/ActionBarCompat" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:fadeScrollbars="false"
+        android:padding="@dimen/padding"
+        android:layout_gravity="center_vertical|center_horizontal" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/padding" >
+
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/about_mail_label" />
+
+            <Button
+                style="@style/Button"
+                android:layout_marginBottom="@dimen/padding"
+                android:onClick="mailClicked"
+                android:text="@string/about_mail_action" />
+
+            <TextView
+                style="@style/TextView"
+                android:text="@string/about_rate_label" />
+
+            <Button
+                style="@style/Button"
+                android:layout_marginTop="10dp"
+                android:onClick="rate"
+                android:text="@string/about_rate_action" />
+
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/about_web_label" />
+
+            <Button
+                style="@style/Button"
+                android:layout_marginBottom="@dimen/padding"
+                android:onClick="webClicked"
+                android:text="@string/about_web_action" />
+
+            <TextView
+                style="@style/TextView"
+                android:text="@string/about_created_by" />
+
+            <TextView
+                style="@style/TextView"
+                android:layout_marginBottom="@dimen/padding"
+                android:text="@string/about_gec"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextView"
+                android:text="@string/about_opensource_under" />
+
+            <TextView
+                style="@style/TextView"
+                android:layout_marginBottom="@dimen/padding"
+                android:text="@string/about_apache_20"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

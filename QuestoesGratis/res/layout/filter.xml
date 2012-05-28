@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout style="@style/ActionBarCompat" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:fadeScrollbars="false"
+        android:padding="@dimen/padding" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/padding" >
+
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/filter_title" />
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/filter_uf" />
+            <com.gec.questoesGratis.widgets.MultiSpinner
+                android:id="@+id/filter_ms_uf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/filter_banca" />
+            <com.gec.questoesGratis.widgets.MultiSpinner
+                android:id="@+id/filter_ms_banca"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/filter_orgao" />
+            <com.gec.questoesGratis.widgets.MultiSpinner
+                android:id="@+id/filter_ms_orgao"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/filter_cargo" />
+            <com.gec.questoesGratis.widgets.MultiSpinner
+                android:id="@+id/filter_ms_cargo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/filter_ano" />
+            <com.gec.questoesGratis.widgets.MultiSpinner
+                android:id="@+id/filter_ms_ano"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/filter_disciplina" />
+            <com.gec.questoesGratis.widgets.MultiSpinner
+                android:id="@+id/filter_ms_disciplina"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/filter_assunto" />
+            <com.gec.questoesGratis.widgets.MultiSpinner
+                android:id="@+id/filter_ms_assunto"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+        <Button
+            style="@style/Button"
+            android:onClick="onClick_previous"
+            android:text="@string/g_previous" />
+        <Button
+            style="@style/Button"
+            android:onClick="onClick_next"
+            android:text="@string/g_next" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string name="app_name">Questões Grátis</string>
+
+	<!-- Replace with your own AdSense client ID - "ca-mb-app-pub-nnnnnnnnnnnnnnnn".
+    <string name="g_ADS_UNIT_ID">ca-pub-7837586323702893</string>
+    -->
+    <string name="g_ADS_UNIT_ID">000000000000000</string>
+    
+    <!-- Replace with your own company name. -->
+    <string name="g_ADS_COMPANY_NAME">Anaximandro de Godinho</string>
+
+    <!-- Replace with your own application name. -->
+    <string name="g_ADS_APP_NAME">Questões Grátis</string>
+
+	<!-- Replace with your own keywords used to target Google ad. -->
+	<!-- Join multiple words in a phrase with '+' and join multiple phrases with ','. -->
+    <string name="g_ADS_KEYWORDS">exames,testes,preparatórios</string>
+
+	<!-- Replace with your own AdSense channel ID. -->
+    <string name="g_ADS_CHANNEL_ID">exames,testes,preparatórios</string>
+
+	<!-- Replace with your own test devices. -->
+    <string name="g_ADS_TEST_DEVICES">TEST_EMULATOR, emulator-5554</string>
+
+    <string name="g_previous">Voltar</string>
+    <string name="g_next">Prosseguir</string>
+
+    <string name="g_all_M">TODOS</string>
+    <string name="g_all_W">TODAS</string>
+    <string name="g_no_selection">Nenhuma questão selecionada &#8230;</string>
+    
+    <string name="menu_title">Menu Principal</string>
+    <string name="menu_button1">Novo Simulado</string>
+    <string name="menu_button2">Meu Histórico</string>
+    <string name="menu_button3">Versão Completa</string>
+    <string name="menu_button4">Sobre</string>
+
+    <string name="filter_title">Selecione os filtros desejados:</string>
+    <string name="filter_uf">UF</string>
+    <string name="filter_uf_options">SP|RJ|MG|DF</string>
+    <string name="filter_banca">Banca</string>
+    <string name="filter_banca_options">Banca1|Banca2|Banca3</string>
+    <string name="filter_orgao">Órgão</string>
+    <string name="filter_orgao_options">Orgão1|Orgão2|Orgão3</string>
+    <string name="filter_cargo">Cargo</string>
+    <string name="filter_cargo_options">Cargo1|Cargo2|Cargo3</string>
+    <string name="filter_ano">Ano</string>
+    <string name="filter_ano_options">2012|2011|2010</string>
+    <string name="filter_disciplina">Disciplina</string>
+    <string name="filter_disciplina_options">Disciplina1|Disciplina2|Disciplina3</string>
+    <string name="filter_assunto">Assunto</string>
+    <string name="filter_assunto_options">Assunto1|Assunto2|Assunto3</string>
+
+    <string name="history_title">Meu Histórico:</string>
+    
+    <string name="quiz_title">Questionário:</string>
+    <string name="quiz_image">Conclusão</string>
+    
+    <string name="question_details">ver mais</string>
+    
+    <string name="marketing_title">Marketing</string>
+    <string name="marketing_uri">http://www.google.com</string>
+    
+    <string name="about_title">Sobre</string>
+    <string name="about_mail_label">Feedback, problems, ideas?</string>
+    <string name="about_mail_action">Email developer</string>
+    <string name="about_rate_label">Like Quiz &amp; Poll?</string>
+    <string name="about_rate_action">Rate on Android Market</string>
+    <string name="about_web_label">Read help, see future plans:</string>
+    <string name="about_web_action">Visit website</string>
+    <string name="about_feedback_subject">Feedback from Quiz &amp; Poll</string>
+    <string name="about_feedback_text">What phone do you have?\n%s\n\nYour feedback here:\n</string>
+    
+    <string name="about_created_by">Created by</string>
+    <string name="about_gec">G&amp;C Consultoria e Informática Ltda.</string>
+    <string name="about_opensource_under">Open-sourced under</string>
+    <string name="about_apache_20">Apache 2.0 License</string>
+    
+</resources>

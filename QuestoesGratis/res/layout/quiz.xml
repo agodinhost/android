@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout style="@style/ActionBarCompat" />
+
+    <TextView
+        style="@style/TextView"
+        android:layout_marginTop="10dp"
+        android:text="@string/quiz_title" />
+
+    <ListView
+        android:id="@+id/quiz_list"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:fadeScrollbars="false"
+        android:padding="@dimen/padding" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+        <Button
+            style="@style/Button"
+            android:onClick="onClick_previous"
+            android:text="@string/g_previous" />
+    </LinearLayout>
+
+</LinearLayout>
