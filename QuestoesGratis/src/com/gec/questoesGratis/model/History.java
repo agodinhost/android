@@ -1,15 +1,23 @@
 package com.gec.questoesGratis.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class History {
+/**
+ * History TO.
+ * 
+ * @author agodinho
+ */
+public final class History implements Serializable {
 
-   private int  quizId;
-   private Date date;
-   private int  rating;
-   private int  status;
+   private static final long serialVersionUID = -7484043909854950020L;
 
-   public History(int quizId, Date date, int rating, int status) {
+   private int               quizId;
+   private Date              date;
+   private int               rating;
+   private int               status;
+
+   public History( int quizId, Date date, int rating, int status ) {
       this.quizId = quizId;
       this.date = date;
       this.rating = rating;
@@ -20,7 +28,7 @@ public class History {
       return quizId;
    }
 
-   public void setQuizId(int quizId) {
+   public void setQuizId( int quizId ) {
       this.quizId = quizId;
    }
 
@@ -28,7 +36,7 @@ public class History {
       return date;
    }
 
-   public void setDate(Date date) {
+   public void setDate( Date date ) {
       this.date = date;
    }
 
@@ -36,7 +44,7 @@ public class History {
       return rating;
    }
 
-   public void setRating(int rating) {
+   public void setRating( int rating ) {
       this.rating = rating;
    }
 
@@ -44,7 +52,7 @@ public class History {
       return status;
    }
 
-   public void setStatus(int status) {
+   public void setStatus( int status ) {
       this.status = status;
    }
 }

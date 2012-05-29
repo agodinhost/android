@@ -1,18 +1,26 @@
 package com.gec.questoesGratis.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Quiz {
+/**
+ * Quiz TO.
+ * 
+ * @author agodinho
+ */
+public final class Quiz implements Serializable {
 
-   private int            quizId;
-   private Filter         filter;
-   private List<Question> questions;
+   private static final long serialVersionUID = -4206546859010743058L;
+
+   private int               quizId;
+   private Filter            filter;
+   private List< Answer >    answers;
 
    public int getQuizId() {
       return quizId;
    }
 
-   public void setQuizId(int quizId) {
+   public void setQuizId( int quizId ) {
       this.quizId = quizId;
    }
 
@@ -20,15 +28,15 @@ public class Quiz {
       return filter;
    }
 
-   public void setFilter(Filter filter) {
+   public void setFilter( Filter filter ) {
       this.filter = filter;
    }
 
-   public List<Question> getQuestions() {
-      return questions;
+   public List< Answer > getAnswers() {
+      return answers;
    }
 
-   public void setQuestions(List<Question> questions) {
-      this.questions = questions;
+   public void setAnswers( List< Answer > questions ) {
+      this.answers = questions;
    }
 }

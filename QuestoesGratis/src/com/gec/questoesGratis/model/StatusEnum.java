@@ -1,14 +1,19 @@
 package com.gec.questoesGratis.model;
 
+/**
+ * Status Enum.
+ * 
+ * @author agodinho
+ */
 public enum StatusEnum {
 
-   Unfinished(0, "Não Concluído"), //
-   Finished(1, "Concluído"); //
+   Unfinished( 0, "Não Concluído" ), //
+   Finished( 1, "Concluído" ); //
 
    private final int    statusId;
    private final String displayName;
 
-   private StatusEnum(int id, String name) {
+   private StatusEnum( int id, String name ) {
       this.statusId = id;
       this.displayName = name;
    }
@@ -21,9 +26,9 @@ public enum StatusEnum {
       return displayName;
    }
 
-   public static StatusEnum valueOf(int statusId) {
+   public static StatusEnum valueOf( int statusId ) {
       final StatusEnum status;
-      if (statusId == 0) {
+      if( statusId == 0 ) {
          status = Unfinished;
       } else {
          status = Finished;

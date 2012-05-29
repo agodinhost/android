@@ -31,7 +31,7 @@ public class QuizActivity extends Activity implements OnItemClickListener {
 
       long id = xSel.getHistoryList_selectedId();
       Quiz quiz = xSel.getQuizFromDB(id);
-      QuizAdapter adapter = new QuizAdapter(getApplicationContext(), R.id.quiz_questionId, quiz.getQuestions());
+      QuizAdapter adapter = new QuizAdapter(getApplicationContext(), R.id.quiz_questionId, quiz.getAnswers());
 
       listView = (ListView) findViewById(R.id.quiz_list);
       listView.setAdapter(adapter);
