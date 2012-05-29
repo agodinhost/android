@@ -33,10 +33,10 @@
     <string name="g_no_selection">Nenhuma questão selecionada &#8230;</string>
     
     <string name="menu_title">Menu Principal</string>
-    <string name="menu_button1">Novo Simulado</string>
-    <string name="menu_button2">Meu Histórico</string>
-    <string name="menu_button3">Versão Completa</string>
-    <string name="menu_button4">Sobre</string>
+    <string name="menu_new">Novo Simulado</string>
+    <string name="menu_history">Meus Simulados</string>
+    <string name="menu_more">Mais Questões</string>
+    <string name="menu_about">Sobre Nós</string>
 
     <string name="filter_title">Selecione os filtros desejados:</string>
     <string name="filter_uf">UF</string>

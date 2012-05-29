@@ -1,0 +1,5 @@
+
+	- resize das imagens; botoes 144 x 96
+	- remover images e estilos n'ao utilizados;
+	- logo deve ficar em cima do google ad;
+	- botao more, remover (a pedidos, pra simplificar);

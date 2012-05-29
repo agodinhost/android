@@ -11,6 +11,7 @@
 
     <LinearLayout
         style="@style/ActionBarCompat" />
+
     <com.google.ads.AdView 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -21,7 +22,8 @@
         ads:refreshInterval="30"
         ads:loadAdOnCreate="true" />
 
-    <ScrollView
+    <com.gec.questoesGratis.widgets.DashboardLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
@@ -29,43 +31,34 @@
         android:padding="@dimen/padding"
         android:layout_gravity="center_vertical|center_horizontal" >
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="@dimen/padding" >
+        <Button
+            android:id="@+id/home_btn_new"
+            style="@style/DashboardButton"
+            android:drawableTop="@drawable/home_btn_new"
+            android:onClick="onClick_NEW"
+            android:text="@string/menu_new" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/menu_title"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:onClick="onClick_button1"
-                android:text="@string/menu_button1" />
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:onClick="onClick_button2"
-                android:text="@string/menu_button2" />
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:onClick="onClick_button3"
-                android:text="@string/menu_button3" />
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:onClick="onClick_button4"
-                android:text="@string/menu_button4" />
-        </LinearLayout>
-    </ScrollView>
+        <Button
+            android:id="@+id/home_btn_history"
+            style="@style/DashboardButton"
+            android:drawableTop="@drawable/home_btn_history"
+            android:onClick="onClick_HISTORY"
+            android:text="@string/menu_history" />
+
+        <Button
+            android:id="@+id/home_btn_more"
+            style="@style/DashboardButton"
+            android:drawableTop="@drawable/home_btn_more"
+            android:onClick="onClick_MORE"
+            android:text="@string/menu_more" />
+
+        <Button
+            android:id="@+id/home_btn_about"
+            style="@style/DashboardButton"
+            android:drawableTop="@drawable/home_btn_about"
+            android:onClick="onClick_ABOUT"
+            android:text="@string/menu_about" />
+
+	</com.gec.questoesGratis.widgets.DashboardLayout>
 
 </LinearLayout>

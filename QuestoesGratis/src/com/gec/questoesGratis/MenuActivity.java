@@ -17,22 +17,22 @@ public class MenuActivity extends Activity {
       new ActivityHelper(this).setupActionBar(getString(R.string.app_name), false);
    }
 
-   public void onClick_button1(View v) {
+   public void onClick_NEW(View v) {
       Intent intent = new Intent(MenuActivity.this, FilterActivity.class);
       startActivity(intent);
    }
 
-   public void onClick_button2(View v) {
+   public void onClick_HISTORY(View v) {
       Intent intent = new Intent(MenuActivity.this, HistoryActivity.class);
       startActivity(intent);
    }
 
-   public void onClick_button3(View v) {
+   public void onClick_MORE(View v) {
       Intent intent = new Intent(MenuActivity.this, MarketingActivity.class);
       startActivity(intent);
    }
 
-   public void onClick_button4(View v) {
+   public void onClick_ABOUT(View v) {
       Intent intent = new Intent(MenuActivity.this, AboutActivity.class);
       startActivity(intent);
    }
