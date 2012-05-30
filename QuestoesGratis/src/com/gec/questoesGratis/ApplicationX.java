@@ -13,22 +13,24 @@ import android.util.Log;
 import com.gec.questoesGratis.dao.DBHelper;
 import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.model.History;
+import com.gec.questoesGratis.model.Qualifier;
+import com.gec.questoesGratis.model.Question;
 import com.gec.questoesGratis.model.Quiz;
 
 public class ApplicationX extends Application {
 
    private static ApplicationX lastInstance;
 
-   private Quiz              quiz;
-   private int               currentAnswer;
-   private int               answersCount = -1;
-   private ViewPager         pager;
+   private Quiz                quiz;
+   private int                 currentAnswer;
+   private int                 answersCount = -1;
+   private ViewPager           pager;
 
-   private Long              historyList_selectedId;
-   private Integer           historyList_selectedPos;
+   private Long                historyList_selectedId;
+   private Integer             historyList_selectedPos;
 
-   private Long              quizList_selectedId;
-   private Integer           quizList_selectedPos;
+   private Long                quizList_selectedId;
+   private Integer             quizList_selectedPos;
 
    public ApplicationX() {
       super();
@@ -185,42 +187,41 @@ public class ApplicationX extends Application {
       Quiz quiz = new Quiz();
       List<Answer> answers = new ArrayList<Answer>();
 
+      Qualifier f = new Qualifier();
+      f.setUf("RJ,SP");
+      f.setBanca("banca1");
+      f.setOrgao("orgão1");
+      f.setAno("2011");
+      f.setCargo("cargo1");
+      f.setDisciplina("disciplina1");
+      f.setAssunto("assunto1");
+
       Answer a = new Answer();
-      List<String> o = new ArrayList<String>();
+      a.setId(10001);
+      a.setNumber(1);
 
-      q.setUf("RJ,SP");
-      q.setBanca("banca1");
-      q.setOrgao("orgão1");
-      q.setAno("2011");
-      q.setCargo("cargo1");
-      q.setDisciplina("disciplina1");
-      q.setAssunto("assunto1");
-
-      q.setId(100);
-      q.setNumber(1);
+      Question q = new Question();
+      q.setId(101);
       q.setDescription("You're at a kickin' house party. Who are you hanging out with?");
+      List<String> o = new ArrayList<String>();
       o.add("You stick with your friends");
       o.add("Mingle of course!");
       o.add("Er... House parties? What are those?");
       o.add("Make a move on the hottest person there");
       q.setOptions(o);
       q.setMatch("4");
-      answers.add(q);
+      q.setQualifier(f);
+
+      a.setQuestion(q);
+      answers.add(a);
 
       // ---
-      q = new Answer();
-      o = new ArrayList<String>();
+      a = new Answer();
+      a.setId(10002);
+      a.setNumber(2);
 
-      q.setUf("RJ,SP");
-      q.setBanca("banca1");
-      q.setOrgao("orgão1");
-      q.setAno("2011");
-      q.setCargo("cargo1");
-      q.setDisciplina("disciplina1");
-      q.setAssunto("assunto1");
-
-      q.setId(101);
-      q.setNumber(2);
+      q = new Question();
+      q.setId(102);
       q.setDescription("How would you describe your appearance?");
       o = new ArrayList<String>();
       o.add("Too sexy for you!");
@@ -229,23 +230,19 @@ public class ApplicationX extends Application {
       o.add("I... have a good personality?");
       q.setOptions(o);
       q.setMatch("3");
-      q.setAnswer("2");
-      answers.add(q);
+      q.setQualifier(f);
+
+      a.setQuestion(q);
+      a.setAnswer("2");
+      answers.add(a);
 
       // ---
-      q = new Answer();
-      o = new ArrayList<String>();
+      a = new Answer();
+      a.setId(10003);
+      a.setNumber(3);
 
-      q.setUf("RJ,SP");
-      q.setBanca("banca1");
-      q.setOrgao("orgão1");
-      q.setAno("2011");
-      q.setCargo("cargo1");
-      q.setDisciplina("disciplina1");
-      q.setAssunto("assunto1");
-
-      q.setId(102);
-      q.setNumber(3);
+      q = new Question();
+      q.setId(103);
       q.setDescription("Which of your physical features would you say people notice most about you?");
       o = new ArrayList<String>();
       o.add("My body");
@@ -254,23 +251,19 @@ public class ApplicationX extends Application {
       o.add("My flabby gut");
       q.setOptions(o);
       q.setMatch("3");
-      q.setAnswer("3");
-      answers.add(q);
+      q.setQualifier(f);
+
+      a.setQuestion(q);
+      a.setAnswer("3");
+      answers.add(a);
 
       // ---
-      q = new Answer();
-      o = new ArrayList<String>();
+      a = new Answer();
+      a.setId(10004);
+      a.setNumber(4);
 
-      q.setUf("RJ,SP");
-      q.setBanca("banca1");
-      q.setOrgao("orgão1");
-      q.setAno("2011");
-      q.setCargo("cargo1");
-      q.setDisciplina("disciplina1");
-      q.setAssunto("assunto1");
-
-      q.setId(105);
-      q.setNumber(4);
+      q = new Question();
+      q.setId(104);
       q.setDescription("You gave someone your number. When do you think they'll call you?");
       o = new ArrayList<String>();
       o.add("Psh... never, as usual!");
@@ -279,22 +272,18 @@ public class ApplicationX extends Application {
       o.add("Later that night");
       q.setOptions(o);
       q.setMatch("4");
-      answers.add(q);
+      q.setQualifier(f);
+
+      a.setQuestion(q);
+      answers.add(a);
 
       // ---
-      q = new Answer();
-      o = new ArrayList<String>();
+      a = new Answer();
+      a.setId(10005);
+      a.setNumber(5);
 
-      q.setUf("RJ,SP");
-      q.setBanca("banca1");
-      q.setOrgao("orgão1");
-      q.setAno("2011");
-      q.setCargo("cargo1");
-      q.setDisciplina("disciplina1");
-      q.setAssunto("assunto1");
-
-      q.setId(106);
-      q.setNumber(5);
+      q = new Question();
+      q.setId(105);
       q.setDescription("What kind of dates are you into?");
       o = new ArrayList<String>();
       o.add("I'm a woman, and I usually date men.");
@@ -303,23 +292,19 @@ public class ApplicationX extends Application {
       o.add("I'm a man, and I'll date anything that walks.");
       q.setOptions(o);
       q.setMatch("3");
-      q.setAnswer("2");
-      answers.add(q);
+      q.setQualifier(f);
+
+      a.setQuestion(q);
+      a.setAnswer("2");
+      answers.add(a);
 
       // ---
-      q = new Answer();
-      o = new ArrayList<String>();
+      a = new Answer();
+      a.setId(10006);
+      a.setNumber(6);
 
-      q.setUf("RJ,SP");
-      q.setBanca("banca1");
-      q.setOrgao("orgão1");
-      q.setAno("2011");
-      q.setCargo("cargo1");
-      q.setDisciplina("disciplina1");
-      q.setAssunto("assunto1");
-
+      q = new Question();
       q.setId(106);
-      q.setNumber(6);
       q.setDescription("<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet est ut sapien dignissim euismod sit amet et odio. Integer at enim ante, vitae consectetur nulla. Aenean eleifend sapien iaculis erat faucibus pretium. Pellentesque imperdiet mollis pulvinar. Nullam velit dolor, sodales eget auctor non, laoreet ac felis. Sed dictum suscipit lacus, ut eleifend ligula rhoncus nec. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum malesuada mattis erat, quis tempus arcu viverra id. Pellentesque quis sapien massa. In hac habitasse platea dictumst.</p>"
             + //
             "<p>Cras leo tellus, vehicula imperdiet gravida non, blandit in tortor. Sed sem tortor, vulputate vitae adipiscing vel, scelerisque vel elit. Duis purus arcu, iaculis sodales blandit ut, venenatis eget purus. Donec arcu tortor, ultrices dignissim viverra vitae, ornare vel diam. Proin ante urna, porta ac tincidunt eu, accumsan ac justo. Curabitur lorem massa, dignissim quis bibendum vitae, elementum quis odio. In non euismod lorem. Curabitur eu malesuada velit. Vivamus lobortis felis sit amet sapien egestas ut rhoncus sem malesuada. Sed iaculis augue non libero tempus at ultrices nisi euismod. Sed accumsan varius tristique. Pellentesque adipiscing sodales mauris, vulputate lacinia justo tincidunt eu. Integer aliquet suscipit ante, eget pharetra odio tincidunt mollis. Maecenas in aliquam dolor. Praesent tristique libero sed metus luctus facilisis facilisis arcu auctor. Pellentesque fringilla ligula sit amet purus varius placerat.</p>"
@@ -336,8 +321,11 @@ public class ApplicationX extends Application {
       o.add("Just get the webView size AFTER we do load our html.");
       q.setOptions(o);
       q.setMatch("1");
-      q.setAnswer("1");
-      answers.add(q);
+      q.setQualifier(f);
+
+      a.setQuestion(q);
+      a.setAnswer("1");
+      answers.add(a);
 
       quiz.setAnswers(answers);
 
