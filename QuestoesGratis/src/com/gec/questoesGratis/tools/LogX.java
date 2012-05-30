@@ -67,6 +67,17 @@ public final class LogX {
    }
 
    /**
+    * Log debug message.
+    * @param t the throwable to log.
+    */
+   public void d(Throwable t) {
+
+      if (debug) {
+         Log.d(tag, null, t);
+      }
+   }
+
+   /**
     * Log error message.
     * @param message the error message to log.
     * @param args optional message format arguments to apply in the message.
@@ -91,13 +102,24 @@ public final class LogX {
     */
    public void e(Throwable t, String message, Object... args) {
 
-      if (debug) {
+      if (error) {
          if (args == null) {
             Log.e(tag, message, t);
          } else {
             String format = MessageFormat.format(message, args);
             Log.e(tag, format, t);
          }
+      }
+   }
+
+   /**
+    * Log error message.
+    * @param t the throwable to log.
+    */
+   public void e(Throwable t) {
+
+      if (error) {
+         Log.e(tag, null, t);
       }
    }
 
@@ -126,13 +148,24 @@ public final class LogX {
     */
    public void i(Throwable t, String message, Object... args) {
 
-      if (debug) {
+      if (info) {
          if (args == null) {
             Log.i(tag, message, t);
          } else {
             String format = MessageFormat.format(message, args);
             Log.i(tag, format, t);
          }
+      }
+   }
+
+   /**
+    * Log info message.
+    * @param t the throwable to log.
+    */
+   public void i(Throwable t) {
+
+      if (info) {
+         Log.i(tag, null, t);
       }
    }
 
@@ -161,13 +194,24 @@ public final class LogX {
     */
    public void w(Throwable t, String message, Object... args) {
 
-      if (debug) {
+      if (warn) {
          if (args == null) {
             Log.w(tag, message, t);
          } else {
             String format = MessageFormat.format(message, args);
             Log.w(tag, format, t);
          }
+      }
+   }
+
+   /**
+    * Log warning message.
+    * @param t the throwable to log.
+    */
+   public void w(Throwable t) {
+
+      if (warn) {
+         Log.w(tag, null, t);
       }
    }
 
@@ -196,13 +240,24 @@ public final class LogX {
     */
    public void v(Throwable t, String message, Object... args) {
 
-      if (debug) {
+      if (verbose) {
          if (args == null) {
             Log.v(tag, message, t);
          } else {
             String format = MessageFormat.format(message, args);
             Log.v(tag, format, t);
          }
+      }
+   }
+
+   /**
+    * Log verbose message.
+    * @param t the throwable to log.
+    */
+   public void v(Throwable t) {
+
+      if (verbose) {
+         Log.v(tag, null, t);
       }
    }
 
@@ -229,13 +284,20 @@ public final class LogX {
     */
    public void wtf(Throwable t, String message, Object... args) {
 
-      if (debug) {
-         if (args == null) {
-            Log.wtf(tag, message, t);
-         } else {
-            String format = MessageFormat.format(message, args);
-            Log.wtf(tag, format, t);
-         }
+      if (args == null) {
+         Log.wtf(tag, message, t);
+      } else {
+         String format = MessageFormat.format(message, args);
+         Log.wtf(tag, format, t);
       }
+   }
+
+   /**
+    * Log WTF message.
+    * @param t the throwable to log.
+    */
+   public void wtf(Throwable t) {
+
+      Log.wtf(tag, null, t);
    }
 }

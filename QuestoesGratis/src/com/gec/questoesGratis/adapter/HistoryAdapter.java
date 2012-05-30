@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,11 @@ import android.widget.TextView;
 import com.gec.questoesGratis.R;
 import com.gec.questoesGratis.model.History;
 import com.gec.questoesGratis.model.StatusEnum;
+import com.gec.questoesGratis.tools.LogX;
 
 public class HistoryAdapter extends ArrayAdapter<History> {
+
+   private static final LogX             log = new LogX(HistoryAdapter.class);
 
    private List<History>                 list;
    private Context                       context;
@@ -53,7 +55,7 @@ public class HistoryAdapter extends ArrayAdapter<History> {
             vRating.setText(sRating);
          }
       } catch (Exception e) {
-         Log.i(this.getClass().toString(), e.getMessage());
+         log.e(e);
       }
       return row;
    }

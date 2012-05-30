@@ -1,6 +1,5 @@
 package com.gec.questoesGratis.tools;
 
-import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -13,9 +12,11 @@ import android.webkit.WebViewClient;
  */
 public class EmbeddedWebView2 extends WebViewClient {
 
+   private static final LogX   log            = new LogX(EmbeddedWebView2.class);
+
    private static final String P_MIMETYPE     = "text/html";
    private static final String P_ENCODING     = "utf-8";
-   private static final String LOG_TAG        = "EmbeddedWebClientView2";
+
    private static final String JS_BRIDGE      = "JSB";
    private static final String JS_CONTENTSIZE = "javascript:window." + JS_BRIDGE + ".setContentSize(" + //
                                                     "document.getElementsByTagName('html')[0].getHeight()," + //
@@ -27,8 +28,8 @@ public class EmbeddedWebView2 extends WebViewClient {
 
       super.onPageFinished(webView, url);
 
-      Log.d(LOG_TAG, "webView.getHeight " + webView.getHeight());
-      Log.d(LOG_TAG, "webView.getContentHeight " + webView.getContentHeight());
+      log.d("webView.getHeight {0}", webView.getHeight());
+      log.d("webView.getContentHeight {0}", webView.getContentHeight());
 
       WebSettings webSettings = webView.getSettings();
       webSettings.setJavaScriptEnabled(true);
@@ -70,11 +71,11 @@ public class EmbeddedWebView2 extends WebViewClient {
 
          if (sHeight != null) {
             width = Integer.parseInt(sHeight);
-            Log.d(LOG_TAG, "Result from javascript, height = " + height);
+            log.d("Result from javascript, height = {0}", height);
          }
          if (sWidth != null) {
             width = Integer.parseInt(sWidth);
-            Log.d(LOG_TAG, "Result from javascript, width = " + width);
+            log.d("Result from javascript, width = {0}", width);
          }
       }
    }
