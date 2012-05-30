@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.gec.questoesGratis.dao.XSelection;
 import com.gec.questoesGratis.tools.ActivityHelper;
 import com.gec.questoesGratis.widgets.MultiSpinner;
 
@@ -17,7 +16,7 @@ import com.gec.questoesGratis.widgets.MultiSpinner;
  */
 public class FilterActivity extends Activity {
 
-   private XSelection xSel;
+   private ApplicationX xApp;
 
    @Override
    public void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,7 @@ public class FilterActivity extends Activity {
       setContentView(R.layout.filter);
       new ActivityHelper(this).setupActionBar(getString(R.string.app_name));
 
-      xSel = (XSelection) getApplication();
+      xApp = (ApplicationX) getApplication();
 
       final String TODOS = getString(R.string.g_all_M);
       final String TODAS = getString(R.string.g_all_W);
@@ -53,7 +52,7 @@ public class FilterActivity extends Activity {
 
       // TODO: checar os resultados do filtro, pode não retornar nada ...
 
-      xSel.setQuiz(xSel.getQuizFromDB(1));
+      xApp.setQuiz(xApp.getQuizFromDB(1));
 
       Intent intent = new Intent(FilterActivity.this, PagerActivity.class);
       startActivity(intent);

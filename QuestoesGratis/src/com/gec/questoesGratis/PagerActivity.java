@@ -6,12 +6,11 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.gec.questoesGratis.adapter.PagerAdapter;
-import com.gec.questoesGratis.dao.XSelection;
 import com.gec.questoesGratis.tools.ActivityHelper;
 
 public class PagerActivity extends FragmentActivity {
 
-   private XSelection xSel;
+   private ApplicationX xApp;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -19,26 +18,26 @@ public class PagerActivity extends FragmentActivity {
       setContentView(R.layout.pager);
       new ActivityHelper(this).setupActionBar(getString(R.string.app_name));
 
-      xSel = (XSelection) getApplication();
-      PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), xSel);
+      xApp = (ApplicationX) getApplication();
+      PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), xApp);
       ViewPager pager = (ViewPager) findViewById(R.id.pager);
       pager.setAdapter(adapter);
-      xSel.setPager(pager);
+      xApp.setPager(pager);
    }
 
    public void onClick_first(View view) {
-      xSel.moveFirst();
+      xApp.moveFirst();
    }
 
    public void onClick_previous(View view) {
-      xSel.movePrevious();
+      xApp.movePrevious();
    }
 
    public void onClick_next(View view) {
-      xSel.moveNext();
+      xApp.moveNext();
    }
 
    public void onClick_last(View view) {
-      xSel.moveLast();
+      xApp.moveLast();
    }
 }

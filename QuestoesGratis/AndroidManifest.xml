@@ -30,7 +30,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.QuestoesGratis"
         android:allowClearUserData="false"
-        android:name=".dao.XSelection" >
+        android:name=".ApplicationX" >
 
         <activity
             android:name=".MenuActivity"

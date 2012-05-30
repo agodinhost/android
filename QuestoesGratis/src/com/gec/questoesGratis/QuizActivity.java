@@ -9,7 +9,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.gec.questoesGratis.adapter.QuizAdapter;
-import com.gec.questoesGratis.dao.XSelection;
 import com.gec.questoesGratis.model.Quiz;
 import com.gec.questoesGratis.tools.ActivityHelper;
 
@@ -18,7 +17,7 @@ import com.gec.questoesGratis.tools.ActivityHelper;
  */
 public class QuizActivity extends Activity implements OnItemClickListener {
 
-   private XSelection xSel;
+   private ApplicationX xApp;
    private ListView   listView;
 
    @Override
@@ -27,10 +26,10 @@ public class QuizActivity extends Activity implements OnItemClickListener {
       setContentView(R.layout.quiz);
       new ActivityHelper(this).setupActionBar(getString(R.string.app_name));
 
-      xSel = (XSelection) getApplication();
+      xApp = (ApplicationX) getApplication();
 
-      long id = xSel.getHistoryList_selectedId();
-      Quiz quiz = xSel.getQuizFromDB(id);
+      long id = xApp.getHistoryList_selectedId();
+      Quiz quiz = xApp.getQuizFromDB(id);
       QuizAdapter adapter = new QuizAdapter(getApplicationContext(), R.id.quiz_questionId, quiz.getAnswers());
 
       listView = (ListView) findViewById(R.id.quiz_list);

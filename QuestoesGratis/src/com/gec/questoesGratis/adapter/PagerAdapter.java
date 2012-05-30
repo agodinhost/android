@@ -17,21 +17,21 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gec.questoesGratis.ApplicationX;
 import com.gec.questoesGratis.DetailsActivity;
 import com.gec.questoesGratis.R;
-import com.gec.questoesGratis.dao.XSelection;
 import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.model.Question;
 import com.gec.questoesGratis.tools.EmbeddedWebView;
 
 public final class PagerAdapter extends FragmentStatePagerAdapter {
 
-   private static XSelection   xSel;
+   private static ApplicationX   xSel;
 
    private static final String P_DEBUG_TAG = PagerAdapter.class.getName();
    private static final int    P_MAX_CHARS = 150;
 
-   public PagerAdapter( FragmentManager fm, XSelection xSelPar ) {
+   public PagerAdapter( FragmentManager fm, ApplicationX xSelPar ) {
       super( fm );
       xSel = xSelPar;
       Log.d( P_DEBUG_TAG, "constructor" );

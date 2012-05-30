@@ -6,7 +6,6 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 
-import com.gec.questoesGratis.dao.XSelection;
 import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.tools.ActivityHelper;
 import com.gec.questoesGratis.tools.EmbeddedWebView;
@@ -28,8 +27,8 @@ public class DetailsActivity extends FragmentActivity {
 
    private void setup() {
 
-      XSelection xSel = (XSelection) getApplication();
-      Answer answer = xSel.getAnswer();
+      ApplicationX xApp = (ApplicationX) getApplication();
+      Answer answer = xApp.getAnswer();
       if( answer != null ) {
          TextView description = (TextView) findViewById( R.id.details_description );
          description.setText( answer.getQuestionD() );

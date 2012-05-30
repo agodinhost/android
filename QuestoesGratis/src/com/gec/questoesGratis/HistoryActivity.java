@@ -11,7 +11,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.gec.questoesGratis.adapter.HistoryAdapter;
-import com.gec.questoesGratis.dao.XSelection;
 import com.gec.questoesGratis.model.History;
 import com.gec.questoesGratis.tools.ActivityHelper;
 
@@ -20,7 +19,7 @@ import com.gec.questoesGratis.tools.ActivityHelper;
  */
 public class HistoryActivity extends Activity implements OnItemClickListener {
 
-   private XSelection xSel;
+   private ApplicationX xApp;
    private ListView   listView;
 
    @Override
@@ -29,17 +28,17 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
       setContentView(R.layout.history);
       new ActivityHelper(this).setupActionBar(getString(R.string.app_name));
 
-      xSel = (XSelection) getApplication();
+      xApp = (ApplicationX) getApplication();
 
-      List<History> list = xSel.getHistoryFromDB();
+      List<History> list = xApp.getHistoryFromDB();
       HistoryAdapter adapter = new HistoryAdapter(getApplicationContext(), R.id.history_list, list);
 
       listView = (ListView) findViewById(R.id.history_list);
       listView.setAdapter(adapter);
       listView.setOnItemClickListener(this);
 
-      if (xSel.getHistoryList_selectedId() != null) {
-         listView.setSelection(xSel.getHistoryList_selectedPos());
+      if (xApp.getHistoryList_selectedId() != null) {
+         listView.setSelection(xApp.getHistoryList_selectedPos());
       }
    }
 
@@ -50,8 +49,8 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 
    @Override
    public void onItemClick(AdapterView<?> av, View v, int position, long id) {
-      xSel.setHistoryList_selectedPos(position);
-      xSel.setHistoryList_selectedId(id);
+      xApp.setHistoryList_selectedPos(position);
+      xApp.setHistoryList_selectedId(id);
 
       Intent intent = new Intent(HistoryActivity.this, QuizActivity.class);
       startActivity(intent);

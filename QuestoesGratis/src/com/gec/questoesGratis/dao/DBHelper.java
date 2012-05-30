@@ -11,7 +11,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
+import com.gec.questoesGratis.tools.LogX;
 
 /**
  * @see {http://www.vogella.com/articles/AndroidSQLite/article.html} 
@@ -21,30 +22,11 @@ import android.util.Log;
  */
 public final class DBHelper extends SQLiteOpenHelper {
 
-   private static final String DB_PATH    = "/data/data/com.gec.questoesGratis/databases/";
-   private static final String DB_NAME    = "questoesGratis";
-   private static final int    DB_VERSION = 1;
+   private static final LogX log = new LogX(DBHelper.class);
 
-   private static final String COLUMN_ID  = "_id";
+   private final Context     context;
 
-   private static final String DB_CREATE  = "CREATE TABLE questions( " + //
-                                                COLUMN_ID + " integer primary key autoincrement, " + //
-                                                "uf text, " + //
-                                                "banca text, " + //
-                                                "orgao text, " + //
-                                                "cargo text, " + //
-                                                "ano text, " + //
-                                                "disciplina text, " + //
-                                                "assunto text, " + //
-                                                "question text not null, " + //
-                                                "match text not null" + //
-                                                ");";
-
-   private static final String DB_DROP    = "DROP TABLE IF EXISTS questions;";
-
-   private final Context       context;
-
-   private SQLiteDatabase      database;
+   private SQLiteDatabase    database;
 
    /**
     * Constructor Takes and keeps a reference of the passed context in order to
@@ -52,30 +34,29 @@ public final class DBHelper extends SQLiteOpenHelper {
     * 
     * @param context
     */
-   public DBHelper( Context context ) {
+   public DBHelper(Context context) {
 
-      super( context, DB_NAME, null, DB_VERSION );
+      super(context, DBProperties.DB_NAME, null, DBProperties.DB_VERSION);
       this.context = context;
    }
 
    @Override
-   public void onCreate( SQLiteDatabase database ) {
-      database.execSQL( DB_CREATE );
+   public void onCreate(SQLiteDatabase database) {
+      database.execSQL(DBProperties.DDL_CREATE);
    }
 
    @Override
-   public void onUpgrade( SQLiteDatabase database, int oldVersion, int newVersion ) {
-      Log.w( DBHelper.class.getName(), //
-            "Upgrading database from version " + oldVersion + //
-                  " to " + newVersion + ", which will destroy all old data" );
-      database.execSQL( DB_DROP );
-      onCreate( database );
+   public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+      log.w("Upgrading database from version {0} to {1}, which will destroy all old data ...", oldVersion, newVersion);
+      database.execSQL(DBProperties.DDL_DROP);
+      onCreate(database);
    }
 
    @Override
    public synchronized void close() {
 
-      if( database != null ) database.close();
+      if (database != null)
+         database.close();
       super.close();
    }
 
@@ -87,7 +68,7 @@ public final class DBHelper extends SQLiteOpenHelper {
 
       boolean dbExist = checkDataBase();
 
-      if( dbExist ) {
+      if (dbExist) {
          // do nothing - database already exist.
       } else {
 
@@ -98,8 +79,8 @@ public final class DBHelper extends SQLiteOpenHelper {
 
          try {
             copyDataBase();
-         } catch( IOException e ) {
-            throw new Error( "Error copying database" );
+         } catch (IOException e) {
+            throw new Error("Error copying database");
          }
       }
    }
@@ -115,15 +96,16 @@ public final class DBHelper extends SQLiteOpenHelper {
       SQLiteDatabase checkDB = null;
 
       try {
-         String myPath = DB_PATH + DB_NAME;
          checkDB = SQLiteDatabase.openDatabase( //
-               myPath, null, SQLiteDatabase.OPEN_READONLY );
+               DBProperties.DB_FILENAME, //
+               null, //
+               SQLiteDatabase.OPEN_READONLY);
 
-      } catch( SQLiteException e ) {
+      } catch (SQLiteException e) {
          // database does't exist yet.
       }
 
-      if( checkDB != null ) {
+      if (checkDB != null) {
          checkDB.close();
       }
 
@@ -138,59 +120,57 @@ public final class DBHelper extends SQLiteOpenHelper {
    private void copyDataBase() throws IOException {
 
       // Open your local db as the input stream.
-      InputStream myInput = context.getAssets().open( DB_NAME );
-
-      // Path to the just created empty db.
-      String outFileName = DB_PATH + DB_NAME;
+      final InputStream is = context.getAssets().open(DBProperties.DB_NAME);
 
       // Open the empty db as the output stream.
-      OutputStream myOutput = new FileOutputStream( outFileName );
+      final OutputStream os = new FileOutputStream(DBProperties.DB_FILENAME);
 
-      // transfer bytes from the inputfile to the outputfile.
-      byte[] buffer = new byte[ 1024 ];
+      // Transfer bytes from the input into the output file.
+      byte[] buffer = new byte[1024];
       int length;
-      while( ( length = myInput.read( buffer ) ) > 0 ) {
-         myOutput.write( buffer, 0, length );
+      while ((length = is.read(buffer)) > 0) {
+         os.write(buffer, 0, length);
       }
 
       // Close the streams.
-      myOutput.flush();
-      myOutput.close();
-      myInput.close();
+      os.flush();
+      os.close();
+      is.close();
    }
 
    public void openDataBase() throws SQLException {
 
-      // Open the database.
-      String myPath = DB_PATH + DB_NAME;
-      database = SQLiteDatabase.openDatabase( myPath, null, SQLiteDatabase.OPEN_READONLY );
+      database = SQLiteDatabase.openDatabase( //
+            DBProperties.DB_FILENAME, //
+            null, //
+            SQLiteDatabase.OPEN_READONLY);
    }
 
-   public List< String > getUFs() {
+   public List<String> getUFs() {
       return null;
    }
 
-   public List< String > getBancas() {
+   public List<String> getBancas() {
       return null;
    }
 
-   public List< String > getOrgaos() {
+   public List<String> getOrgaos() {
       return null;
    }
 
-   public List< String > getCargos() {
+   public List<String> getCargos() {
       return null;
    }
 
-   public List< String > getAnos() {
+   public List<String> getAnos() {
       return null;
    }
 
-   public List< String > getDisciplinas() {
+   public List<String> getDisciplinas() {
       return null;
    }
 
-   public List< String > getAssuntos() {
+   public List<String> getAssuntos() {
       return null;
    }
 
