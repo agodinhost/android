@@ -23,7 +23,7 @@ public final class LogX {
     * @param clazz the class tag name.
     */
    public LogX(Class<?> clazz) {
-      tag = clazz.getName();
+      tag = clazz.getSimpleName();
       debug = Log.isLoggable(tag, Log.DEBUG);
       error = Log.isLoggable(tag, Log.ERROR);
       info = Log.isLoggable(tag, Log.INFO);

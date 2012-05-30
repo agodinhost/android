@@ -8,3 +8,4 @@ based on google Quiz and pool.
 	- status não concluído, não pode alterar o questionário;
 	
 	- banco;
+	- send to (FB,email,etc, copiar do Quiz and Pool);
