@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.model;
 
 import java.io.Serializable;
@@ -11,32 +12,32 @@ import java.util.List;
  */
 public final class Quiz implements Serializable {
 
-   private static final long serialVersionUID = -8385924102847640126L;
+   private static final long serialVersionUID = 383288274571355914L;
 
-   private Integer           quizId;
+   private Integer           id;
    private Date              date;
+   private Filter            filter;
    private Integer           rating;
    private Status            status;
+   private Integer           lastNumber;
    private List< Answer >    answers;
-
-   private Filter            filter;
 
    public Quiz() {
    }
 
-   public Quiz( Integer quizId, Date date, Integer rating, Status status ) {
-      this.quizId = quizId;
+   public Quiz( Integer id, Date date, Integer rating, Status status ) {
+      this.id = id;
       this.date = date;
       this.rating = rating;
       this.status = status;
    }
 
-   public Integer getQuizId() {
-      return quizId;
+   public Integer getId() {
+      return id;
    }
 
-   public void setQuizId( Integer quizId ) {
-      this.quizId = quizId;
+   public void setId( Integer id ) {
+      this.id = id;
    }
 
    public Date getDate() {
@@ -45,6 +46,14 @@ public final class Quiz implements Serializable {
 
    public void setDate( Date date ) {
       this.date = date;
+   }
+
+   public Filter getFilter() {
+      return filter;
+   }
+
+   public void setFilter( Filter filter ) {
+      this.filter = filter;
    }
 
    public Integer getRating() {
@@ -63,8 +72,12 @@ public final class Quiz implements Serializable {
       this.status = status;
    }
 
-   public Filter getFilter() {
-      return filter;
+   public Integer getLastNumber() {
+      return lastNumber;
+   }
+
+   public void setLastNumber( Integer lastNumber ) {
+      this.lastNumber = lastNumber;
    }
 
    public List< Answer > getAnswers() {
@@ -73,9 +86,5 @@ public final class Quiz implements Serializable {
 
    public void setAnswers( List< Answer > questions ) {
       this.answers = questions;
-   }
-
-   public void setFilter( Filter filter ) {
-      this.filter = filter;
    }
 }

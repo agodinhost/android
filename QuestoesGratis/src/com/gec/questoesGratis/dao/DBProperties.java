@@ -16,14 +16,14 @@ public final class DBProperties {
    public static final String       DDL_CREATE             = p.getString( "DDL_CREATE" );
    public static final String       DDL_DROP               = p.getString( "DDL_DROP" );
 
-   public static final String       SQL_INSERT_QUIZ        = p.getString( "SQL_INSERT_QUIZ" );
-
-   public static final String       SQL_SELECT_UFs         = p.getString( "SQL_SELECT_UFs" );
    public static final String       SQL_SELECT_Bancas      = p.getString( "SQL_SELECT_Bancas" );
-   public static final String       SQL_SELECT_Orgaos      = p.getString( "SQL_SELECT_Orgaos" );
-   public static final String       SQL_SELECT_Cargos      = p.getString( "SQL_SELECT_Cargos" );
    public static final String       SQL_SELECT_Anos        = p.getString( "SQL_SELECT_Anos" );
+   public static final String       SQL_SELECT_Orgaos      = p.getString( "SQL_SELECT_Orgaos" );
+   public static final String       SQL_SELECT_UFs         = p.getString( "SQL_SELECT_UFs" );
+   public static final String       SQL_SELECT_Cargos      = p.getString( "SQL_SELECT_Cargos" );
    public static final String       SQL_SELECT_Disciplinas = p.getString( "SQL_SELECT_Disciplinas" );
    public static final String       SQL_SELECT_Assuntos    = p.getString( "SQL_SELECT_Assuntos" );
+
+   public static final String       SQL_INSERT_QUIZ        = p.getString( "SQL_INSERT_QUIZ" );
 
 }
