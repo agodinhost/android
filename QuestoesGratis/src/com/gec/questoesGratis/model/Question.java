@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.model;
 
 import java.io.Serializable;
@@ -13,10 +14,10 @@ public final class Question implements Serializable {
    private static final long serialVersionUID = 1823845473939566367L;
 
    private Integer           id;
+   private Qualifier         q;
    private String            description;
    private List< String >    options;
    private String            match;
-   private Qualifier         q;
 
    public Integer getId() {
       return id;
@@ -24,6 +25,14 @@ public final class Question implements Serializable {
 
    public void setId( Integer id ) {
       this.id = id;
+   }
+
+   public Qualifier getQualifier() {
+      return q;
+   }
+
+   public void setQualifier( Qualifier q ) {
+      this.q = q;
    }
 
    public String getDescription() {
@@ -60,14 +69,6 @@ public final class Question implements Serializable {
 
    public void setMatch( String match ) {
       this.match = match;
-   }
-
-   public Qualifier getQualifier() {
-      return q;
-   }
-
-   public void setQualifier( Qualifier q ) {
-      this.q = q;
    }
 
    public String getQualifierD() {
