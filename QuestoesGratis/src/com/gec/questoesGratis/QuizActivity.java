@@ -1,5 +1,7 @@
 package com.gec.questoesGratis;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,40 +15,44 @@ import com.gec.questoesGratis.model.Quiz;
 import com.gec.questoesGratis.tools.ActivityHelper;
 
 /**
- * Activity / View to list the quiz details.
+ * Activity / View to list the quiz history.
  */
 public class QuizActivity extends Activity implements OnItemClickListener {
 
    private ApplicationX xApp;
-   private ListView   listView;
+   private ListView     listView;
 
    @Override
-   public void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.quiz);
-      new ActivityHelper(this).setupActionBar(getString(R.string.app_name));
+   public void onCreate( Bundle savedInstanceState ) {
+      super.onCreate( savedInstanceState );
+      setContentView( R.layout.quiz );
+      new ActivityHelper( this ).setupActionBar( getString( R.string.app_name ) );
 
       xApp = (ApplicationX) getApplication();
 
-      long id = xApp.getHistoryList_selectedId();
-      Quiz quiz = xApp.getQuizFromDB(id);
-      QuizAdapter adapter = new QuizAdapter(getApplicationContext(), R.id.quiz_questionId, quiz.getAnswers());
+      List< Quiz > list = xApp.getQuizFromDB();
+      QuizAdapter adapter = new QuizAdapter( getApplicationContext(), R.id.quiz_list, list );
 
-      listView = (ListView) findViewById(R.id.quiz_list);
-      listView.setAdapter(adapter);
-      listView.setOnItemClickListener(this);
+      listView = (ListView) findViewById( R.id.quiz_list );
+      listView.setAdapter( adapter );
+      listView.setOnItemClickListener( this );
+
+      if( xApp.getHistoryList_selectedId() != null ) {
+         listView.setSelection( xApp.getHistoryList_selectedPos() );
+      }
    }
 
-   public void onClick_previous(View view) {
-      Intent intent = new Intent(QuizActivity.this, HistoryActivity.class);
-      startActivity(intent);
+   public void onClick_previous( View view ) {
+      Intent intent = new Intent( QuizActivity.this, MenuActivity.class );
+      startActivity( intent );
    }
 
    @Override
-   public void onItemClick(AdapterView<?> av, View view, int arg2, long arg3) {
+   public void onItemClick( AdapterView< ? > av, View v, int position, long id ) {
+      xApp.setHistoryList_selectedPos( position );
+      xApp.setHistoryList_selectedId( id );
 
-      // TODO: set current question ...
-      Intent intent = new Intent(QuizActivity.this, DetailsActivity.class);
-      startActivity(intent);
+      Intent intent = new Intent( QuizActivity.this, AnswerActivity.class );
+      startActivity( intent );
    }
 }

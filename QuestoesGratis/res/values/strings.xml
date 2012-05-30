@@ -54,10 +54,10 @@
     <string name="filter_assunto">Assunto</string>
     <string name="filter_assunto_options">Assunto1|Assunto2|Assunto3</string>
 
-    <string name="history_title">Meu Histórico:</string>
+    <string name="quiz_title">Meu Histórico:</string>
     
-    <string name="quiz_title">Questionário:</string>
-    <string name="quiz_image">Conclusão</string>
+    <string name="answer_title">Questionário:</string>
+    <string name="answer_image">Conclusão</string>
     
     <string name="question_details">ver mais</string>
     
@@ -65,16 +65,16 @@
     <string name="marketing_uri">http://www.google.com</string>
     
     <string name="about_title">Sobre</string>
-    <string name="about_mail_label">Feedback, problems, ideas?</string>
-    <string name="about_mail_action">Email developer</string>
-    <string name="about_rate_label">Like Quiz &amp; Poll?</string>
-    <string name="about_rate_action">Rate on Android Market</string>
-    <string name="about_web_label">Read help, see future plans:</string>
-    <string name="about_web_action">Visit website</string>
-    <string name="about_feedback_subject">Feedback from Quiz &amp; Poll</string>
-    <string name="about_feedback_text">What phone do you have?\n%s\n\nYour feedback here:\n</string>
+    <string name="about_mail_label">Críticas, problemas, idéias ou sugestões?</string>
+    <string name="about_mail_action">Email desenvolvedor</string>
+    <string name="about_rate_label">Gostou do Questões Grátis?</string>
+    <string name="about_rate_action">Vote no Android Market</string>
+    <string name="about_web_label">Veja nossos planos:</string>
+    <string name="about_web_action">Visite o website</string>
+    <string name="about_feedback_subject">Feedback do Questões Grátis</string>
+    <string name="about_feedback_text">Qual o seu telefone?\n%s\n\nSeu feedback aqui:\n</string>
     
-    <string name="about_created_by">Created by</string>
+    <string name="about_created_by">Escrito por</string>
     <string name="about_gec">G&amp;C Consultoria e Informática Ltda.</string>
     <string name="about_opensource_under">Open-sourced under</string>
     <string name="about_apache_20">Apache 2.0 License</string>

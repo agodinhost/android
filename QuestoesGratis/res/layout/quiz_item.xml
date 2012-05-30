@@ -7,25 +7,19 @@
     android:orientation="horizontal" >
 
     <TextView
-        android:id="@+id/quiz_questionNumber"
+        android:id="@+id/quiz_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
-        android:id="@+id/quiz_questionId"
+        android:id="@+id/quiz_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/quiz_questionNumber"
-        android:visibility="invisible" />
+        android:layout_below="@+id/quiz_date" />
     <TextView
-        android:id="@+id/quiz_questionDescription"
-        android:layout_width="wrap_content"
+        android:id="@+id/quiz_rating"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/quiz_questionNumber" />
-    <ImageView
-        android:id="@+id/quiz_questionStatus"
-        android:contentDescription="@string/quiz_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

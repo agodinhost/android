@@ -5,17 +5,17 @@ package com.gec.questoesGratis.model;
  * 
  * @author agodinho
  */
-public enum StatusEnum {
+public enum Status {
 
    Unfinished( 0, "Não Concluído" ), //
    Finished( 1, "Concluído" ); //
 
-   private final int    statusId;
-   private final String displayName;
+   private final Integer statusId;
+   private final String  displayName;
 
-   private StatusEnum( int id, String name ) {
-      this.statusId = id;
-      this.displayName = name;
+   private Status( Integer id, String name ) {
+      statusId = id;
+      displayName = name;
    }
 
    public int getStatusId() {
@@ -26,9 +26,9 @@ public enum StatusEnum {
       return displayName;
    }
 
-   public static StatusEnum valueOf( int statusId ) {
-      final StatusEnum status;
-      if( statusId == 0 ) {
+   public static Status valueOf( Integer id ) {
+      final Status status;
+      if( id == 0 ) {
          status = Unfinished;
       } else {
          status = Finished;

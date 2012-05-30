@@ -23,7 +23,7 @@ public class MenuActivity extends Activity {
    }
 
    public void onClick_HISTORY(View v) {
-      Intent intent = new Intent(MenuActivity.this, HistoryActivity.class);
+      Intent intent = new Intent(MenuActivity.this, QuizActivity.class);
       startActivity(intent);
    }
 

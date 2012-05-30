@@ -59,11 +59,11 @@
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity
-            android:name=".HistoryActivity"
+            android:name=".QuizActivity"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".AnswerActivity"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity

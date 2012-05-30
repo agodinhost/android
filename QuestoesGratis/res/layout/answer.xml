@@ -11,10 +11,10 @@
     <TextView
         style="@style/TextView"
         android:layout_marginTop="10dp"
-        android:text="@string/history_title" />
+        android:text="@string/answer_title" />
 
     <ListView
-        android:id="@+id/history_list"
+        android:id="@+id/answer_list"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="1"

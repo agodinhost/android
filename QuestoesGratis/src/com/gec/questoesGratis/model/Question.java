@@ -10,19 +10,19 @@ import java.util.List;
  */
 public final class Question implements Serializable {
 
-   private static final long serialVersionUID = -7266772797996081204L;
+   private static final long serialVersionUID = 1823845473939566367L;
 
-   private int               id;
+   private Integer           id;
    private String            description;
    private List< String >    options;
    private String            match;
    private Qualifier         q;
 
-   public int getId() {
+   public Integer getId() {
       return id;
    }
 
-   public void setId( int id ) {
+   public void setId( Integer id ) {
       this.id = id;
    }
 
@@ -42,7 +42,7 @@ public final class Question implements Serializable {
       this.options = options;
    }
 
-   public String getOption( int index ) {
+   public String getOption( Integer index ) {
       String option = null;
       try {
          option = options.get( index );

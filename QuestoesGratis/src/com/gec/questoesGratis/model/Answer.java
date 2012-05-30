@@ -9,26 +9,26 @@ import java.io.Serializable;
  */
 public final class Answer implements Serializable {
 
-   private static final long serialVersionUID = 5531609323631447934L;
+   private static final long serialVersionUID = -7233862773060744248L;
 
-   private int               id;
-   private int               number;
+   private Integer           id;
+   private Integer           number;
    private String            answer;
    private Question          question;
 
-   public int getId() {
+   public Integer getId() {
       return id;
    }
 
-   public void setId( int id ) {
+   public void setId( Integer id ) {
       this.id = id;
    }
 
-   public int getNumber() {
+   public Integer getNumber() {
       return number;
    }
 
-   public void setNumber( int number ) {
+   public void setNumber( Integer number ) {
       this.number = number;
    }
 
