@@ -134,10 +134,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int question_option_3=0x7f060020;
         public static final int question_option_4=0x7f060021;
         public static final int question_wv=0x7f06001a;
-        public static final int quiz_date=0x7f060023;
-        public static final int quiz_list=0x7f060022;
-        public static final int quiz_rating=0x7f060025;
-        public static final int quiz_status=0x7f060024;
+        public static final int quizzes_item_date=0x7f060023;
+        public static final int quizzes_item_rating=0x7f060025;
+        public static final int quizzes_item_status=0x7f060024;
+        public static final int quizzes_list=0x7f060022;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -149,8 +149,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int menu=0x7f030006;
         public static final int pager=0x7f030007;
         public static final int pager_item=0x7f030008;
-        public static final int quiz=0x7f030009;
-        public static final int quiz_item=0x7f03000a;
+        public static final int quizzes=0x7f030009;
+        public static final int quizzes_item=0x7f03000a;
     }
     public static final class string {
         public static final int about_apache_20=0x7f070032;
@@ -218,7 +218,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int menu_new=0x7f07000d;
         public static final int menu_title=0x7f07000c;
         public static final int question_details=0x7f070023;
-        public static final int quiz_title=0x7f070020;
+        public static final int quizzes_title=0x7f070020;
     }
     public static final class style {
         public static final int ActionBarCompat=0x7f080009;

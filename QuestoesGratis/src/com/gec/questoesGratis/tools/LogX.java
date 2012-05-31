@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.tools;
 
 import java.text.MessageFormat;
@@ -22,13 +23,13 @@ public final class LogX {
     * Constructor.
     * @param clazz the class tag name.
     */
-   public LogX(Class<?> clazz) {
+   public LogX( Class< ? > clazz ) {
       tag = clazz.getSimpleName();
-      debug = Log.isLoggable(tag, Log.DEBUG);
-      error = Log.isLoggable(tag, Log.ERROR);
-      info = Log.isLoggable(tag, Log.INFO);
-      warn = Log.isLoggable(tag, Log.WARN);
-      verbose = Log.isLoggable(tag, Log.VERBOSE);
+      debug = Log.isLoggable( tag, Log.DEBUG );
+      error = Log.isLoggable( tag, Log.ERROR );
+      info = Log.isLoggable( tag, Log.INFO );
+      warn = Log.isLoggable( tag, Log.WARN );
+      verbose = Log.isLoggable( tag, Log.VERBOSE );
    }
 
    /**
@@ -36,14 +37,14 @@ public final class LogX {
     * @param message the debug message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void d(String message, Object... args) {
+   public void d( String message, Object... args ) {
 
-      if (debug) {
-         if (args == null) {
-            Log.d(tag, message);
+      if( debug ) {
+         if( args == null ) {
+            Log.d( tag, message );
          } else {
-            String format = MessageFormat.format(message, args);
-            Log.d(tag, format);
+            String format = MessageFormat.format( message, args );
+            Log.d( tag, format );
          }
       }
    }
@@ -54,14 +55,14 @@ public final class LogX {
     * @param message the debug message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void d(Throwable t, String message, Object... args) {
+   public void d( Throwable t, String message, Object... args ) {
 
-      if (debug) {
-         if (args == null) {
-            Log.d(tag, message, t);
+      if( debug ) {
+         if( args == null ) {
+            Log.d( tag, message, t );
          } else {
-            String format = MessageFormat.format(message, args);
-            Log.d(tag, format, t);
+            String format = MessageFormat.format( message, args );
+            Log.d( tag, format, t );
          }
       }
    }
@@ -70,10 +71,10 @@ public final class LogX {
     * Log debug message.
     * @param t the throwable to log.
     */
-   public void d(Throwable t) {
+   public void d( Throwable t ) {
 
-      if (debug) {
-         Log.d(tag, null, t);
+      if( debug ) {
+         Log.d( tag, null, t );
       }
    }
 
@@ -82,14 +83,14 @@ public final class LogX {
     * @param message the error message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void e(String message, Object... args) {
+   public void e( String message, Object... args ) {
 
-      if (error) {
-         if (args == null) {
-            Log.e(tag, message);
+      if( error ) {
+         if( args == null ) {
+            Log.e( tag, message );
          } else {
-            String format = MessageFormat.format(message, args);
-            Log.e(tag, format);
+            String format = MessageFormat.format( message, args );
+            Log.e( tag, format );
          }
       }
    }
@@ -100,14 +101,14 @@ public final class LogX {
     * @param message the error message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void e(Throwable t, String message, Object... args) {
+   public void e( Throwable t, String message, Object... args ) {
 
-      if (error) {
-         if (args == null) {
-            Log.e(tag, message, t);
+      if( error ) {
+         if( args == null ) {
+            Log.e( tag, message, t );
          } else {
-            String format = MessageFormat.format(message, args);
-            Log.e(tag, format, t);
+            String format = MessageFormat.format( message, args );
+            Log.e( tag, format, t );
          }
       }
    }
@@ -116,10 +117,10 @@ public final class LogX {
     * Log error message.
     * @param t the throwable to log.
     */
-   public void e(Throwable t) {
+   public void e( Throwable t ) {
 
-      if (error) {
-         Log.e(tag, null, t);
+      if( error ) {
+         Log.e( tag, null, t );
       }
    }
 
@@ -128,14 +129,14 @@ public final class LogX {
     * @param message the info message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void i(String message, Object... args) {
+   public void i( String message, Object... args ) {
 
-      if (info) {
-         if (args == null) {
-            Log.i(tag, message);
+      if( info ) {
+         if( args == null ) {
+            Log.i( tag, message );
          } else {
-            String format = MessageFormat.format(message, args);
-            Log.i(tag, format);
+            String format = MessageFormat.format( message, args );
+            Log.i( tag, format );
          }
       }
    }
@@ -146,14 +147,14 @@ public final class LogX {
     * @param message the info message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void i(Throwable t, String message, Object... args) {
+   public void i( Throwable t, String message, Object... args ) {
 
-      if (info) {
-         if (args == null) {
-            Log.i(tag, message, t);
+      if( info ) {
+         if( args == null ) {
+            Log.i( tag, message, t );
          } else {
-            String format = MessageFormat.format(message, args);
-            Log.i(tag, format, t);
+            String format = MessageFormat.format( message, args );
+            Log.i( tag, format, t );
          }
       }
    }
@@ -162,10 +163,10 @@ public final class LogX {
     * Log info message.
     * @param t the throwable to log.
     */
-   public void i(Throwable t) {
+   public void i( Throwable t ) {
 
-      if (info) {
-         Log.i(tag, null, t);
+      if( info ) {
+         Log.i( tag, null, t );
       }
    }
 
@@ -174,14 +175,14 @@ public final class LogX {
     * @param message the warning message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void w(String message, Object... args) {
+   public void w( String message, Object... args ) {
 
-      if (warn) {
-         if (args == null) {
-            Log.w(tag, message);
+      if( warn ) {
+         if( args == null ) {
+            Log.w( tag, message );
          } else {
-            String format = MessageFormat.format(message, args);
-            Log.w(tag, format);
+            String format = MessageFormat.format( message, args );
+            Log.w( tag, format );
          }
       }
    }
@@ -192,14 +193,14 @@ public final class LogX {
     * @param message the warning message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void w(Throwable t, String message, Object... args) {
+   public void w( Throwable t, String message, Object... args ) {
 
-      if (warn) {
-         if (args == null) {
-            Log.w(tag, message, t);
+      if( warn ) {
+         if( args == null ) {
+            Log.w( tag, message, t );
          } else {
-            String format = MessageFormat.format(message, args);
-            Log.w(tag, format, t);
+            String format = MessageFormat.format( message, args );
+            Log.w( tag, format, t );
          }
       }
    }
@@ -208,10 +209,10 @@ public final class LogX {
     * Log warning message.
     * @param t the throwable to log.
     */
-   public void w(Throwable t) {
+   public void w( Throwable t ) {
 
-      if (warn) {
-         Log.w(tag, null, t);
+      if( warn ) {
+         Log.w( tag, null, t );
       }
    }
 
@@ -220,14 +221,14 @@ public final class LogX {
     * @param message the verbose message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void v(String message, Object... args) {
+   public void v( String message, Object... args ) {
 
-      if (verbose) {
-         if (args == null) {
-            Log.v(tag, message);
+      if( verbose ) {
+         if( args == null ) {
+            Log.v( tag, message );
          } else {
-            String format = MessageFormat.format(message, args);
-            Log.v(tag, format);
+            String format = MessageFormat.format( message, args );
+            Log.v( tag, format );
          }
       }
    }
@@ -238,14 +239,14 @@ public final class LogX {
     * @param message the verbose message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void v(Throwable t, String message, Object... args) {
+   public void v( Throwable t, String message, Object... args ) {
 
-      if (verbose) {
-         if (args == null) {
-            Log.v(tag, message, t);
+      if( verbose ) {
+         if( args == null ) {
+            Log.v( tag, message, t );
          } else {
-            String format = MessageFormat.format(message, args);
-            Log.v(tag, format, t);
+            String format = MessageFormat.format( message, args );
+            Log.v( tag, format, t );
          }
       }
    }
@@ -254,10 +255,10 @@ public final class LogX {
     * Log verbose message.
     * @param t the throwable to log.
     */
-   public void v(Throwable t) {
+   public void v( Throwable t ) {
 
-      if (verbose) {
-         Log.v(tag, null, t);
+      if( verbose ) {
+         Log.v( tag, null, t );
       }
    }
 
@@ -266,13 +267,13 @@ public final class LogX {
     * @param message the WTF message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void wtf(String message, Object... args) {
+   public void wtf( String message, Object... args ) {
 
-      if (args == null) {
-         Log.wtf(tag, message);
+      if( args == null ) {
+         Log.wtf( tag, message );
       } else {
-         String format = MessageFormat.format(message, args);
-         Log.wtf(tag, format);
+         String format = MessageFormat.format( message, args );
+         Log.wtf( tag, format );
       }
    }
 
@@ -282,13 +283,13 @@ public final class LogX {
     * @param message the WTF message to log.
     * @param args optional message format arguments to apply in the message.
     */
-   public void wtf(Throwable t, String message, Object... args) {
+   public void wtf( Throwable t, String message, Object... args ) {
 
-      if (args == null) {
-         Log.wtf(tag, message, t);
+      if( args == null ) {
+         Log.wtf( tag, message, t );
       } else {
-         String format = MessageFormat.format(message, args);
-         Log.wtf(tag, format, t);
+         String format = MessageFormat.format( message, args );
+         Log.wtf( tag, format, t );
       }
    }
 
@@ -296,8 +297,8 @@ public final class LogX {
     * Log WTF message.
     * @param t the throwable to log.
     */
-   public void wtf(Throwable t) {
+   public void wtf( Throwable t ) {
 
-      Log.wtf(tag, null, t);
+      Log.wtf( tag, null, t );
    }
 }

@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import android.app.Activity;
@@ -15,17 +16,17 @@ import com.gec.questoesGratis.tools.EmbeddedWebView;
 public class MarketingActivity extends Activity {
 
    @Override
-   public void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.marketing);
-      new ActivityHelper(this).setupActionBar(getString(R.string.app_name));
+   public void onCreate( Bundle savedInstanceState ) {
+      super.onCreate( savedInstanceState );
+      setContentView( R.layout.marketing );
+      new ActivityHelper( this ).setupActionBar( getString( R.string.app_name ) );
 
-      WebView webView = (WebView) findViewById(R.id.marketing_wv);
-      EmbeddedWebView.loadUrl(webView, getString(R.string.marketing_uri));
+      WebView webView = (WebView) findViewById( R.id.marketing_wv );
+      EmbeddedWebView.loadUrl( webView, getString( R.string.marketing_uri ) );
    }
 
-   public void onClick_previous(View view) {
-      Intent intent = new Intent(MarketingActivity.this, MenuActivity.class);
-      startActivity(intent);
+   public void onClick_previous( View view ) {
+      Intent intent = new Intent( MarketingActivity.this, MenuActivity.class );
+      startActivity( intent );
    }
 }

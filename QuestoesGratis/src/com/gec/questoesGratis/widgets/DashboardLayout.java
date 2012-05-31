@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.widgets;
 
 import android.content.Context;
@@ -165,9 +166,11 @@ public class DashboardLayout extends ViewGroup {
          top = vSpace * ( row + 1 ) + height * row;
 
          child.layout( left, top, ( hSpace == 0 && col == cols - 1 )? //
-               r: ( left + width ), //
+         r
+               : ( left + width ), //
                ( vSpace == 0 && row == rows - 1 )? //
-                     b: ( top + height ) );
+               b
+                     : ( top + height ) );
          ++visibleIndex;
       }
    }

@@ -7,16 +7,16 @@
     android:orientation="horizontal" >
 
     <TextView
-        android:id="@+id/quiz_date"
+        android:id="@+id/quizzes_item_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
-        android:id="@+id/quiz_status"
+        android:id="@+id/quizzes_item_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/quiz_date" />
+        android:layout_below="@+id/quizzes_item_date" />
     <TextView
-        android:id="@+id/quiz_rating"
+        android:id="@+id/quizzes_item_rating"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

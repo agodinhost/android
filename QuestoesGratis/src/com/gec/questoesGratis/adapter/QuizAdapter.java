@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.adapter;
 
 import java.text.SimpleDateFormat;
@@ -35,21 +36,21 @@ public class QuizAdapter extends ArrayAdapter< Quiz > {
       try {
          if( row == null ) {
             LayoutInflater li = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-            row = li.inflate( R.layout.quiz_item, null );
+            row = li.inflate( R.layout.quizzes_item, null );
          }
 
          Quiz quiz = list.get( position );
          if( quiz != null ) {
 
-            TextView vDate = (TextView) row.findViewById( R.id.quiz_date );
+            TextView vDate = (TextView) row.findViewById( R.id.quizzes_item_date );
             String sDate = sdf.format( quiz.getDate() );
             vDate.setText( sDate );
 
-            TextView vStatus = (TextView) row.findViewById( R.id.quiz_status );
+            TextView vStatus = (TextView) row.findViewById( R.id.quizzes_item_status );
             String sStatus = quiz.getStatus().getDisplayName();
             vStatus.setText( sStatus );
 
-            TextView vRating = (TextView) row.findViewById( R.id.quiz_rating );
+            TextView vRating = (TextView) row.findViewById( R.id.quizzes_item_rating );
             String sRating = String.valueOf( quiz.getRating() ) + " %";
             vRating.setText( sRating );
          }

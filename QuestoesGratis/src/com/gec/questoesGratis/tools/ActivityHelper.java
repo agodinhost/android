@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.tools;
 
 import android.app.Activity;
@@ -23,7 +24,7 @@ public class ActivityHelper {
 
    private TextView       titleText;
 
-   public ActivityHelper(Activity activity) {
+   public ActivityHelper( Activity activity ) {
       this.activity = activity;
    }
 
@@ -31,17 +32,17 @@ public class ActivityHelper {
     * Invoke "home" action, returning to HomeActivity.
     */
    public void goHome() {
-      if (activity instanceof MenuActivity) {
+      if( activity instanceof MenuActivity ) {
          return;
       }
 
-      final Intent intent = new Intent(activity, MenuActivity.class);
-      intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-      activity.startActivity(intent);
+      final Intent intent = new Intent( activity, MenuActivity.class );
+      intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+      activity.startActivity( intent );
    }
 
-   public void setupActionBar(String title) {
-      setupActionBar(title, true);
+   public void setupActionBar( String title ) {
+      setupActionBar( title, true );
    }
 
    /**
@@ -50,43 +51,44 @@ public class ActivityHelper {
     * home button and title are visible. If color is null, then the default
     * colorstrip is visible.
     */
-   public void setupActionBar(String title, boolean showHomeButton) {
+   public void setupActionBar( String title, boolean showHomeButton ) {
 
       final ViewGroup actionBarCompat = getActionBarCompat();
-      if (actionBarCompat == null) {
+      if( actionBarCompat == null ) {
          return;
       }
 
       View.OnClickListener homeClickListener = new View.OnClickListener() {
+
          @Override
-         public void onClick(View view) {
+         public void onClick( View view ) {
             goHome();
          }
       };
 
-      LinearLayout.LayoutParams springLayoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.FILL_PARENT);
+      LinearLayout.LayoutParams springLayoutParams = new LinearLayout.LayoutParams( 0, ViewGroup.LayoutParams.FILL_PARENT );
       springLayoutParams.weight = 1;
 
-      if (title != null) {
+      if( title != null ) {
          // Add Home button.
-         if (showHomeButton) {
-            addActionButtonCompat(R.drawable.ic_title_home, homeClickListener, true);
+         if( showHomeButton ) {
+            addActionButtonCompat( R.drawable.ic_title_home, homeClickListener, true );
          }
 
          // Add title text.
-         titleText = new TextView(activity, null, R.attr.actionbarCompatTextStyle);
-         titleText.setLayoutParams(springLayoutParams);
-         titleText.setText(title);
+         titleText = new TextView( activity, null, R.attr.actionbarCompatTextStyle );
+         titleText.setLayoutParams( springLayoutParams );
+         titleText.setText( title );
          titleText.setSingleLine();
-         actionBarCompat.addView(titleText);
+         actionBarCompat.addView( titleText );
 
       } else {
          // Add app name.
-         titleText = new TextView(activity, null, R.attr.actionbarCompatTextStyle);
-         titleText.setLayoutParams(springLayoutParams);
-         titleText.setText(R.string.app_name);
+         titleText = new TextView( activity, null, R.attr.actionbarCompatTextStyle );
+         titleText.setLayoutParams( springLayoutParams );
+         titleText.setText( R.string.app_name );
          titleText.setSingleLine();
-         actionBarCompat.addView(titleText);
+         actionBarCompat.addView( titleText );
 
          // Add logo
          // ImageButton logo = new ImageButton(activity, null,
@@ -95,18 +97,18 @@ public class ActivityHelper {
          // actionBarCompat.addView(logo);
 
          // Add spring (dummy view to align future children to the right)
-         View spring = new View(activity);
-         spring.setLayoutParams(springLayoutParams);
-         actionBarCompat.addView(spring);
+         View spring = new View( activity );
+         spring.setLayoutParams( springLayoutParams );
+         actionBarCompat.addView( spring );
       }
    }
 
    /**
     * Change title later - needs to be initialized using setupActionBar
     */
-   public void changeTitle(String title) {
-      if (titleText != null) {
-         titleText.setText(title);
+   public void changeTitle( String title ) {
+      if( titleText != null ) {
+         titleText.setText( title );
       }
    }
 
@@ -115,40 +117,40 @@ public class ActivityHelper {
     * action bar). Can return null, and will return null on Honeycomb.
     */
    public ViewGroup getActionBarCompat() {
-      return (ViewGroup) activity.findViewById(R.id.actionbar_compat);
+      return (ViewGroup) activity.findViewById( R.id.actionbar_compat );
    }
 
    /**
     * Adds an action bar button to the compatibility action bar (on phones).
     */
-   public View addActionButtonCompat(int iconResId, View.OnClickListener clickListener, boolean separatorAfter) {
+   public View addActionButtonCompat( int iconResId, View.OnClickListener clickListener, boolean separatorAfter ) {
 
       final ViewGroup actionBar = getActionBarCompat();
-      if (actionBar == null) {
+      if( actionBar == null ) {
          return null;
       }
 
       // Create the separator.
-      ImageView separator = new ImageView(activity, null, R.attr.actionbarCompatSeparatorStyle);
-      separator.setLayoutParams(new ViewGroup.LayoutParams(2, ViewGroup.LayoutParams.FILL_PARENT));
+      ImageView separator = new ImageView( activity, null, R.attr.actionbarCompatSeparatorStyle );
+      separator.setLayoutParams( new ViewGroup.LayoutParams( 2, ViewGroup.LayoutParams.FILL_PARENT ) );
 
       // Create the button.
-      ImageButton actionButton = new ImageButton(activity, null, R.attr.actionbarCompatButtonStyle);
-      actionButton.setLayoutParams(new ViewGroup.LayoutParams((int) activity.getResources().getDimension(R.dimen.actionbar_compat_height), ViewGroup.LayoutParams.FILL_PARENT));
-      actionButton.setImageResource(iconResId);
-      actionButton.setScaleType(ImageView.ScaleType.CENTER);
-      actionButton.setOnClickListener(clickListener);
+      ImageButton actionButton = new ImageButton( activity, null, R.attr.actionbarCompatButtonStyle );
+      actionButton.setLayoutParams( new ViewGroup.LayoutParams( (int) activity.getResources().getDimension( R.dimen.actionbar_compat_height ), ViewGroup.LayoutParams.FILL_PARENT ) );
+      actionButton.setImageResource( iconResId );
+      actionButton.setScaleType( ImageView.ScaleType.CENTER );
+      actionButton.setOnClickListener( clickListener );
 
       // Add separator and button to the action bar in the desired order.
 
-      if (!separatorAfter) {
-         actionBar.addView(separator);
+      if( !separatorAfter ) {
+         actionBar.addView( separator );
       }
 
-      actionBar.addView(actionButton);
+      actionBar.addView( actionButton );
 
-      if (separatorAfter) {
-         actionBar.addView(separator);
+      if( separatorAfter ) {
+         actionBar.addView( separator );
       }
 
       return actionButton;

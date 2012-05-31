@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import java.util.List;
@@ -15,9 +16,9 @@ import com.gec.questoesGratis.model.Quiz;
 import com.gec.questoesGratis.tools.ActivityHelper;
 
 /**
- * Activity / View to list the quiz history.
+ * Activity / View to list the quizzes history.
  */
-public class QuizActivity extends Activity implements OnItemClickListener {
+public class QuizzesActivity extends Activity implements OnItemClickListener {
 
    private ApplicationX xApp;
    private ListView     listView;
@@ -25,15 +26,15 @@ public class QuizActivity extends Activity implements OnItemClickListener {
    @Override
    public void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
-      setContentView( R.layout.quiz );
+      setContentView( R.layout.quizzes );
       new ActivityHelper( this ).setupActionBar( getString( R.string.app_name ) );
 
       xApp = (ApplicationX) getApplication();
 
       List< Quiz > list = xApp.getQuizFromDB();
-      QuizAdapter adapter = new QuizAdapter( getApplicationContext(), R.id.quiz_list, list );
+      QuizAdapter adapter = new QuizAdapter( getApplicationContext(), R.id.quizzes_list, list );
 
-      listView = (ListView) findViewById( R.id.quiz_list );
+      listView = (ListView) findViewById( R.id.quizzes_list );
       listView.setAdapter( adapter );
       listView.setOnItemClickListener( this );
 
@@ -43,7 +44,7 @@ public class QuizActivity extends Activity implements OnItemClickListener {
    }
 
    public void onClick_previous( View view ) {
-      Intent intent = new Intent( QuizActivity.this, MenuActivity.class );
+      Intent intent = new Intent( QuizzesActivity.this, MenuActivity.class );
       startActivity( intent );
    }
 
@@ -52,7 +53,7 @@ public class QuizActivity extends Activity implements OnItemClickListener {
       xApp.setHistoryList_selectedPos( position );
       xApp.setHistoryList_selectedId( id );
 
-      Intent intent = new Intent( QuizActivity.this, AnswerActivity.class );
+      Intent intent = new Intent( QuizzesActivity.this, AnswerActivity.class );
       startActivity( intent );
    }
 }
