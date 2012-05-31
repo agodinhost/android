@@ -11,13 +11,14 @@ import java.util.List;
  */
 public final class Question implements Serializable {
 
-   private static final long serialVersionUID = 1823845473939566367L;
+   private static final long serialVersionUID = -5355051198448329884L;
 
    private Integer           id;
    private Qualifier         q;
    private String            description;
    private List< String >    options;
    private String            match;
+   private Integer           used;
 
    public Integer getId() {
       return id;
@@ -69,6 +70,14 @@ public final class Question implements Serializable {
 
    public void setMatch( String match ) {
       this.match = match;
+   }
+
+   public Integer getUsed() {
+      return used;
+   }
+
+   public void setUsed( Integer used ) {
+      this.used = used;
    }
 
    public String getQualifierD() {
