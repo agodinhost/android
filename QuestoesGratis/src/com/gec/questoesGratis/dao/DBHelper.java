@@ -44,14 +44,14 @@ public final class DBHelper extends SQLiteOpenHelper {
 
    @Override
    public void onCreate( SQLiteDatabase database ) {
-      database.execSQL( DBProperties.DDL_CREATE );
+      // database.execSQL( DBProperties.DDL_CREATE );
    }
 
    @Override
    public void onUpgrade( SQLiteDatabase database, int oldVersion, int newVersion ) {
-      log.w( "Upgrading database from version {0} to {1}, which will destroy all old data ...", oldVersion, newVersion );
-      database.execSQL( DBProperties.DDL_DROP );
-      onCreate( database );
+      // log.w( "Upgrading database from version {0} to {1}, which will destroy all old data ...", oldVersion, newVersion );
+      // database.execSQL( DBProperties.DDL_DROP );
+      // onCreate( database );
    }
 
    @Override
@@ -157,11 +157,11 @@ public final class DBHelper extends SQLiteOpenHelper {
             SQLiteDatabase.OPEN_READWRITE );
    }
 
-   public List< String > getUFs() {
+   public List< String > getBancas() {
       return null;
    }
 
-   public List< String > getBancas() {
+   public List< String > getAnos() {
       return null;
    }
 
@@ -169,11 +169,11 @@ public final class DBHelper extends SQLiteOpenHelper {
       return null;
    }
 
-   public List< String > getCargos() {
+   public List< String > getUFs() {
       return null;
    }
 
-   public List< String > getAnos() {
+   public List< String > getCargos() {
       return null;
    }
 
@@ -184,11 +184,4 @@ public final class DBHelper extends SQLiteOpenHelper {
    public List< String > getAssuntos() {
       return null;
    }
-
-   // Add your public helper methods to access and get content from the
-   // database.
-   // You could return cursors by doing "return myDataBase.query(....)" so it'd
-   // be easy
-   // to you to create adapters for your views.
-
 }
