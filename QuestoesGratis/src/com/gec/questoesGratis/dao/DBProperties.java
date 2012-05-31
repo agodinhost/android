@@ -6,9 +6,10 @@ import com.gec.questoesGratis.tools.PropertiesX;
 
 public final class DBProperties {
 
-   private static final String      DB_PATH                = "/data/data/com.gec.questoesGratis/databases/";
-   private static final PropertiesX p                      = new PropertiesX( ApplicationX.getInstance(), DB_PATH );
+   private static final String      DB_PROPERTIES          = "database.properties";
+   private static final PropertiesX p                      = new PropertiesX( ApplicationX.getInstance(), DB_PROPERTIES );
 
+   public static final String       DB_PATH                = p.getString( "DB_PATH" );
    public static final String       DB_NAME                = p.getString( "DB_NAME" );
    public static final String       DB_FILENAME            = DB_PATH + DB_NAME;
    public static final Integer      DB_VERSION             = p.getInteger( "DB_VERSION" );

@@ -1,13 +1,11 @@
 
 package com.gec.questoesGratis;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import android.app.Application;
-import android.database.SQLException;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
@@ -25,6 +23,8 @@ public class ApplicationX extends Application {
    private Quiz                quiz;
    private int                 currentAnswer;
    private int                 answersCount = -1;
+
+   private DBHelper            dbHelper;
    private ViewPager           pager;
 
    private Long                historyList_selectedId;
@@ -42,22 +42,12 @@ public class ApplicationX extends Application {
       return lastInstance;
    }
 
-   //TODO: parei aqui ...
-   public void install() {
+   public DBHelper getDbHelper() {
+      return dbHelper;
+   }
 
-      DBHelper dbHelper = new DBHelper( this );
-
-      try {
-         dbHelper.createDataBase();
-      } catch( IOException ioe ) {
-         throw new Error( "Unable to create database" );
-      }
-
-      try {
-         dbHelper.openDataBase();
-      } catch( SQLException sqle ) {
-         throw sqle;
-      }
+   public void setDbHelper( DBHelper dbHelper ) {
+      this.dbHelper = dbHelper;
    }
 
    public void setPager( ViewPager pager ) {

@@ -5,9 +5,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -19,6 +21,8 @@ import com.gec.questoesGratis.tools.LogX;
  * @see {http://www.vogella.com/articles/AndroidSQLite/article.html} 
  * @see {http://www.reigndesign.com/blog/using-your-own-sqlite-database-in-android-applications/}
  * @see {http://www.higherpass.com/Android/Tutorials/Accessing-Data-With-Android-Cursors/}
+ * 
+ * http://stackoverflow.com/questions/513084/how-to-ship-an-android-application-with-a-database
  * 
  * @author agodinho
  */
@@ -157,31 +161,53 @@ public final class DBHelper extends SQLiteOpenHelper {
             SQLiteDatabase.OPEN_READWRITE );
    }
 
+   private List< String > getNames( String sql, String columnName ) {
+
+      List< String > list = new ArrayList< String >();
+
+      Cursor cursor = database.rawQuery( sql, null );
+      if( cursor != null ) {
+
+         final int nameIdx = cursor.getColumnIndex( columnName );
+         while( cursor.moveToNext() ) {
+            final String name = cursor.getString( nameIdx );
+            list.add( name );
+         }
+         cursor.close();
+      }
+
+      return list;
+   }
+
+   private List< String > getNames( String sql ) {
+      return getNames( sql, "name" );
+   }
+
    public List< String > getBancas() {
-      return null;
+      return getNames( DBProperties.SQL_SELECT_Bancas );
    }
 
    public List< String > getAnos() {
-      return null;
+      return getNames( DBProperties.SQL_SELECT_Anos );
    }
 
    public List< String > getOrgaos() {
-      return null;
+      return getNames( DBProperties.SQL_SELECT_Orgaos );
    }
 
    public List< String > getUFs() {
-      return null;
+      return getNames( DBProperties.SQL_SELECT_UFs );
    }
 
    public List< String > getCargos() {
-      return null;
+      return getNames( DBProperties.SQL_SELECT_Cargos );
    }
 
    public List< String > getDisciplinas() {
-      return null;
+      return getNames( DBProperties.SQL_SELECT_Disciplinas );
    }
 
    public List< String > getAssuntos() {
-      return null;
+      return getNames( DBProperties.SQL_SELECT_Assuntos );
    }
 }
