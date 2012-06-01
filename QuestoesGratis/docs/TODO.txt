@@ -9,3 +9,23 @@ based on google Quiz and pool.
 	
 	- banco;
 	- send to (FB,email,etc, copiar do Quiz and Pool);
+	
+	
+References:
+	
+	http://www.sqlite.org/lang_corefunc.html
+	http://www.sqlite.org/lang_createtrigger.html
+
+	http://www.vogella.com/articles/AndroidSQLite/article.html 
+	http://www.reigndesign.com/blog/using-your-own-sqlite-database-in-android-applications/
+	http://www.higherpass.com/Android/Tutorials/Accessing-Data-With-Android-Cursors/
+	http://stackoverflow.com/questions/513084/how-to-ship-an-android-application-with-a-database
+	http://stackoverflow.com/questions/9843255/sqlite-changes-pragma-reports-0-rows-changed-in-certain-delete-statements
+
+	
+	http://stackoverflow.com/questions/1060198/creating-a-conditional-sql-trigger-in-sqlite
+	http://davanum.wordpress.com/2007/12/11/android-how-to-poke-around-the-sqlite3-databases/
+	
+	http://www.html5rocks.com/en/tutorials/webdatabase/todo/
+	
+	http://sqlite.awardspace.info/syntax/sqlitepg09.htm

@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.model;
 
 import java.io.Serializable;
@@ -12,7 +11,7 @@ import java.util.List;
  */
 public final class Quiz implements Serializable {
 
-   private static final long serialVersionUID = 383288274571355914L;
+   private static final long serialVersionUID = 5133709787700431019L;
 
    public static enum Status {
       //
@@ -28,16 +27,14 @@ public final class Quiz implements Serializable {
       }
 
       public static Status valueOf( int id ) {
-         if( id == 0 )
-            return UNFINISHED;
-         else
-            return FINISHED;
+         if( id == 0 ) return UNFINISHED;
+         else return FINISHED;
       }
    }
 
-   private Integer        id;
+   private Long           id;
    private Date           date;
-   private Filter         filter;
+   private String         filter;
    private Integer        rating;
    private Status         status;
    private Integer        lastNumber;
@@ -46,18 +43,15 @@ public final class Quiz implements Serializable {
    public Quiz() {
    }
 
-   public Quiz( Integer id, Date date, Integer rating, Status status ) {
-      this.id = id;
-      this.date = date;
-      this.rating = rating;
-      this.status = status;
+   public Quiz( String filterP ) {
+      filter = filterP;
    }
 
-   public Integer getId() {
+   public Long getId() {
       return id;
    }
 
-   public void setId( Integer id ) {
+   public void setId( Long id ) {
       this.id = id;
    }
 
@@ -69,11 +63,11 @@ public final class Quiz implements Serializable {
       this.date = date;
    }
 
-   public Filter getFilter() {
+   public String getFilter() {
       return filter;
    }
 
-   public void setFilter( Filter filter ) {
+   public void setFilter( String filter ) {
       this.filter = filter;
    }
 

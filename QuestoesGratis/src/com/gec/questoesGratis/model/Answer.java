@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.model;
 
 import java.io.Serializable;
@@ -10,18 +9,18 @@ import java.io.Serializable;
  */
 public final class Answer implements Serializable {
 
-   private static final long serialVersionUID = -7233862773060744248L;
+   private static final long serialVersionUID = -6396025902437961658L;
 
-   private Integer           id;
+   private Long              id;
    private Integer           number;
    private String            answer;
    private Question          question;
 
-   public Integer getId() {
+   public Long getId() {
       return id;
    }
 
-   public void setId( Integer id ) {
+   public void setId( Long id ) {
       this.id = id;
    }
 
@@ -41,6 +40,10 @@ public final class Answer implements Serializable {
       this.answer = answer;
    }
 
+   public Long getQuestionId() {
+      return question.getId();
+   }
+
    public Question getQuestion() {
       return question;
    }
@@ -50,12 +53,11 @@ public final class Answer implements Serializable {
    }
 
    public Boolean getStatus() {
-      Boolean status = null;
-      String match = question.getMatch();
-      if( match != null && answer != null ) {
-         status = answer.equalsIgnoreCase( match );
+      try {
+         return answer.equalsIgnoreCase( question.getMatch() );
+      } catch( NullPointerException e ) {
+         return false;
       }
-      return status;
    }
 
    public String getNumberD() {

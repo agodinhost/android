@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.model;
 
 import java.io.Serializable;
@@ -11,20 +10,20 @@ import java.util.List;
  */
 public final class Question implements Serializable {
 
-   private static final long serialVersionUID = -5355051198448329884L;
+   private static final long serialVersionUID = 4426101449359618224L;
 
-   private Integer           id;
+   private Long              id;
    private Qualifier         q;
    private String            description;
    private List< String >    options;
    private String            match;
    private String            used;
 
-   public Integer getId() {
+   public Long getId() {
       return id;
    }
 
-   public void setId( Integer id ) {
+   public void setId( Long id ) {
       this.id = id;
    }
 

@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis;
 
 import java.util.List;
@@ -12,6 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.gec.questoesGratis.adapter.QuizAdapter;
+import com.gec.questoesGratis.dao.DBHelper;
 import com.gec.questoesGratis.model.Quiz;
 import com.gec.questoesGratis.tools.ActivityHelper;
 
@@ -30,8 +30,8 @@ public class QuizzesActivity extends Activity implements OnItemClickListener {
       new ActivityHelper( this ).setupActionBar( getString( R.string.app_name ) );
 
       xApp = (ApplicationX) getApplication();
-
-      List< Quiz > list = xApp.getQuizFromDB();
+      final DBHelper dbh = xApp.getDbHelper();
+      final List< Quiz > list = dbh.getQuizzes();
       QuizAdapter adapter = new QuizAdapter( getApplicationContext(), R.id.quizzes_list, list );
 
       listView = (ListView) findViewById( R.id.quizzes_list );

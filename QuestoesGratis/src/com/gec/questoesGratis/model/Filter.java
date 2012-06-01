@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.model;
 
 import java.io.Serializable;
@@ -11,8 +10,6 @@ import java.util.List;
  */
 public final class Filter implements Serializable {
 
-   private static final long serialVersionUID = -4492189847820506777L;
-
    public static enum Ignore {
       NONE, //
       ANSWERED, //
@@ -20,7 +17,7 @@ public final class Filter implements Serializable {
       WRONG;
    }
 
-   private int            total;
+   private Integer        total;
    private Ignore         ignore;
 
    private List< String > ufs;
@@ -31,11 +28,11 @@ public final class Filter implements Serializable {
    private List< String > disciplinas;
    private List< String > assuntos;
 
-   public int getTotal() {
+   public Integer getTotal() {
       return total;
    }
 
-   public void setTotal( int total ) {
+   public void setTotal( Integer total ) {
       this.total = total;
    }
 
@@ -103,8 +100,10 @@ public final class Filter implements Serializable {
       this.assuntos = assuntos;
    }
 
-   //TODO: parei aqui ...
+   //TODO: rever ...
    public String getDescription() {
+      String d = "description ...";
+      /*
       String d = "";
       d = addStr( d, banca, "TODAS" );
       d = addStr( d, String.valueOf( ano ), "TODOS" );
@@ -113,6 +112,7 @@ public final class Filter implements Serializable {
       d = addStr( d, cargo, "TODOS" );
       d = addStr( d, disciplina, "TODAS" );
       d = addStr( d, assunto, "TODOS" );
+      */
       return d;
    }
 

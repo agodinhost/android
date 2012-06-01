@@ -13,7 +13,7 @@ public final class ListX {
     * 
     * @see {http://en.wikipedia.org/wiki/Fisher-Yates_shuffle}
     */
-   public static void shuffle( List< Integer > list ) {
+   public static void shuffle( List< Long > list ) {
 
       final int n = list.size();
       final Random random = new Random();
@@ -33,9 +33,9 @@ public final class ListX {
     * @param source the source item.
     * @param target the target item to swap to.
     */
-   public static void swap( List< Integer > list, int source, int target ) {
+   public static void swap( List< Long > list, int source, int target ) {
 
-      final Integer helper = list.get( source );
+      final Long helper = list.get( source );
       list.set( source, list.get( target ) );
       list.set( target, helper );
    }
@@ -47,7 +47,7 @@ public final class ListX {
     * @param count the items count to get.
     * @return the random start index.
     */
-   public static int randomStart( List< Integer > list, int count ) {
+   public static int randomStart( List< Long > list, int count ) {
 
       final int r;
 

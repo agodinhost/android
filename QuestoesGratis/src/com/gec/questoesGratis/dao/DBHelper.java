@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.dao;
 
 import static com.gec.questoesGratis.tools.ListX.randomStart;
@@ -28,10 +27,7 @@ import com.gec.questoesGratis.model.Quiz;
 import com.gec.questoesGratis.tools.LogX;
 
 /**
- * @see {http://www.vogella.com/articles/AndroidSQLite/article.html} 
- * @see {http://www.reigndesign.com/blog/using-your-own-sqlite-database-in-android-applications/}
- * @see {http://www.higherpass.com/Android/Tutorials/Accessing-Data-With-Android-Cursors/}
- * @see {http://stackoverflow.com/questions/513084/how-to-ship-an-android-application-with-a-database}
+ * Database Helper class.
  * 
  * @author agodinho
  */
@@ -226,7 +222,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       final StringBuffer b = new StringBuffer();
 
       if( list != null )
-         for( String item : list )
+         for( String item: list )
             b.append( "'" ) //
                   .append( item.trim() ) //
                   .append( "'" ) //
@@ -332,54 +328,84 @@ public final class DBHelper extends SQLiteOpenHelper {
 
       database.beginTransaction();
 
-      final Quiz quiz = new Quiz();
-      quiz.setFilter( filter );
-      saveQuiz( quiz );
+      final Quiz quiz = new Quiz( filter.getDescription() );
+      if( insertQuiz( quiz ) ) {
 
-      final List< Answer > answers = createAnswers( quiz );
-      quiz.setAnswers( answers );
-      saveAnswers( quiz );
+         quiz.setAnswers( createAnswers( quiz, filter ) );
+         if( insertAnswers( quiz ) )
+            database.endTransaction();
+      }
 
-      database.endTransaction();
+      //TODO: load the created quiz (to get al fields populated).
+
+      //TODO: throw exception.
 
       return quiz;
    }
 
-   private void saveQuiz( Quiz quiz ) {
+   private boolean insertQuiz( Quiz quiz ) {
 
-      //TODO: parei aqui ...
-      ContentValues values = new ContentValues();
-      values.put( "filter", quiz.toString() );
-      long countryId = db.insert( "tbl_countries", null, values );
-      ContentValues stateValues = new ContentValues();
-      stateValues.put( "state_name", "Texas" );
-      stateValues.put( "country_id", Long.toString( countryId ) );
+      boolean b = true;
+      final ContentValues values = new ContentValues();
+      values.put( "filter", quiz.getFilter() );
       try {
-         db.insertOrThrow( "tbl_states", null, stateValues );
-      } catch( Exception e ) {
-         //catch code
+         Long id = database.insertOrThrow( "quizzes", null, values );
+         quiz.setId( id );
+      } catch( SQLException e ) {
+         b = false;
+      }
+      return b;
+   }
+
+   private List< Answer > createAnswers( Quiz quiz, Filter filter ) {
+
+      final int total = filter.getTotal();
+      final List< Answer > list = new ArrayList< Answer >( total );
+
+      final List< Long > ids = getQuestionsId( filter );
+      shuffle( ids );
+      final int start = randomStart( ids, total );
+      for( int n = 0; n < total; n++ ) {
+
+         final Question q = new Question();
+         q.setId( ids.get( start + n ) );
+         final Answer a = new Answer();
+         a.setQuestion( q );
+         a.setNumber( n + 1 );
+         list.add( a );
       }
 
+      return list;
    }
 
-   private List< Answer > createAnswers( Quiz quiz ) {
+   private boolean insertAnswers( Quiz quiz ) {
 
-      final Filter filter = quiz.getFilter();
-      final List< Integer > ids = getQuestionsId( filter );
-      shuffle( ids );
-      final int start = randomStart( ids, filter.getTotal() );
-      //TODO: updateUsedIds(ids,10);
-
-      return null;
+      boolean b = true;
+      try {
+         final List< Answer > list = quiz.getAnswers();
+         if( list != null )
+            for( Answer answer: list )
+               insertAnswer( quiz.getId(), answer );
+      } catch( SQLException e ) {
+         b = false;
+      }
+      return b;
    }
 
-   private void saveAnswers( Quiz quiz ) {
+   private void insertAnswer( Long quizId, Answer answer ) {
 
+      final ContentValues values = new ContentValues();
+      values.put( "quizId", quizId );
+      values.put( "questionId", answer.getQuestionId() );
+      values.put( "number", answer.getNumber() );
+      final Long id = database.insertOrThrow( "answers", null, values );
+      /*/ trg_answers_ai -> update -> questions /*/
+      answer.setId( id );
    }
 
-   private List< Integer > getQuestionsId( Filter filter ) {
+   private List< Long > getQuestionsId( Filter filter ) {
 
-      final List< Integer > list = new ArrayList< Integer >();
+      final List< Long > list = new ArrayList< Long >();
 
       final String table = "questions";
       final String columns[] = { "_id" };
@@ -399,7 +425,7 @@ public final class DBHelper extends SQLiteOpenHelper {
             orderBy );
 
       while( c.moveToNext() )
-         list.add( new Integer( c.getInt( 0 ) ) );
+         list.add( new Long( c.getLong( 0 ) ) );
       c.close();
 
       return list;
@@ -407,11 +433,21 @@ public final class DBHelper extends SQLiteOpenHelper {
 
    //TODO: 
    public List< Quiz > getQuizzes() {
+      return new ArrayList< Quiz >();
+   }
+
+   //TODO: 
+   public Quiz getQuiz( Long quizId ) {
       return null;
    }
 
    //TODO: 
-   public List< Question > getQuiz( Integer quizId ) {
+   public List< Answer > getAnswers( Long quizId ) {
+      return null;
+   }
+
+   //TODO: 
+   public List< Question > getQuestions( Long quizId ) {
 
       final List< Question > list = new ArrayList< Question >();
 
@@ -442,7 +478,7 @@ public final class DBHelper extends SQLiteOpenHelper {
    private Question getQuestion( Cursor c ) {
 
       final Question q = new Question();
-      q.setId( c.getInt( EQuestions.id.index ) );
+      q.setId( c.getLong( EQuestions.id.index ) );
 
       final Qualifier x = new Qualifier();
       x.setBanca( c.getString( EQuestions.banca.index ) );
