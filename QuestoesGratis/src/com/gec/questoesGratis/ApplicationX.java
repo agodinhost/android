@@ -175,7 +175,7 @@ public class ApplicationX extends Application {
       List< Answer > answers = new ArrayList< Answer >();
 
       Qualifier f = new Qualifier();
-      f.setUf( "RJ,SP" );
+      f.setUF( "RJ,SP" );
       f.setBanca( "banca1" );
       f.setOrgao( "orgão1" );
       f.setAno( "2011" );

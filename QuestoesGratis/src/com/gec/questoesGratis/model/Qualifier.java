@@ -44,11 +44,11 @@ public final class Qualifier implements Serializable {
       this.orgao = orgao;
    }
 
-   public String getUf() {
+   public String getUF() {
       return uf;
    }
 
-   public void setUf( String uf ) {
+   public void setUF( String uf ) {
       this.uf = uf;
    }
 

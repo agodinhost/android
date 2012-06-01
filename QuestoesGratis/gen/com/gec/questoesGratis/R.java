@@ -153,37 +153,30 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int quizzes_item=0x7f03000a;
     }
     public static final class string {
-        public static final int about_apache_20=0x7f070032;
-        public static final int about_created_by=0x7f07002f;
-        public static final int about_feedback_subject=0x7f07002d;
-        public static final int about_feedback_text=0x7f07002e;
-        public static final int about_gec=0x7f070030;
-        public static final int about_mail_action=0x7f070028;
-        public static final int about_mail_label=0x7f070027;
-        public static final int about_opensource_under=0x7f070031;
-        public static final int about_rate_action=0x7f07002a;
-        public static final int about_rate_label=0x7f070029;
-        public static final int about_title=0x7f070026;
-        public static final int about_web_action=0x7f07002c;
-        public static final int about_web_label=0x7f07002b;
-        public static final int answer_image=0x7f070022;
-        public static final int answer_title=0x7f070021;
+        public static final int about_apache_20=0x7f07002b;
+        public static final int about_created_by=0x7f070028;
+        public static final int about_feedback_subject=0x7f070026;
+        public static final int about_feedback_text=0x7f070027;
+        public static final int about_gec=0x7f070029;
+        public static final int about_mail_action=0x7f070021;
+        public static final int about_mail_label=0x7f070020;
+        public static final int about_opensource_under=0x7f07002a;
+        public static final int about_rate_action=0x7f070023;
+        public static final int about_rate_label=0x7f070022;
+        public static final int about_title=0x7f07001f;
+        public static final int about_web_action=0x7f070025;
+        public static final int about_web_label=0x7f070024;
+        public static final int answer_image=0x7f07001b;
+        public static final int answer_title=0x7f07001a;
         public static final int app_name=0x7f070000;
-        public static final int filter_ano=0x7f07001a;
-        public static final int filter_ano_options=0x7f07001b;
-        public static final int filter_assunto=0x7f07001e;
-        public static final int filter_assunto_options=0x7f07001f;
-        public static final int filter_banca=0x7f070014;
-        public static final int filter_banca_options=0x7f070015;
-        public static final int filter_cargo=0x7f070018;
-        public static final int filter_cargo_options=0x7f070019;
-        public static final int filter_disciplina=0x7f07001c;
-        public static final int filter_disciplina_options=0x7f07001d;
-        public static final int filter_orgao=0x7f070016;
-        public static final int filter_orgao_options=0x7f070017;
+        public static final int filter_ano=0x7f070013;
+        public static final int filter_assunto=0x7f070018;
+        public static final int filter_banca=0x7f070012;
+        public static final int filter_cargo=0x7f070016;
+        public static final int filter_disciplina=0x7f070017;
+        public static final int filter_orgao=0x7f070014;
         public static final int filter_title=0x7f070011;
-        public static final int filter_uf=0x7f070012;
-        public static final int filter_uf_options=0x7f070013;
+        public static final int filter_uf=0x7f070015;
         /**  Replace with your own application name. 
          */
         public static final int g_ADS_APP_NAME=0x7f070003;
@@ -210,15 +203,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int g_next=0x7f070008;
         public static final int g_no_selection=0x7f07000b;
         public static final int g_previous=0x7f070007;
-        public static final int marketing_title=0x7f070024;
-        public static final int marketing_uri=0x7f070025;
+        public static final int marketing_title=0x7f07001d;
+        public static final int marketing_uri=0x7f07001e;
         public static final int menu_about=0x7f070010;
         public static final int menu_history=0x7f07000e;
         public static final int menu_more=0x7f07000f;
         public static final int menu_new=0x7f07000d;
         public static final int menu_title=0x7f07000c;
-        public static final int question_details=0x7f070023;
-        public static final int quizzes_title=0x7f070020;
+        public static final int question_details=0x7f07001c;
+        public static final int quizzes_title=0x7f070019;
     }
     public static final class style {
         public static final int ActionBarCompat=0x7f080009;

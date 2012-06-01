@@ -11,15 +11,16 @@ import java.util.List;
  */
 public final class Filter implements Serializable {
 
-   private static final long serialVersionUID = -1326426722493503294L;
+   private static final long serialVersionUID = 2132927534872390127L;
 
-   public enum IgnoreQuestions {
+   public static enum IgnoreQuestions {
       None, //
       AlreadyAnswered, //
       AlreadyAnswered_Right, //
       AlreadyAnswered_Wrong;
    }
 
+   private int             questions;
    private IgnoreQuestions ignore;
 
    private List< String >  ufs;
@@ -30,6 +31,14 @@ public final class Filter implements Serializable {
    private List< String >  disciplinas;
    private List< String >  assuntos;
 
+   public int getQuestions() {
+      return questions;
+   }
+
+   public void setQuestions( int questions ) {
+      this.questions = questions;
+   }
+
    public IgnoreQuestions getIgnore() {
       return ignore;
    }
@@ -38,11 +47,11 @@ public final class Filter implements Serializable {
       this.ignore = ignore;
    }
 
-   public List< String > getUfs() {
+   public List< String > getUFs() {
       return ufs;
    }
 
-   public void setUfs( List< String > ufs ) {
+   public void setUFs( List< String > ufs ) {
       this.ufs = ufs;
    }
 

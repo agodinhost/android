@@ -1,6 +1,7 @@
 
 package com.gec.questoesGratis.widgets;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -16,7 +17,7 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
 
    private List< String >       items;
    private boolean[]            selected;
-   private String               defaultText;
+   private String               allText;
    private MultiSpinnerListener listener;
 
    public MultiSpinner( Context context ) {
@@ -55,7 +56,7 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
          spinnerText = spinnerBuffer.toString();
          if( spinnerText.length() > 2 ) spinnerText = spinnerText.substring( 0, spinnerText.length() - 2 );
       } else {
-         spinnerText = defaultText;
+         spinnerText = allText;
       }
       ArrayAdapter< String > adapter = new ArrayAdapter< String >( //
             getContext(), //
@@ -95,7 +96,7 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
 
    public void setItems( List< String > items, String allText, MultiSpinnerListener listener ) {
       this.items = items;
-      this.defaultText = allText;
+      this.allText = allText;
       this.listener = listener;
 
       // all selected by default.
@@ -110,6 +111,25 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
             new String[] { allText } //
       );
       setAdapter( adapter );
+   }
+
+   /**
+    * Return a list with all selected items OR:
+    * null - if ALL items were selected;
+    * empty list - if no items were selected;
+    * normal list - normal selection.
+    */
+   public List< String > getSelectedItems() {
+
+      final int sl = selected.length;
+      final List< String > list = new ArrayList< String >( sl );
+
+      for( int i = 0; i < sl; i++ )
+         if( selected[ i ] ) list.add( items.get( i ) );
+
+      if( list.size() == sl ) return null;
+
+      return list;
    }
 
    public interface MultiSpinnerListener {

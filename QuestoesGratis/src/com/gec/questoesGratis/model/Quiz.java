@@ -84,7 +84,7 @@ public final class Quiz implements Serializable {
       return answers;
    }
 
-   public void setAnswers( List< Answer > questions ) {
-      this.answers = questions;
+   public void setAnswers( List< Answer > answers ) {
+      this.answers = answers;
    }
 }
