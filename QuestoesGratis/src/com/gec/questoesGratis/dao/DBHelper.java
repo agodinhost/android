@@ -220,9 +220,9 @@ public final class DBHelper extends SQLiteOpenHelper {
    }
 
    /* ALWAYS returns a valid String. */
-   private String getPlick( List< String > list ) {
+   private StringBuffer getPlick( List< String > list ) {
 
-      StringBuffer b = new StringBuffer();
+      final StringBuffer b = new StringBuffer();
 
       if( list != null )
          for( String item : list )
@@ -235,43 +235,50 @@ public final class DBHelper extends SQLiteOpenHelper {
       if( l > 0 )
          b.deleteCharAt( l - 1 );
 
-      return b.toString();
+      return b;
    }
 
    /* ALWAYS returns a valid String. */
-   private String getIn( String field, List< String > list ) {
+   private StringBuffer getIn( String field, List< String > list ) {
 
       final StringBuffer b = new StringBuffer();
-      final String in = getPlick( list );
+
+      final StringBuffer in = getPlick( list );
       if( in.length() > 0 ) //
          b.append( field ) //
                .append( " IN( " ) //
                .append( in ) //
                .append( " ) " );
-      return b.toString();
+
+      return b;
+   }
+
+   private StringBuffer addAnd( StringBuffer b ) {
+
+      if( b.length() > 0 )
+         b.append( "AND " );
+      return b;
    }
 
    private void addInClause( StringBuffer b, String field, List< String > list ) {
 
-      final String in = getIn( field, list );
-      if( in.length() > 0 ) {
-         if( b.length() > 0 )
-            b.append( "AND " );
-         b.append( in );
-      }
+      final StringBuffer in = getIn( field, list );
+      if( in.length() > 0 )
+         addAnd( b ).append( in );
    }
 
    /* ALWAYS returns a valid String. */
-   private String getWhere( Filter filter ) {
+   private StringBuffer getWhere( Filter filter ) {
 
       final StringBuffer b = new StringBuffer();
 
       //TODO: filter precisa tb da qtd de questões (a tabela questions não precisa disso);
 
       //TODO: preciso de dois campos na questions pra controlar isso ...
-      if( Ignore.ANSWERED.equals( filter.getIgnore() ) ) {
-      } else if( Ignore.RIGHT.equals( filter.getIgnore() ) ) {
-      } else if( Ignore.WRONG.equals( filter.getIgnore() ) ) {
+      final Ignore ignore = filter.getIgnore();
+      if( Ignore.ANSWERED.equals( ignore ) ) {
+      } else if( Ignore.RIGHT.equals( ignore ) ) {
+      } else if( Ignore.WRONG.equals( ignore ) ) {
       }
 
       addInClause( b, "trim(banca)", filter.getBancas() );
@@ -282,27 +289,27 @@ public final class DBHelper extends SQLiteOpenHelper {
       addInClause( b, "trim(disciplina)", filter.getDisciplinas() );
       addInClause( b, "trim(assunto)", filter.getAssuntos() );
 
-      return b.toString();
+      return b;
    }
 
    /* ALWAYS returns a valid String. */
-   private String getRawWhere( Filter filter ) {
+   private StringBuffer getRawWhere( Filter filter ) {
 
-      String raw = "";
+      final StringBuffer b = new StringBuffer();
 
-      final String where = getWhere( filter );
-      if( where.length() > 0 ) {
-         raw = "WHERE " + where;
-      }
-      return raw;
+      final StringBuffer where = getWhere( filter );
+      if( where.length() > 0 )
+         b.append( "WHERE " ) //
+               .append( where );
+
+      return b;
    }
 
    public int getQuestionsCount( Filter filter ) {
 
-      final String where = getRawWhere( filter );
-      final Cursor c = database.rawQuery( //
-            "SELECT Count(1) FROM questions " + where, //
-            null );
+      final StringBuffer b = new StringBuffer( "SELECT Count(1) FROM questions " ) //
+            .append( getRawWhere( filter ) );
+      final Cursor c = database.rawQuery( b.toString(), null );
       c.moveToFirst();
       int count = c.getInt( 0 );
       c.close();
@@ -362,7 +369,7 @@ public final class DBHelper extends SQLiteOpenHelper {
 
       final String table = "questions";
       final String columns[] = { "_id" };
-      final String where = getWhere( filter );
+      final String where = getWhere( filter ).toString();
       final String whereArgs[] = null;
       final String groupBy = null;
       final String having = null;
