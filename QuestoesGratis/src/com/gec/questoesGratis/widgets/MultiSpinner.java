@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener, OnCancelListener {
+public final class MultiSpinner extends Spinner implements OnMultiChoiceClickListener, OnCancelListener {
 
    private List< String >       items;
    private boolean[]            selected;
@@ -34,47 +34,48 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
 
    @Override
    public void onClick( DialogInterface dialog, int which, boolean isChecked ) {
-      if( isChecked ) selected[ which ] = true;
-      else selected[ which ] = false;
+      selected[ which ] = isChecked;
    }
 
    @Override
    public void onCancel( DialogInterface dialog ) {
+
       // refresh text on spinner.
-      StringBuffer spinnerBuffer = new StringBuffer();
-      boolean someUnselected = false;
-      for( int i = 0; i < items.size(); i++ ) {
-         if( selected[ i ] == true ) {
-            spinnerBuffer.append( items.get( i ) );
-            spinnerBuffer.append( ", " );
+      final StringBuffer b = new StringBuffer();
+      boolean anyUnselected = false;
+      for( int i = 0; i < items.size(); i++ )
+         if( selected[ i ] ) {
+            b.append( items.get( i ) );
+            b.append( ", " );
          } else {
-            someUnselected = true;
+            anyUnselected = true;
          }
-      }
-      String spinnerText;
-      if( someUnselected ) {
-         spinnerText = spinnerBuffer.toString();
-         if( spinnerText.length() > 2 ) spinnerText = spinnerText.substring( 0, spinnerText.length() - 2 );
+
+      String text;
+      if( anyUnselected ) {
+         text = b.toString();
+         if( text.length() > 2 )
+            text = text.substring( 0, text.length() - 2 );
       } else {
-         spinnerText = allText;
+         text = allText;
       }
+
       ArrayAdapter< String > adapter = new ArrayAdapter< String >( //
             getContext(), //
             android.R.layout.simple_spinner_item, //
-            new String[] { spinnerText } //
+            new String[] { text } //
       );
       setAdapter( adapter );
-      if( listener != null ) {
+
+      if( listener != null )
          listener.onItemsSelected( selected );
-      }
    }
 
    @Override
    public boolean performClick() {
 
-      if( items == null || items.size() < 1 ) {
+      if( items == null || items.size() < 1 )
          return false;
-      }
 
       AlertDialog.Builder builder = new AlertDialog.Builder( getContext() );
       builder.setMultiChoiceItems( items.toArray( new CharSequence[ items.size() ] ), selected, this );
@@ -115,7 +116,7 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
 
    /**
     * Return a list with all selected items OR:
-    * null - if ALL items were selected;
+    * null - if NONE items were selected;
     * empty list - if no items were selected;
     * normal list - normal selection.
     */
@@ -125,9 +126,11 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
       final List< String > list = new ArrayList< String >( sl );
 
       for( int i = 0; i < sl; i++ )
-         if( selected[ i ] ) list.add( items.get( i ) );
+         if( selected[ i ] )
+            list.add( items.get( i ) );
 
-      if( list.size() == sl ) return null;
+      if( list.size() == sl )
+         return null;
 
       return list;
    }

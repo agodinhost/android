@@ -14,7 +14,7 @@ import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.model.Qualifier;
 import com.gec.questoesGratis.model.Question;
 import com.gec.questoesGratis.model.Quiz;
-import com.gec.questoesGratis.model.Status;
+import com.gec.questoesGratis.model.Quiz.Status;
 
 public class ApplicationX extends Application {
 
@@ -156,13 +156,13 @@ public class ApplicationX extends Application {
 
       List< Quiz > list = new ArrayList< Quiz >();
 
-      list.add( new Quiz( 1, new Date(), 10, Status.Unfinished ) );
-      list.add( new Quiz( 2, new Date(), 20, Status.Finished ) );
-      list.add( new Quiz( 3, new Date(), 30, Status.Unfinished ) );
-      list.add( new Quiz( 4, new Date(), 40, Status.Finished ) );
-      list.add( new Quiz( 5, new Date(), 50, Status.Unfinished ) );
-      list.add( new Quiz( 6, new Date(), 60, Status.Finished ) );
-      list.add( new Quiz( 7, new Date(), 70, Status.Unfinished ) );
+      list.add( new Quiz( 1, new Date(), 10, Status.UNFINISHED ) );
+      list.add( new Quiz( 2, new Date(), 20, Status.FINISHED ) );
+      list.add( new Quiz( 3, new Date(), 30, Status.UNFINISHED ) );
+      list.add( new Quiz( 4, new Date(), 40, Status.FINISHED ) );
+      list.add( new Quiz( 5, new Date(), 50, Status.UNFINISHED ) );
+      list.add( new Quiz( 6, new Date(), 60, Status.FINISHED ) );
+      list.add( new Quiz( 7, new Date(), 70, Status.UNFINISHED ) );
 
       return list;
    }

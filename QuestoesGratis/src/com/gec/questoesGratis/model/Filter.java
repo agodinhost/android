@@ -11,39 +11,39 @@ import java.util.List;
  */
 public final class Filter implements Serializable {
 
-   private static final long serialVersionUID = 2132927534872390127L;
+   private static final long serialVersionUID = -4492189847820506777L;
 
-   public static enum IgnoreQuestions {
-      None, //
-      AlreadyAnswered, //
-      AlreadyAnswered_Right, //
-      AlreadyAnswered_Wrong;
+   public static enum Ignore {
+      NONE, //
+      ANSWERED, //
+      RIGHT, //
+      WRONG;
    }
 
-   private int             questions;
-   private IgnoreQuestions ignore;
+   private int            total;
+   private Ignore         ignore;
 
-   private List< String >  ufs;
-   private List< String >  bancas;
-   private List< String >  orgaos;
-   private List< String >  cargos;
-   private List< String >  anos;
-   private List< String >  disciplinas;
-   private List< String >  assuntos;
+   private List< String > ufs;
+   private List< String > bancas;
+   private List< String > orgaos;
+   private List< String > cargos;
+   private List< String > anos;
+   private List< String > disciplinas;
+   private List< String > assuntos;
 
-   public int getQuestions() {
-      return questions;
+   public int getTotal() {
+      return total;
    }
 
-   public void setQuestions( int questions ) {
-      this.questions = questions;
+   public void setTotal( int total ) {
+      this.total = total;
    }
 
-   public IgnoreQuestions getIgnore() {
+   public Ignore getIgnore() {
       return ignore;
    }
 
-   public void setIgnore( IgnoreQuestions ignore ) {
+   public void setIgnore( Ignore ignore ) {
       this.ignore = ignore;
    }
 

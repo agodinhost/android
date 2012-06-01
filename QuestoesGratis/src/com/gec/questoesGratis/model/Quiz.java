@@ -14,13 +14,34 @@ public final class Quiz implements Serializable {
 
    private static final long serialVersionUID = 383288274571355914L;
 
-   private Integer           id;
-   private Date              date;
-   private Filter            filter;
-   private Integer           rating;
-   private Status            status;
-   private Integer           lastNumber;
-   private List< Answer >    answers;
+   public static enum Status {
+      //
+      UNFINISHED( 0, "Não Concluído" ), //
+      FINISHED( 1, "Concluído" ); //
+
+      public final int    id;
+      public final String name;
+
+      private Status( int idP, String nameP ) {
+         id = idP;
+         name = nameP;
+      }
+
+      public static Status valueOf( int id ) {
+         if( id == 0 )
+            return UNFINISHED;
+         else
+            return FINISHED;
+      }
+   }
+
+   private Integer        id;
+   private Date           date;
+   private Filter         filter;
+   private Integer        rating;
+   private Status         status;
+   private Integer        lastNumber;
+   private List< Answer > answers;
 
    public Quiz() {
    }

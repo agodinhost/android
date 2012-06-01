@@ -108,7 +108,7 @@ public class FilterActivity extends Activity {
    private Filter getFilter() {
 
       Filter filter = new Filter();
-      filter.setQuestions( qty );
+      filter.setTotal( qty );
       filter.setBancas( getSelectedItems( R.id.filter_ms_banca ) );
       filter.setAnos( getSelectedItems( R.id.filter_ms_ano ) );
       filter.setOrgaos( getSelectedItems( R.id.filter_ms_orgao ) );

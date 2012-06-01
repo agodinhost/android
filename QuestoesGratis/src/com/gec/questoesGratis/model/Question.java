@@ -18,7 +18,7 @@ public final class Question implements Serializable {
    private String            description;
    private List< String >    options;
    private String            match;
-   private Integer           used;
+   private String            used;
 
    public Integer getId() {
       return id;
@@ -72,11 +72,26 @@ public final class Question implements Serializable {
       this.match = match;
    }
 
-   public Integer getUsed() {
+   /**
+    * Get the used string according to:
+    * u - used at least once;
+    * r - right at least once;
+    * w - wrong at least once;
+    * 
+    * @return the used string.
+    * @see #setUsed(String)
+    */
+   public String getUsed() {
       return used;
    }
 
-   public void setUsed( Integer used ) {
+   /**
+    * Set the used string.
+    * 
+    * @param used the used string.
+    * @see #getUsed()
+    */
+   public void setUsed( String used ) {
       this.used = used;
    }
 

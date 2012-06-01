@@ -10,7 +10,7 @@ import android.view.ViewGroup;
  * Custom layout that arranges children in a grid-like manner, optimizing for
  * even horizontal and vertical whitespace. Taken from Google IO 2011 app.
  */
-public class DashboardLayout extends ViewGroup {
+public final class DashboardLayout extends ViewGroup {
 
    private static final int UNEVEN_GRID_PENALTY_MULTIPLIER = 10;
 
@@ -46,9 +46,9 @@ public class DashboardLayout extends ViewGroup {
       final int count = getChildCount();
       for( int i = 0; i < count; i++ ) {
          final View child = getChildAt( i );
-         if( child.getVisibility() == GONE ) {
+         if( child.getVisibility() == GONE )
             continue;
-         }
+
          child.measure( childWidthMeasureSpec, childHeightMeasureSpec );
          mMaxChildWidth = Math.max( mMaxChildWidth, child.getMeasuredWidth() );
          mMaxChildHeight = Math.max( mMaxChildHeight, child.getMeasuredHeight() );
@@ -60,9 +60,9 @@ public class DashboardLayout extends ViewGroup {
 
       for( int i = 0; i < count; i++ ) {
          final View child = getChildAt( i );
-         if( child.getVisibility() == GONE ) {
+         if( child.getVisibility() == GONE )
             continue;
-         }
+
          child.measure( childWidthMeasureSpec, childHeightMeasureSpec );
       }
 
@@ -77,21 +77,20 @@ public class DashboardLayout extends ViewGroup {
       int width = r - l;
       int height = b - t;
 
-      final int count = getChildCount();
-
       // Calculate the number of visible children.
+      final int count = getChildCount();
       int visibleCount = 0;
+
       for( int i = 0; i < count; i++ ) {
          final View child = getChildAt( i );
-         if( child.getVisibility() == GONE ) {
+         if( child.getVisibility() == GONE )
             continue;
-         }
+
          ++visibleCount;
       }
 
-      if( visibleCount == 0 ) {
+      if( visibleCount == 0 )
          return;
-      }
 
       // Calculate what number of rows and columns will optimize for even
       // horizontal and vertical whitespace between items. Start with a 1 
@@ -113,9 +112,8 @@ public class DashboardLayout extends ViewGroup {
          vSpace = ( ( height - mMaxChildHeight * rows ) / ( rows + 1 ) );
 
          spaceDifference = Math.abs( vSpace - hSpace );
-         if( rows * cols != visibleCount ) {
+         if( rows * cols != visibleCount )
             spaceDifference *= UNEVEN_GRID_PENALTY_MULTIPLIER;
-         }
 
          if( spaceDifference < bestSpaceDifference ) {
             // Found a better whitespace squareness/ratio.
@@ -123,9 +121,9 @@ public class DashboardLayout extends ViewGroup {
 
             // If we found a better whitespace squareness and there's only 1
             // row, this is the best we can do.
-            if( rows == 1 ) {
+            if( rows == 1 )
                break;
-            }
+
          } else {
             // This is a worse whitespace ratio, use the previous value of cols
             // and exit.
@@ -153,11 +151,11 @@ public class DashboardLayout extends ViewGroup {
       int left, top;
       int col, row;
       int visibleIndex = 0;
+
       for( int i = 0; i < count; i++ ) {
          final View child = getChildAt( i );
-         if( child.getVisibility() == GONE ) {
+         if( child.getVisibility() == GONE )
             continue;
-         }
 
          row = visibleIndex / cols;
          col = visibleIndex % cols;
@@ -165,12 +163,11 @@ public class DashboardLayout extends ViewGroup {
          left = hSpace * ( col + 1 ) + width * col;
          top = vSpace * ( row + 1 ) + height * row;
 
-         child.layout( left, top, ( hSpace == 0 && col == cols - 1 )? //
-         r
+         child.layout( left, top, ( hSpace == 0 && col == cols - 1 )? r //
                : ( left + width ), //
-               ( vSpace == 0 && row == rows - 1 )? //
-               b
+               ( vSpace == 0 && row == rows - 1 )? b //
                      : ( top + height ) );
+
          ++visibleIndex;
       }
    }

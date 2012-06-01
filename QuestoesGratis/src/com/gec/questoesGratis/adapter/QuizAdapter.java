@@ -47,7 +47,7 @@ public class QuizAdapter extends ArrayAdapter< Quiz > {
             vDate.setText( sDate );
 
             TextView vStatus = (TextView) row.findViewById( R.id.quizzes_item_status );
-            String sStatus = quiz.getStatus().getDisplayName();
+            String sStatus = quiz.getStatus().name;
             vStatus.setText( sStatus );
 
             TextView vRating = (TextView) row.findViewById( R.id.quizzes_item_rating );

@@ -20,7 +20,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.model.Filter;
-import com.gec.questoesGratis.model.Filter.IgnoreQuestions;
+import com.gec.questoesGratis.model.Filter.Ignore;
 import com.gec.questoesGratis.model.Qualifier;
 import com.gec.questoesGratis.model.Question;
 import com.gec.questoesGratis.model.Quiz;
@@ -269,9 +269,9 @@ public final class DBHelper extends SQLiteOpenHelper {
       //TODO: filter precisa tb da qtd de questões (a tabela questions não precisa disso);
 
       //TODO: preciso de dois campos na questions pra controlar isso ...
-      if( IgnoreQuestions.AlreadyAnswered.equals( filter.getIgnore() ) ) {
-      } else if( IgnoreQuestions.AlreadyAnswered_Right.equals( filter.getIgnore() ) ) {
-      } else if( IgnoreQuestions.AlreadyAnswered_Wrong.equals( filter.getIgnore() ) ) {
+      if( Ignore.ANSWERED.equals( filter.getIgnore() ) ) {
+      } else if( Ignore.RIGHT.equals( filter.getIgnore() ) ) {
+      } else if( Ignore.WRONG.equals( filter.getIgnore() ) ) {
       }
 
       addInClause( b, "trim(banca)", filter.getBancas() );
@@ -310,8 +310,8 @@ public final class DBHelper extends SQLiteOpenHelper {
    }
 
    /*
-    * 1) Get complete list id;
-    * 2) List id shuffle;
+    * 1) Get list id, apply filter;
+    * 2) Shuffle the list id ;
     * 3) Create new list id limited to the desired number of questions;
     * 4) BeginTransaction;
     * 5) create quiz;
@@ -319,22 +319,26 @@ public final class DBHelper extends SQLiteOpenHelper {
     * 7)    create and add one answer/question in the quiz above;
     * 7) Commit.
     * ?) Roolback?
-    * 
-    * used TEXT "urw":
-    * u - used at least once;
-    * r - right at least once;
-    * w - wrong at least once;
     */
-
    public Quiz createQuiz( Filter filter ) {
+
+      database.beginTransaction();
 
       final Quiz quiz = new Quiz();
       quiz.setFilter( filter );
+      saveQuiz( quiz );
 
       final List< Answer > answers = createAnswers( quiz );
       quiz.setAnswers( answers );
+      saveAnswers( quiz );
+
+      database.endTransaction();
 
       return quiz;
+   }
+
+   private void saveQuiz( Quiz quiz ) {
+
    }
 
    private List< Answer > createAnswers( Quiz quiz ) {
@@ -342,10 +346,14 @@ public final class DBHelper extends SQLiteOpenHelper {
       final Filter filter = quiz.getFilter();
       final List< Integer > ids = getQuestionsId( filter );
       shuffle( ids );
-      final int start = randomStart( ids, filter.getQuestions() );
+      final int start = randomStart( ids, filter.getTotal() );
       //TODO: updateUsedIds(ids,10);
 
       return null;
+   }
+
+   private void saveAnswers( Quiz quiz ) {
+
    }
 
    private List< Integer > getQuestionsId( Filter filter ) {
@@ -437,7 +445,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       q.setOptions( options );
 
       q.setMatch( c.getString( EQuestions.match.index ) );
-      q.setUsed( c.getInt( EQuestions.used.index ) );
+      q.setUsed( c.getString( EQuestions.used.index ) );
 
       return q;
    }
