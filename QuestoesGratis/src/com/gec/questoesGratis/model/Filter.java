@@ -102,4 +102,25 @@ public final class Filter implements Serializable {
    public void setAssuntos( List< String > assuntos ) {
       this.assuntos = assuntos;
    }
+
+   //TODO: parei aqui ...
+   public String getDescription() {
+      String d = "";
+      d = addStr( d, banca, "TODAS" );
+      d = addStr( d, String.valueOf( ano ), "TODOS" );
+      d = addStr( d, orgao, "TODOS" );
+      d = addStr( d, uf, "TODAS" );
+      d = addStr( d, cargo, "TODOS" );
+      d = addStr( d, disciplina, "TODAS" );
+      d = addStr( d, assunto, "TODOS" );
+      return d;
+   }
+
+   private String addStr( String str, String filter, String all ) {
+      if( filter != null && !all.equals( filter ) ) {
+         if( str.length() > 0 ) str += " - ";
+         str += filter;
+      }
+      return str;
+   }
 }

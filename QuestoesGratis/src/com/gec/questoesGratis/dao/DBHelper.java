@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -345,6 +346,19 @@ public final class DBHelper extends SQLiteOpenHelper {
    }
 
    private void saveQuiz( Quiz quiz ) {
+
+      //TODO: parei aqui ...
+      ContentValues values = new ContentValues();
+      values.put( "filter", quiz.toString() );
+      long countryId = db.insert( "tbl_countries", null, values );
+      ContentValues stateValues = new ContentValues();
+      stateValues.put( "state_name", "Texas" );
+      stateValues.put( "country_id", Long.toString( countryId ) );
+      try {
+         db.insertOrThrow( "tbl_states", null, stateValues );
+      } catch( Exception e ) {
+         //catch code
+      }
 
    }
 
