@@ -50,10 +50,23 @@ CREATE TRIGGER IF NOT EXISTS trg_answers_ai
 AFTER INSERT ON answers
 FOR EACH ROW 
 BEGIN 
-	UPDATE questions 
-	   SET used = ifnull( used, '--' )
-	 WHERE _id  = NEW.questionId;
-END
+    UPDATE questions 
+       SET used = ifnull( used, '--' )
+     WHERE _id  = NEW.questionId;
+END;
+
+
+CREATE TRIGGER IF NOT EXISTS trg_answers_au
+AFTER UPDATE ON answers
+FOR EACH ROW 
+BEGIN 
+    UPDATE questions 
+       SET used = CASE WHEN trim( match ) = NEW.answer
+                       THEN 'r' || substr( ifnull( used, '--' ), 2, 1 )
+                       ELSE substr( ifnull( used, '--' ), 1, 1 ) || 'w'
+                  END
+     WHERE _id  = NEW.questionId;
+END;
 
 
 DROP INDEX IF EXISTS answers_quizId_questionId_idx;
