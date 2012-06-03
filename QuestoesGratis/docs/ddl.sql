@@ -42,11 +42,18 @@ CREATE TABLE answers(
 );
 
 
-CREATE UNIQUE INDEX idx_answers_quizId_questionId
+CREATE VIEW IF NOT EXISTS vw_answers
+AS  SELECT q.*, a.quizId, a._ID as answerId, a.number, a.answer
+    FROM questions q, answers a
+    WHERE a.questionId = q._id
+    ORDER BY a.quizId, a.number;
+
+
+CREATE UNIQUE INDEX ix_answers_quizId_questionId
 ON answers( quizId ASC, questionId ASC);
 
 
-CREATE TRIGGER IF NOT EXISTS trg_answers_ai
+CREATE TRIGGER IF NOT EXISTS tg_answers_ai
 AFTER INSERT ON answers
 FOR EACH ROW 
 BEGIN 
@@ -56,7 +63,7 @@ BEGIN
 END;
 
 
-CREATE TRIGGER IF NOT EXISTS trg_answers_au
+CREATE TRIGGER IF NOT EXISTS tg_answers_au
 AFTER UPDATE ON answers
 FOR EACH ROW 
 BEGIN 
@@ -69,7 +76,7 @@ BEGIN
 END;
 
 
-DROP INDEX IF EXISTS answers_quizId_questionId_idx;
+DROP INDEX IF EXISTS ix_answers_quizId_questionId;
 DROP TABLE IF EXISTS answers;
 DROP TABLE IF EXISTS quizzes;
 DROP TABLE IF EXISTS questions;

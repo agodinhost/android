@@ -68,7 +68,7 @@ public final class Answer implements Serializable {
       try {
          return question.getDescription();
       } catch( NullPointerException e ) {
-         return null;
+         return "";
       }
    }
 
@@ -76,7 +76,7 @@ public final class Answer implements Serializable {
       try {
          return "Questão " + String.valueOf( number ) + ": " + question.getQualifierD();
       } catch( NullPointerException e ) {
-         return null;
+         return "";
       }
    }
 }

@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.dao;
 
 import static com.gec.questoesGratis.tools.ListX.randomStart;
@@ -7,7 +8,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -24,6 +28,7 @@ import com.gec.questoesGratis.model.Filter.Ignore;
 import com.gec.questoesGratis.model.Qualifier;
 import com.gec.questoesGratis.model.Question;
 import com.gec.questoesGratis.model.Quiz;
+import com.gec.questoesGratis.model.Quiz.Status;
 import com.gec.questoesGratis.tools.LogX;
 
 /**
@@ -33,18 +38,13 @@ import com.gec.questoesGratis.tools.LogX;
  */
 public final class DBHelper extends SQLiteOpenHelper {
 
-   private static final LogX log = new LogX( DBHelper.class );
+   private static final LogX             log = new LogX( DBHelper.class );
+   private static final SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
 
-   private final Context     context;
+   private final Context                 context;
 
-   private SQLiteDatabase    database;
+   private SQLiteDatabase                database;
 
-   /**
-    * Constructor Takes and keeps a reference of the passed context in order to
-    * access to the application assets and resources.
-    * 
-    * @param context
-    */
    public DBHelper( Context context ) {
 
       super( context, DBProperties.DB_NAME, null, DBProperties.DB_VERSION );
@@ -73,10 +73,6 @@ public final class DBHelper extends SQLiteOpenHelper {
       log.d( "Database connection closed." );
    }
 
-   /**
-    * Creates a empty database on the system and rewrites it with your own
-    * database.
-    */
    public void createDataBase() throws IOException {
 
       if( !databaseExists() ) {
@@ -216,13 +212,12 @@ public final class DBHelper extends SQLiteOpenHelper {
       return getNames( DBProperties.SQL_SELECT_Assuntos );
    }
 
-   /* ALWAYS returns a valid String. */
    private StringBuffer getPlick( List< String > list ) {
 
       final StringBuffer b = new StringBuffer();
 
       if( list != null )
-         for( String item: list )
+         for( String item : list )
             b.append( "'" ) //
                   .append( item.trim() ) //
                   .append( "'" ) //
@@ -235,7 +230,6 @@ public final class DBHelper extends SQLiteOpenHelper {
       return b;
    }
 
-   /* ALWAYS returns a valid String. */
    private StringBuffer getIn( String field, List< String > list ) {
 
       final StringBuffer b = new StringBuffer();
@@ -264,7 +258,6 @@ public final class DBHelper extends SQLiteOpenHelper {
          addAnd( b ).append( in );
    }
 
-   /* ALWAYS returns a valid String. */
    private StringBuffer getWhere( Filter filter ) {
 
       final StringBuffer b = new StringBuffer();
@@ -289,7 +282,6 @@ public final class DBHelper extends SQLiteOpenHelper {
       return b;
    }
 
-   /* ALWAYS returns a valid String. */
    private StringBuffer getRawWhere( Filter filter ) {
 
       final StringBuffer b = new StringBuffer();
@@ -304,7 +296,8 @@ public final class DBHelper extends SQLiteOpenHelper {
 
    public int getQuestionsCount( Filter filter ) {
 
-      final StringBuffer b = new StringBuffer( "SELECT Count(1) FROM questions " ) //
+      final StringBuffer b = //
+      new StringBuffer( "SELECT Count(1) FROM questions " ) //
             .append( getRawWhere( filter ) );
       final Cursor c = database.rawQuery( b.toString(), null );
       c.moveToFirst();
@@ -313,48 +306,30 @@ public final class DBHelper extends SQLiteOpenHelper {
       return count;
    }
 
-   /*
-    * 1) Get list id, apply filter;
-    * 2) Shuffle the list id ;
-    * 3) Create new list id limited to the desired number of questions;
-    * 4) BeginTransaction;
-    * 5) create quiz;
-    * 6) for each id in the list id:
-    * 7)    create and add one answer/question in the quiz above;
-    * 7) Commit.
-    * ?) Roolback?
-    */
    public Quiz createQuiz( Filter filter ) {
 
       database.beginTransaction();
-
-      final Quiz quiz = new Quiz( filter.getDescription() );
-      if( insertQuiz( quiz ) ) {
-
+      try {
+         final Quiz quiz = new Quiz( filter.getDescription() );
+         insertQuiz( quiz );
          quiz.setAnswers( createAnswers( quiz, filter ) );
-         if( insertAnswers( quiz ) )
-            database.endTransaction();
+         insertAnswers( quiz );
+         database.setTransactionSuccessful();
+         return quiz;
+
+      } catch( SQLException e ) {
+         throw new Error( "Cant create the quiz" );
+      } finally {
+         database.endTransaction();
       }
-
-      //TODO: load the created quiz (to get al fields populated).
-
-      //TODO: throw exception.
-
-      return quiz;
    }
 
-   private boolean insertQuiz( Quiz quiz ) {
+   private void insertQuiz( Quiz quiz ) {
 
-      boolean b = true;
       final ContentValues values = new ContentValues();
       values.put( "filter", quiz.getFilter() );
-      try {
-         Long id = database.insertOrThrow( "quizzes", null, values );
-         quiz.setId( id );
-      } catch( SQLException e ) {
-         b = false;
-      }
-      return b;
+      Long id = database.insertOrThrow( "quizzes", null, values );
+      quiz.setId( id );
    }
 
    private List< Answer > createAnswers( Quiz quiz, Filter filter ) {
@@ -378,18 +353,14 @@ public final class DBHelper extends SQLiteOpenHelper {
       return list;
    }
 
-   private boolean insertAnswers( Quiz quiz ) {
+   private void insertAnswers( Quiz quiz ) {
 
-      boolean b = true;
-      try {
-         final List< Answer > list = quiz.getAnswers();
-         if( list != null )
-            for( Answer answer: list )
-               insertAnswer( quiz.getId(), answer );
-      } catch( SQLException e ) {
-         b = false;
-      }
-      return b;
+      //TODO: sqLite does have support for the insert batch?
+      final Long quizId = quiz.getId();
+      final List< Answer > list = quiz.getAnswers();
+      if( list != null )
+         for( Answer answer : list )
+            insertAnswer( quizId, answer );
    }
 
    private void insertAnswer( Long quizId, Answer answer ) {
@@ -407,22 +378,15 @@ public final class DBHelper extends SQLiteOpenHelper {
 
       final List< Long > list = new ArrayList< Long >();
 
-      final String table = "questions";
-      final String columns[] = { "_id" };
-      final String where = getWhere( filter ).toString();
-      final String whereArgs[] = null;
-      final String groupBy = null;
-      final String having = null;
-      final String orderBy = null;
-
       final Cursor c = database.query( //
-            table, //
-            columns, //
-            where, //
-            whereArgs, //
-            groupBy, //
-            having, //
-            orderBy );
+            /* table.. */"questions", //
+            /* columns */new String[] { "_id" }, //
+            /* where.. */getWhere( filter ).toString(), //
+            /* whereA. */null, //
+            /* groupBy */null, //
+            /* having. */null, //
+            /* orderBy */null //
+            );
 
       while( c.moveToNext() )
          list.add( new Long( c.getLong( 0 ) ) );
@@ -431,106 +395,136 @@ public final class DBHelper extends SQLiteOpenHelper {
       return list;
    }
 
-   //TODO: 
    public List< Quiz > getQuizzes() {
-      return new ArrayList< Quiz >();
-   }
 
-   //TODO: 
-   public Quiz getQuiz( Long quizId ) {
-      return null;
-   }
-
-   //TODO: 
-   public List< Answer > getAnswers( Long quizId ) {
-      return null;
-   }
-
-   //TODO: 
-   public List< Question > getQuestions( Long quizId ) {
-
-      final List< Question > list = new ArrayList< Question >();
-
-      final String table = "questions";
-      final String columns[] = null;
-      final String where = null;
-      final String whereArgs[] = null;
-      final String groupBy = null;
-      final String having = null;
-      final String orderBy = null;
+      final List< Quiz > list = new ArrayList< Quiz >();
 
       final Cursor c = database.query( //
-            table, //
-            columns, //
-            where, //
-            whereArgs, //
-            groupBy, //
-            having, //
-            orderBy );
+            /* table.. */"quizzes", //
+            /* columns */null, //
+            /* where.. */null, //
+            /* whereA. */null, //
+            /* groupBy */null, //
+            /* having. */null, //
+            /* orderBy */"date" //
+      );
 
       while( c.moveToNext() )
-         getQuestion( c );
+         list.add( getQuiz( c ) );
       c.close();
 
       return list;
    }
 
+   public List< Answer > getAnswers( Long quizId ) {
+
+      final List< Answer > list = new ArrayList< Answer >();
+
+      final Cursor c = database.query( //
+            /* table.. */"vw_answers", //
+            /* columns */null, //
+            /* where.. */"quizId=?", //
+            /* whereA. */new String[] { quizId.toString() }, //
+            /* groupBy */null, //
+            /* having. */null, //
+            /* orderBy */"date" //
+      );
+
+      while( c.moveToNext() )
+         list.add( getAnswer( c ) );
+      c.close();
+
+      return list;
+   }
+
+   public void updateAnswer( Answer answer ) {
+      //TODO: write this guy ...
+   }
+
+   private Quiz getQuiz( Cursor c ) {
+
+      final Quiz q = new Quiz();
+      q.setId( c.getLong( EQuizzes_id ) );
+      q.setDate( getDate( c, EQuizzes_date ) );
+      q.setFilter( c.getString( EQuizzes_filter ) );
+      q.setRating( c.getInt( EQuizzes_rating ) );
+      q.setStatus( Status.valueOf( c.getInt( EQuizzes_status ) ) );
+      q.setLastNumber( c.getInt( EQuizzes_lastNumber ) );
+      return q;
+   }
+
+   private Answer getAnswer( Cursor c ) {
+
+      final Answer a = new Answer();
+      a.setId( c.getLong( EAnswers_id ) );
+      a.setNumber( c.getInt( EAnswers_number ) );
+      a.setAnswer( c.getString( EAnswers_answer ) );
+      a.setQuestion( getQuestion( c ) );
+      return a;
+   }
+
    private Question getQuestion( Cursor c ) {
 
       final Question q = new Question();
-      q.setId( c.getLong( EQuestions.id.index ) );
+      q.setId( c.getLong( EQuestions_id ) );
 
       final Qualifier x = new Qualifier();
-      x.setBanca( c.getString( EQuestions.banca.index ) );
-      x.setAno( c.getString( EQuestions.ano.index ) );
-      x.setOrgao( c.getString( EQuestions.orgao.index ) );
-      x.setUF( c.getString( EQuestions.uf.index ) );
-      x.setCargo( c.getString( EQuestions.cargo.index ) );
-      x.setDisciplina( c.getString( EQuestions.disciplina.index ) );
-      x.setAssunto( c.getString( EQuestions.assunto.index ) );
+      x.setBanca( c.getString( EQuestions_banca ) );
+      x.setAno( c.getString( EQuestions_ano ) );
+      x.setOrgao( c.getString( EQuestions_orgao ) );
+      x.setUF( c.getString( EQuestions_uf ) );
+      x.setCargo( c.getString( EQuestions_cargo ) );
+      x.setDisciplina( c.getString( EQuestions_disciplina ) );
+      x.setAssunto( c.getString( EQuestions_assunto ) );
       q.setQualifier( x );
 
-      q.setDescription( c.getString( EQuestions.question.index ) );
+      q.setDescription( c.getString( EQuestions_question ) );
 
       final List< String > options = new ArrayList< String >();
 
-      for( int i = 0; i < MAX_QUESTIONS; i++ ) {
-         final String option = c.getString( EQuestions.optionA.index + i );
+      for( int i = 0; i < EQuestions_MAX; i++ ) {
+         final String option = c.getString( EQuestions_optionA + i );
          if( option != null )
             options.add( option );
       }
       q.setOptions( options );
 
-      q.setMatch( c.getString( EQuestions.match.index ) );
-      q.setUsed( c.getString( EQuestions.used.index ) );
-
+      q.setMatch( c.getString( EQuestions_match ) );
+      q.setUsed( c.getString( EQuestions_used ) );
       return q;
    }
 
-   public static final int MAX_QUESTIONS = 5;
+   private Date getDate( Cursor c, int index ) {
 
-   private static enum EQuestions {
-      id( 0 ), //
-      banca( 1 ), //
-      ano( 2 ), //
-      orgao( 3 ), //
-      uf( 4 ), //
-      cargo( 5 ), //
-      disciplina( 6 ), //
-      assunto( 7 ), //
-      question( 8 ), //
-      optionA( 9 ), //
-      optionB( 10 ), //
-      optionC( 11 ), //
-      optionD( 12 ), //
-      optionE( 13 ), //
-      match( 14 ), //
-      used( 15 );
-
-      public final int index;
-
-      private EQuestions( int indexP ) {
-         index = indexP;
+      try {
+         return sdf.parse( c.getString( index ) );
+      } catch( ParseException e ) {
+         return null;
       }
    }
+
+   private static final int EQuestions_MAX        = 5;
+   private static final int EQuestions_id         = 0;
+   private static final int EQuestions_banca      = 1;
+   private static final int EQuestions_ano        = 2;
+   private static final int EQuestions_orgao      = 3;
+   private static final int EQuestions_uf         = 4;
+   private static final int EQuestions_cargo      = 5;
+   private static final int EQuestions_disciplina = 6;
+   private static final int EQuestions_assunto    = 7;
+   private static final int EQuestions_question   = 8;
+   private static final int EQuestions_optionA    = 9;
+   private static final int EQuestions_match      = 14;
+   private static final int EQuestions_used       = 15;
+
+   private static final int EAnswers_id           = 16;
+   private static final int EAnswers_number       = 17;
+   private static final int EAnswers_answer       = 28;
+
+   private static final int EQuizzes_id           = 0;
+   private static final int EQuizzes_date         = 1;
+   private static final int EQuizzes_filter       = 2;
+   private static final int EQuizzes_rating       = 3;
+   private static final int EQuizzes_status       = 4;
+   private static final int EQuizzes_lastNumber   = 5;
 }

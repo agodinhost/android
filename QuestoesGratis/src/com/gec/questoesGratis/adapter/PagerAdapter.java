@@ -100,7 +100,7 @@ public final class PagerAdapter extends FragmentStatePagerAdapter {
          qd.setText( answer.getQualifierD() );
 
          String qp = answer.getQuestionD();
-         boolean showDetails = qp.length() > P_MAX_CHARS || qp.contains( "<image" );
+         boolean showDetails = qp != null && ( qp.length() > P_MAX_CHARS || qp.contains( "<image" ) );
          if( showDetails ) {
             qp = qp.substring( 0, P_MAX_CHARS - 1 ) + " ...";
          }

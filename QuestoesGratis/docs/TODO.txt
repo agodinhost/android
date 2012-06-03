@@ -9,6 +9,8 @@ based on google Quiz and pool.
 	
 	- banco;
 	- send to (FB,email,etc, copiar do Quiz and Pool);
+	- quantidade máxima de questõex vs questões disponíveis (list limits);
+	- histórico vazio, deve apresentar mensagem apropriada;
 	
 	
 References:

@@ -98,7 +98,7 @@ public final class Question implements Serializable {
       try {
          return q.getDescription();
       } catch( NullPointerException e ) {
-         return null;
+         return "";
       }
    }
 }
