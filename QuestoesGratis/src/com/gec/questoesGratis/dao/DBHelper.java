@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.dao;
 
 import static com.gec.questoesGratis.tools.ListX.randomStart;
@@ -98,7 +99,7 @@ public final class DBHelper extends SQLiteOpenHelper {
     * 
     * @return true if it exists, false if it doesn't
     */
-   private boolean databaseExists() {
+   boolean databaseExists() {
 
       boolean exists = true;
 
@@ -126,7 +127,7 @@ public final class DBHelper extends SQLiteOpenHelper {
     * empty database in the system folder, from where it can be accessed and
     * handled. This is done by transfering bytestream.
     */
-   private void copyDataBase() throws IOException {
+   void copyDataBase() throws IOException {
 
       // Open your local db as the input stream.
       final InputStream is = context.getAssets().open( DBProperties.DB_NAME );
@@ -147,29 +148,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       is.close();
    }
 
-   // --- System Specific --- //
-
-   private List< String > getNames( String sql, String columnName ) {
-
-      final List< String > list = new ArrayList< String >();
-
-      final Cursor cursor = database.rawQuery( sql, null );
-      if( cursor != null ) {
-
-         final int nameIdx = cursor.getColumnIndex( columnName );
-         while( cursor.moveToNext() ) {
-            final String name = cursor.getString( nameIdx );
-            list.add( name );
-         }
-         cursor.close();
-      }
-
-      return list;
-   }
-
-   private List< String > getNames( String sql ) {
-      return getNames( sql, "name" );
-   }
+   // --- System Specific -------------------------------------------------- //
 
    public List< String > getBancas() {
       return getNames( DBProperties.SQL_SELECT_Bancas );
@@ -199,55 +178,9 @@ public final class DBHelper extends SQLiteOpenHelper {
       return getNames( DBProperties.SQL_SELECT_Assuntos );
    }
 
-   private static StringBuffer getPlick( List< String > list ) {
+   static StringBuffer getWhere( Filter filter ) {
 
       final StringBuffer b = new StringBuffer();
-
-      if( list != null )
-         for( String item: list )
-            b.append( "'" ) //
-                  .append( item.trim() ) //
-                  .append( "'" ) //
-                  .append( "," );
-
-      final int l = b.length();
-      if( l > 0 )
-         b.deleteCharAt( l - 1 );
-
-      return b;
-   }
-
-   private static StringBuffer getIn( String field, List< String > list ) {
-
-      final StringBuffer b = new StringBuffer();
-
-      final StringBuffer in = getPlick( list );
-      if( in.length() > 0 ) //
-         b.append( field ) //
-               .append( " IN( " ) //
-               .append( in ) //
-               .append( " ) " );
-
-      return b;
-   }
-
-   private static StringBuffer addAnd( StringBuffer b ) {
-      if( b.length() > 0 )
-         b.append( "AND " );
-      return b;
-   }
-
-   private static void addInClause( StringBuffer b, String field, List< String > list ) {
-
-      final StringBuffer in = getIn( field, list );
-      if( in.length() > 0 )
-         addAnd( b ).append( in );
-   }
-
-   private static StringBuffer getWhere( Filter filter ) {
-
-      final StringBuffer b = new StringBuffer();
-
       final Ignore ignore = filter.getIgnore();
       if( Ignore.ANSWERED.equals( ignore ) ) {
          addAnd( b ).append( "used IS NULL" );
@@ -256,7 +189,6 @@ public final class DBHelper extends SQLiteOpenHelper {
       } else if( Ignore.WRONG.equals( ignore ) ) {
          addAnd( b ).append( "substr(coalesce(used,'--'),2,1)!='w'" );
       }
-
       addInClause( b, "trim(banca)", filter.getBancas() );
       addInClause( b, "trim(ano)", filter.getAnos() );
       addInClause( b, "trim(orgao)", filter.getOrgaos() );
@@ -264,27 +196,24 @@ public final class DBHelper extends SQLiteOpenHelper {
       addInClause( b, "trim(cargo)", filter.getCargos() );
       addInClause( b, "trim(disciplina)", filter.getDisciplinas() );
       addInClause( b, "trim(assunto)", filter.getAssuntos() );
-
       return b;
    }
 
-   private static StringBuffer getRawWhere( Filter filter ) {
+   static StringBuffer getRawWhere( Filter filter ) {
 
       final StringBuffer b = new StringBuffer();
-
       final StringBuffer where = getWhere( filter );
       if( where.length() > 0 )
          b.append( "WHERE " ) //
                .append( where );
-
       return b;
    }
 
    public int getQuestionsCount( Filter filter ) {
 
       final StringBuffer b = //
-            new StringBuffer( "SELECT Count(1) FROM questions " ) //
-                  .append( getRawWhere( filter ) );
+      new StringBuffer( "SELECT Count(1) FROM questions " ) //
+            .append( getRawWhere( filter ) );
       final Cursor c = database.rawQuery( b.toString(), null );
       c.moveToFirst();
       int count = c.getInt( 0 );
@@ -312,77 +241,6 @@ public final class DBHelper extends SQLiteOpenHelper {
       } finally {
          database.endTransaction();
       }
-   }
-
-   private void insertQuiz( Quiz quiz ) {
-
-      final ContentValues values = new ContentValues();
-      values.put( "filter", quiz.getFilter() );
-      final Long id = database.insertOrThrow( "quizzes", null, values );
-      quiz.setId( id );
-   }
-
-   private List< Answer > createAnswers( Quiz quiz, Filter filter ) {
-
-      final int total = filter.getTotal();
-      final List< Answer > list = new ArrayList< Answer >( total );
-
-      final List< Long > ids = getQuestionsId( filter );
-      shuffle( ids );
-      final int start = randomStart( ids, total );
-      for( int n = 0; n < total; n++ ) {
-
-         final Question q = new Question();
-         q.setId( ids.get( start + n ) );
-         final Answer a = new Answer();
-         a.setQuestion( q );
-         a.setNumber( n + 1 );
-         list.add( a );
-      }
-
-      return list;
-   }
-
-   private void insertAnswers( Quiz quiz ) {
-
-      //TODO: sqLite does have support for the insert batch?
-      final Long quizId = quiz.getId();
-      final List< Answer > list = quiz.getAnswers();
-      if( list != null )
-         for( Answer answer: list )
-            insertAnswer( quizId, answer );
-   }
-
-   private void insertAnswer( Long quizId, Answer answer ) {
-
-      final ContentValues values = new ContentValues();
-      values.put( "quizId", quizId );
-      values.put( "questionId", answer.getQuestionId() );
-      values.put( "number", answer.getNumber() );
-      final Long id = database.insertOrThrow( "answers", null, values );
-      /*/ trg_answers_ai -> update -> questions /*/
-      answer.setId( id );
-   }
-
-   private List< Long > getQuestionsId( Filter filter ) {
-
-      final List< Long > list = new ArrayList< Long >();
-
-      final Cursor c = database.query( //
-            /* table.. */"questions", //
-            /* columns */new String[] { "_id" }, //
-            /* where.. */getWhere( filter ).toString(), //
-            /* whereA. */null, //
-            /* groupBy */null, //
-            /* having. */null, //
-            /* orderBy */null //
-            );
-
-      while( c.moveToNext() )
-         list.add( new Long( c.getLong( 0 ) ) );
-      c.close();
-
-      return list;
    }
 
    public List< Quiz > getQuizzes() {
@@ -458,6 +316,146 @@ public final class DBHelper extends SQLiteOpenHelper {
 
       /*/ trg_answers_au -> update -> questions /*/
       /*/ trg_answers_au -> update -> quizzes   /*/
+   }
+
+   // --- PRIVATE CODE ----------------------------------------------------- //
+
+   private List< String > getNames( String sql, String columnName ) {
+
+      final List< String > list = new ArrayList< String >();
+
+      final Cursor cursor = database.rawQuery( sql, null );
+      if( cursor != null ) {
+
+         final int nameIdx = cursor.getColumnIndex( columnName );
+         while( cursor.moveToNext() ) {
+            final String name = cursor.getString( nameIdx );
+            list.add( name );
+         }
+         cursor.close();
+      }
+
+      return list;
+   }
+
+   private List< String > getNames( String sql ) {
+      return getNames( sql, "name" );
+   }
+
+   private static StringBuffer getPlick( List< String > list ) {
+
+      final StringBuffer b = new StringBuffer();
+
+      if( list != null )
+         for( String item : list )
+            b.append( "'" ) //
+                  .append( item.trim() ) //
+                  .append( "'" ) //
+                  .append( "," );
+
+      final int l = b.length();
+      if( l > 0 )
+         b.deleteCharAt( l - 1 );
+
+      return b;
+   }
+
+   private static StringBuffer getIn( String field, List< String > list ) {
+
+      final StringBuffer b = new StringBuffer();
+
+      final StringBuffer in = getPlick( list );
+      if( in.length() > 0 ) //
+         b.append( field ) //
+               .append( " IN( " ) //
+               .append( in ) //
+               .append( " ) " );
+
+      return b;
+   }
+
+   private static StringBuffer addAnd( StringBuffer b ) {
+      if( b.length() > 0 )
+         b.append( "AND " );
+      return b;
+   }
+
+   private static void addInClause( StringBuffer b, String field, List< String > list ) {
+
+      final StringBuffer in = getIn( field, list );
+      if( in.length() > 0 )
+         addAnd( b ).append( in );
+   }
+
+   private void insertQuiz( Quiz quiz ) {
+
+      final ContentValues values = new ContentValues();
+      values.put( "filter", quiz.getFilter() );
+      final Long id = database.insertOrThrow( "quizzes", null, values );
+      quiz.setId( id );
+   }
+
+   private List< Answer > createAnswers( Quiz quiz, Filter filter ) {
+
+      final int total = filter.getTotal();
+      final List< Answer > list = new ArrayList< Answer >( total );
+
+      final List< Long > ids = getQuestionsId( filter );
+      shuffle( ids );
+      final int start = randomStart( ids, total );
+      for( int n = 0; n < total; n++ ) {
+
+         final Question q = new Question();
+         q.setId( ids.get( start + n ) );
+         final Answer a = new Answer();
+         a.setQuestion( q );
+         a.setNumber( n + 1 );
+         list.add( a );
+      }
+
+      return list;
+   }
+
+   private void insertAnswers( Quiz quiz ) {
+
+      //TODO: sqLite does have support for the insert batch?
+      final Long quizId = quiz.getId();
+      final List< Answer > list = quiz.getAnswers();
+      if( list != null )
+         for( Answer answer : list )
+            insertAnswer( quizId, answer );
+   }
+
+   private void insertAnswer( Long quizId, Answer answer ) {
+
+      final ContentValues values = new ContentValues();
+      values.put( "quizId", quizId );
+      values.put( "questionId", answer.getQuestionId() );
+      values.put( "number", answer.getNumber() );
+      final Long id = database.insertOrThrow( "answers", null, values );
+      /*/ trg_answers_ai -> update -> questions /*/
+      answer.setId( id );
+   }
+
+   private List< Long > getQuestionsId( Filter filter ) {
+
+      final List< Long > list = new ArrayList< Long >();
+
+      final Cursor c = database.query( //
+            /* table.. */"questions", //
+            /* columns */new String[] { "_id" }, //
+            /* where.. */getWhere( filter ).toString(), //
+            /* whereA. */null, //
+            /* groupBy */null, //
+            /* having. */null, //
+            /* orderBy */null //
+            );
+
+      while( c.moveToNext() )
+         list.add( new Long( c.getLong( 0 ) ) );
+      c.close();
+
+      return list;
    }
 
    private Quiz getQuiz( Cursor c ) {

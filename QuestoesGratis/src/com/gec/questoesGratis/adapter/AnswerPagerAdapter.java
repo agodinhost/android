@@ -21,7 +21,7 @@ import com.gec.questoesGratis.DetailsActivity;
 import com.gec.questoesGratis.R;
 import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.model.Question;
-import com.gec.questoesGratis.tools.EmbeddedWebView;
+import com.gec.questoesGratis.tools.WebViewClientX;
 import com.gec.questoesGratis.tools.LogX;
 
 public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
@@ -103,7 +103,7 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
          }
 
          final WebView webView = (WebView) view.findViewById( R.id.question_wv );
-         EmbeddedWebView.loadData( webView, qp );
+         WebViewClientX.loadData( webView, qp );
 
          // Simple approach to decide weather to display the "details" button.
          // It does not take into account any image or fancy sizing style.

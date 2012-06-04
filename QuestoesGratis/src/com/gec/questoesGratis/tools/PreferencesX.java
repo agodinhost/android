@@ -23,7 +23,7 @@ import android.preference.PreferenceManager;
 /**
  * Helper class for accessing key-value settings.
  */
-public class PreferencesX {
+public final class PreferencesX {
 
    /**
     * Types of preferences

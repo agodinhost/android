@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import java.io.IOException;
@@ -24,11 +25,12 @@ public final class ApplicationX extends Application {
    private static Context      context;
    private static DBHelper     dbHelper;
 
-   private ViewPager           pager;
    private Quiz                quiz;
    private Filter              filter;
    private int                 currentAnswer;
    private int                 answersCount = -1;
+
+   private ViewPager           pager;
 
    public static ApplicationX getInstance() {
       return instance;
@@ -106,11 +108,6 @@ public final class ApplicationX extends Application {
       setQuiz( dbHelper.createQuiz( filter ) );
    }
 
-   public void setPager( ViewPager pagerP ) {
-      pager = pagerP;
-      pager.setCurrentItem( currentAnswer );
-   }
-
    public List< Quiz > getQuizzes() {
       return dbHelper.getQuizzes();
    }
@@ -139,13 +136,15 @@ public final class ApplicationX extends Application {
 
    public Answer getAnswer() {
       return answersCount > 0? //
-            quiz.getAnswers().get( currentAnswer ): //
+      quiz.getAnswers().get( currentAnswer )
+            : //
             null;
    }
 
    public Answer getAnswer( int index ) {
       return answersCount > 0? //
-            quiz.getAnswers().get( index ): //
+      quiz.getAnswers().get( index )
+            : //
             null;
    }
 
@@ -163,6 +162,11 @@ public final class ApplicationX extends Application {
          currentAnswer = 0;
       if( currentAnswer > answersCount )
          currentAnswer = answersCount;
+   }
+
+   public void setPager( ViewPager pagerP ) {
+      pager = pagerP;
+      pager.setCurrentItem( currentAnswer );
    }
 
    public void moveFirst() {

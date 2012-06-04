@@ -14,6 +14,7 @@ import com.gec.questoesGratis.tools.ActivityX;
  */
 public final class AboutActivity extends Activity {
 
+   //TODO: external string!!!
    public static final String INFO_URL       = "http://www.questoesGratis.com.br";
    public static final String FEEDBACK_EMAIL = "johnDoe@somewhere.com";
    public static final String MARKET_LISTING = "market://details?id=com.gec.questoesGratis";

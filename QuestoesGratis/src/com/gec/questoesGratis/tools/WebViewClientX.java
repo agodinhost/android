@@ -5,7 +5,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class EmbeddedWebView extends WebViewClient {
+/**
+ * Embedded Web View Client Extension.
+ * 
+ * @author agodinho
+ */
+public final class WebViewClientX extends WebViewClient {
 
    private static final String P_MIMETYPE = "text/html";
    private static final String P_ENCODING = "utf-8";
@@ -18,7 +23,7 @@ public class EmbeddedWebView extends WebViewClient {
 
    public static void loadUrl( WebView webView, String url ) {
 
-      webView.setWebViewClient( new EmbeddedWebView() );
+      webView.setWebViewClient( new WebViewClientX() );
       webView.setInitialScale( 65 );
 
       WebSettings webSettings = webView.getSettings();
@@ -32,7 +37,7 @@ public class EmbeddedWebView extends WebViewClient {
 
    public static void loadData( WebView webView, String data ) {
 
-      webView.setWebViewClient( new EmbeddedWebView() );
+      webView.setWebViewClient( new WebViewClientX() );
 
       WebSettings webSettings = webView.getSettings();
       webSettings.setSavePassword( false );
@@ -45,7 +50,7 @@ public class EmbeddedWebView extends WebViewClient {
 
    public static void loadDataWithBaseURL( WebView webView, String baseUrl, String data ) {
 
-      webView.setWebViewClient( new EmbeddedWebView() );
+      webView.setWebViewClient( new WebViewClientX() );
 
       WebSettings webSettings = webView.getSettings();
       webSettings.setSavePassword( false );

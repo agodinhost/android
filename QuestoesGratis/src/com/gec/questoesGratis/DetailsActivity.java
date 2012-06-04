@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import android.os.Bundle;
@@ -8,11 +9,12 @@ import android.widget.TextView;
 
 import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.tools.ActivityX;
-import com.gec.questoesGratis.tools.EmbeddedWebView;
+import com.gec.questoesGratis.tools.WebViewClientX;
 
 public final class DetailsActivity extends FragmentActivity {
 
-   private static final ApplicationX xApp = ApplicationX.getInstance();
+   private static final ApplicationX xApp    = ApplicationX.getInstance();
+   private static final String       NO_DATA = xApp.getString( R.string.create_no_data );
 
    @Override
    protected void onCreate( Bundle savedInstanceState ) {
@@ -34,10 +36,10 @@ public final class DetailsActivity extends FragmentActivity {
          description.setText( answer.getQuestionD() );
 
          final WebView webView = (WebView) findViewById( R.id.details_wv );
-         EmbeddedWebView.loadData( webView, answer.getQuestion().getDescription() );
+         WebViewClientX.loadData( webView, answer.getQuestion().getDescription() );
       } else {
          final TextView description = (TextView) findViewById( R.id.details_description );
-         description.setText( getString( R.string.g_no_selection ) );
+         description.setText( NO_DATA );
       }
    }
 }

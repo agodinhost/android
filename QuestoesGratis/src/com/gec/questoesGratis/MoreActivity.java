@@ -7,7 +7,7 @@ import android.view.View;
 import android.webkit.WebView;
 
 import com.gec.questoesGratis.tools.ActivityX;
-import com.gec.questoesGratis.tools.EmbeddedWebView;
+import com.gec.questoesGratis.tools.WebViewClientX;
 
 /**
  * Activity / View for user feedback and help.
@@ -21,7 +21,7 @@ public final class MoreActivity extends Activity {
       new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
 
       final WebView webView = (WebView) findViewById( R.id.more_wv );
-      EmbeddedWebView.loadUrl( webView, getString( R.string.more_uri ) );
+      WebViewClientX.loadUrl( webView, getString( R.string.more_uri ) );
    }
 
    public void onClick_previous( View view ) {

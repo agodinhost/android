@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
  * 
  * TODO: wait a fix for ISSUE 12987 on gingerbread.
  */
-public class EmbeddedWebView2 extends WebViewClient {
+public final class EmbeddedWebView2 extends WebViewClient {
 
    private static final LogX   log            = new LogX( EmbeddedWebView2.class );
 

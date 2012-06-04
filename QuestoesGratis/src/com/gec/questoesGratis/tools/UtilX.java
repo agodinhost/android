@@ -14,9 +14,9 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import com.gec.questoesGratis.tools.PreferencesX.PrefType;
 
 /**
- * Utility functions, mainly for formatting.
+ * Utility functions.
  */
-public class Utils {
+public final class UtilX {
 
    private static final SimpleDateFormat sdf         = new SimpleDateFormat( "yyyy-MM-dd'T'hh:ss:mmZ" );
 
@@ -38,42 +38,25 @@ public class Utils {
       }
    }
 
-   /**
-    * All quiz spreadsheets now contain [Q] to differentiate them in the list.
-    */
-   public static String formatQuizName( String quizName ) {
-      return quizName.replace( "[Q]", "" ).trim();
-   }
-
-   /**
-    * All polling spreadsheets now contain [P] to differentiate them in the
-    * list.
-    */
-   public static String formatPollingName( String pollingName ) {
-      return pollingName.replace( "[P]", "" ).trim();
-   }
-
    public static String getVersion( Context context ) {
-      if( version == null ) {
+      if( version == null )
          updateVersion( context );
-      }
       return version;
    }
 
    public static int getVersionCode( Context context ) {
-      if( versionCode == -1 ) {
+      if( versionCode == -1 )
          updateVersion( context );
-      }
       return versionCode;
    }
 
    public static void updateVersion( Context context ) {
       try {
-         Utils.version = context.getPackageManager().getPackageInfo( context.getPackageName(), 0 ).versionName;
-         Utils.versionCode = context.getPackageManager().getPackageInfo( context.getPackageName(), 0 ).versionCode;
+         version = context.getPackageManager().getPackageInfo( context.getPackageName(), 0 ).versionName;
+         versionCode = context.getPackageManager().getPackageInfo( context.getPackageName(), 0 ).versionCode;
       } catch( NameNotFoundException e ) {
-         Utils.version = "Unknown";
-         Utils.versionCode = -1;
+         version = "Unknown";
+         versionCode = -1;
       }
    }
 
@@ -89,8 +72,8 @@ public class Utils {
     * present.
     */
    public static String getGoogleAccount( Context context ) {
-      AccountManager manager = AccountManager.get( context );
-      Account[] accounts = manager.getAccountsByType( "com.google" );
+      final AccountManager manager = AccountManager.get( context );
+      final Account[] accounts = manager.getAccountsByType( "com.google" );
       String accountEmail = null;
       for( Account account : accounts ) {
          accountEmail = account.name;

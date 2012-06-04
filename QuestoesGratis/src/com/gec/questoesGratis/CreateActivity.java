@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import java.util.List;
@@ -23,7 +24,10 @@ import com.gec.questoesGratis.widgets.MultiSpinner;
  */
 public final class CreateActivity extends Activity implements OnSeekBarChangeListener {
 
-   private static final ApplicationX xApp = ApplicationX.getInstance();
+   private static final ApplicationX xApp        = ApplicationX.getInstance();
+   private static final String       TODOS       = xApp.getString( R.string.g_all_M );
+   private static final String       TODAS       = xApp.getString( R.string.g_all_W );
+   private static final String       CREATE_WAIT = xApp.getString( R.string.create_wait );
 
    private Handler                   handler;
    private ProgressDialog            pDialog;
@@ -33,9 +37,6 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
       super.onCreate( savedInstanceState );
       setContentView( R.layout.create );
       new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
-
-      final String TODOS = getString( R.string.g_all_M );
-      final String TODAS = getString( R.string.g_all_W );
 
       final SeekBar seekbar = (SeekBar) findViewById( R.id.create_total );
       seekbar.setOnSeekBarChangeListener( this );
@@ -60,8 +61,7 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
 
    public void onClick_next( View view ) {
       handler = new Handler();
-      //TODO: i18n
-      pDialog = ProgressDialog.show( this, "", "Aguarde, criando novo questionario ...", true );
+      pDialog = ProgressDialog.show( this, null, CREATE_WAIT, true );
       new Thread( onClick_next ).start();
    }
 
@@ -97,7 +97,7 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
 
    @Override
    public void onProgressChanged( SeekBar sb, int progress, boolean fromUser ) {
-      // TODO Auto-generated method stub
+      // TODO: update progress value ...
    }
 
    @Override
@@ -125,10 +125,10 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
       dialog.show();
    }
 
-   private final Runnable noSelection = new Runnable() { //
+   private final Runnable noData = new Runnable() { //
       @Override
       public void run() {
-         alert( R.string.g_no_selection );
+         alert( R.string.create_no_data );
       }
    };
    
@@ -142,7 +142,7 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
             startActivity( new Intent( CreateActivity.this, AnswerPagerActivity.class ) );
          } else {
             pDialog.dismiss();
-            handler.post( noSelection );
+            handler.post( noData );
          }
       }
    };

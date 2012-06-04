@@ -30,7 +30,6 @@
 
     <string name="g_all_M">TODOS</string>
     <string name="g_all_W">TODAS</string>
-    <string name="g_no_selection">Não há questões que atendam ao filtro selecionado, por favor, altere o filtro e tente novamente &#8230;</string>
 
     <string name="menu_title">Menu Principal</string>
     <string name="menu_new">Novo Simulado</string>
@@ -54,7 +53,10 @@
     <string name="create_cargo">Cargo</string>
     <string name="create_disciplina">Disciplina</string>
     <string name="create_assunto">Assunto</string>
-
+    
+    <string name="create_no_data">Não há questões que atendam ao filtro selecionado, por favor, altere o filtro e tente novamente &#8230;</string>
+    <string name="create_wait">Aguarde, criando novo questionário &#8230;</string>
+    
     <string name="quizzes_title">Meu Histórico:</string>
     
     <string name="answers_title">Questionário:</string>

@@ -18,7 +18,7 @@ import com.gec.questoesGratis.R;
  * such as setting up the action bar. Taken from Google IO 2011 app and
  * modified.
  */
-public class ActivityX {
+public final class ActivityX {
 
    private final Activity activity;
 

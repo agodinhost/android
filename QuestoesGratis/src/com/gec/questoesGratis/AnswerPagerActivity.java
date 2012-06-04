@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import android.os.Bundle;
@@ -18,9 +19,8 @@ public final class AnswerPagerActivity extends FragmentActivity {
       setContentView( R.layout.pager );
       new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
 
-      final AnswerPagerAdapter adapter = new AnswerPagerAdapter( getSupportFragmentManager() );
       final ViewPager pager = (ViewPager) findViewById( R.id.pager );
-      pager.setAdapter( adapter );
+      pager.setAdapter( new AnswerPagerAdapter( getSupportFragmentManager() ) );
       xApp.setPager( pager );
    }
 

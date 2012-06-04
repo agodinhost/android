@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import android.app.Activity;
@@ -24,9 +25,10 @@ public final class AnswersActivity extends Activity implements OnItemClickListen
       setContentView( R.layout.answers );
       new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
 
-      final AnswersAdapter adapter = new AnswersAdapter( getApplicationContext(), R.id.answers_item_id, xApp.getAnswers() );
       final ListView listView = (ListView) findViewById( R.id.answers_list );
-      listView.setAdapter( adapter );
+      listView.setAdapter( new AnswersAdapter( getApplicationContext(), //
+            R.id.answers_item_id, //
+            xApp.getAnswers() ) );
       listView.setOnItemClickListener( this );
    }
 
