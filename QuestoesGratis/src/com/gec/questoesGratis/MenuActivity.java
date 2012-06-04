@@ -18,44 +18,43 @@ public class MenuActivity extends Activity {
    public void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
 
-      DBHelper dbHelper = new DBHelper( this );
+      final DBHelper dbHelper = new DBHelper( this );
+      final ApplicationX xApp = (ApplicationX) getApplication();
+      xApp.setDbHelper( dbHelper );
 
       try {
          dbHelper.createDataBase();
-      } catch( IOException ioe ) {
+      } catch( IOException e ) {
          throw new Error( "Unable to create the application database ..." );
       }
 
       try {
          dbHelper.openDataBase();
-      } catch( SQLException sqle ) {
+      } catch( SQLException e ) {
          throw new Error( "Unable to open the application database ..." );
       }
-
-      ApplicationX xApp = (ApplicationX) getApplication();
-      xApp.setDbHelper( dbHelper );
 
       setContentView( R.layout.menu );
       new ActivityHelper( this ).setupActionBar( getString( R.string.app_name ), false );
    }
 
    public void onClick_NEW( View v ) {
-      Intent intent = new Intent( MenuActivity.this, FilterActivity.class );
+      final Intent intent = new Intent( MenuActivity.this, FilterActivity.class );
       startActivity( intent );
    }
 
    public void onClick_HISTORY( View v ) {
-      Intent intent = new Intent( MenuActivity.this, QuizzesActivity.class );
+      final Intent intent = new Intent( MenuActivity.this, QuizzesActivity.class );
       startActivity( intent );
    }
 
    public void onClick_MORE( View v ) {
-      Intent intent = new Intent( MenuActivity.this, MarketingActivity.class );
+      final Intent intent = new Intent( MenuActivity.this, MarketingActivity.class );
       startActivity( intent );
    }
 
    public void onClick_ABOUT( View v ) {
-      Intent intent = new Intent( MenuActivity.this, AboutActivity.class );
+      final Intent intent = new Intent( MenuActivity.this, AboutActivity.class );
       startActivity( intent );
    }
 }

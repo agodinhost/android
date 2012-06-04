@@ -63,12 +63,16 @@ public final class DBHelper extends SQLiteOpenHelper {
       // onCreate( database );
    }
 
+   public void openDataBase() throws SQLException {
+
+      database = this.getWritableDatabase();
+   }
+
    @Override
    public synchronized void close() {
 
-      if( database != null ) {
+      if( database != null )
          database.close();
-      }
       super.close();
       log.d( "Database connection closed." );
    }
@@ -101,29 +105,22 @@ public final class DBHelper extends SQLiteOpenHelper {
    private boolean databaseExists() {
 
       boolean exists = true;
-      SQLiteDatabase db = null;
 
       try {
-         db = SQLiteDatabase.openDatabase( //
+         final SQLiteDatabase db = SQLiteDatabase.openDatabase( //
                DBProperties.DB_FILENAME, //
                null, //
                SQLiteDatabase.OPEN_READONLY );
+         db.close();
+
       } catch( SQLiteException e ) {
          exists = false;
       }
 
-      if( exists ) {
+      if( exists )
          log.d( "Database ALREADY exists." );
-
-         try {
-            db.close();
-         } catch( SQLiteException e ) {
-            // just ignore.
-         }
-
-      } else {
+      else
          log.d( "Database DOES NOT exists." );
-      }
 
       return exists;
    }
@@ -154,13 +151,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       is.close();
    }
 
-   public void openDataBase() throws SQLException {
-
-      database = SQLiteDatabase.openDatabase( //
-            DBProperties.DB_FILENAME, //
-            null, //
-            SQLiteDatabase.OPEN_READWRITE );
-   }
+   // --- System Specific --- //
 
    private List< String > getNames( String sql, String columnName ) {
 
@@ -315,7 +306,11 @@ public final class DBHelper extends SQLiteOpenHelper {
          quiz.setAnswers( createAnswers( quiz, filter ) );
          insertAnswers( quiz );
          database.setTransactionSuccessful();
-         return quiz;
+
+         final Long quizId = quiz.getId();
+         final Quiz quiz2 = getQuiz( quizId );
+         quiz2.setAnswers( getAnswers( quizId ) );
+         return quiz2;
 
       } catch( SQLException e ) {
          throw new Error( "Cant create the quiz" );
@@ -328,7 +323,7 @@ public final class DBHelper extends SQLiteOpenHelper {
 
       final ContentValues values = new ContentValues();
       values.put( "filter", quiz.getFilter() );
-      Long id = database.insertOrThrow( "quizzes", null, values );
+      final Long id = database.insertOrThrow( "quizzes", null, values );
       quiz.setId( id );
    }
 
@@ -406,7 +401,7 @@ public final class DBHelper extends SQLiteOpenHelper {
             /* whereA. */null, //
             /* groupBy */null, //
             /* having. */null, //
-            /* orderBy */"date" //
+            /* orderBy */null //
       );
 
       while( c.moveToNext() )
@@ -414,6 +409,24 @@ public final class DBHelper extends SQLiteOpenHelper {
       c.close();
 
       return list;
+   }
+
+   public Quiz getQuiz( Long quizId ) {
+
+      final Cursor c = database.query( //
+            /* table.. */"quizzes", //
+            /* columns */null, //
+            /* where.. */"_id=?", //
+            /* whereA. */new String[] { quizId.toString() }, //
+            /* groupBy */null, //
+            /* having. */null, //
+            /* orderBy */null //
+            );
+
+      final Quiz quiz = c.moveToNext()? getQuiz( c ): null;
+      c.close();
+
+      return quiz;
    }
 
    public List< Answer > getAnswers( Long quizId ) {
@@ -427,7 +440,7 @@ public final class DBHelper extends SQLiteOpenHelper {
             /* whereA. */new String[] { quizId.toString() }, //
             /* groupBy */null, //
             /* having. */null, //
-            /* orderBy */"date" //
+            /* orderBy */"number" //
       );
 
       while( c.moveToNext() )
@@ -514,12 +527,16 @@ public final class DBHelper extends SQLiteOpenHelper {
    private static final int EQuestions_assunto    = 7;
    private static final int EQuestions_question   = 8;
    private static final int EQuestions_optionA    = 9;
+   //private static final int EQuestions_optionB  = 10;
+   //private static final int EQuestions_optionC  = 11;
+   //private static final int EQuestions_optionD  = 12;
+   //private static final int EQuestions_optionE  = 13;
    private static final int EQuestions_match      = 14;
    private static final int EQuestions_used       = 15;
-
-   private static final int EAnswers_id           = 16;
-   private static final int EAnswers_number       = 17;
-   private static final int EAnswers_answer       = 28;
+   //private static final int EAnswers_quizid     = 16;
+   private static final int EAnswers_id           = 17;
+   private static final int EAnswers_number       = 18;
+   private static final int EAnswers_answer       = 19;
 
    private static final int EQuizzes_id           = 0;
    private static final int EQuizzes_date         = 1;
