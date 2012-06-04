@@ -63,7 +63,7 @@
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity
-            android:name=".AnswerActivity"
+            android:name=".AnswersActivity"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity

@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import java.util.List;
@@ -20,12 +21,6 @@ public class ApplicationX extends Application {
    private DBHelper            dbHelper;
    private ViewPager           pager;
 
-   private Long                historyList_selectedId;
-   private Integer             historyList_selectedPos;
-
-   private Long                quizList_selectedId;
-   private Integer             quizList_selectedPos;
-
    public ApplicationX() {
       super();
       lastInstance = this;
@@ -39,27 +34,36 @@ public class ApplicationX extends Application {
       return dbHelper;
    }
 
-   public void setDbHelper( DBHelper dbHelper ) {
-      this.dbHelper = dbHelper;
+   public void setDbHelper( DBHelper dbHelperP ) {
+      dbHelper = dbHelperP;
    }
 
-   public void setPager( ViewPager pager ) {
-      this.pager = pager;
+   public void setPager( ViewPager pagerP ) {
+      pager = pagerP;
       pager.setCurrentItem( currentAnswer );
+   }
+
+   public List< Quiz > getQuizzes() {
+      return dbHelper.getQuizzes();
    }
 
    public Quiz getQuiz() {
       return quiz;
    }
 
-   public void setQuiz( Quiz quiz ) {
-      this.quiz = quiz;
+   public void setQuiz( Quiz quizP ) {
+      quiz = quizP;
       currentAnswer = 0;
-      List< Answer > answers = quiz.getAnswers();
+      final List< Answer > answers = quiz.getAnswers();
       answersCount = answers == null? -1: answers.size();
    }
 
-   public void setAnswers( List< Answer > answers ) {
+   public List< Answer > getAnswers() {
+      setAnswers( dbHelper.getAnswers( quiz.getId() ) );
+      return quiz.getAnswers();
+   }
+
+   private void setAnswers( List< Answer > answers ) {
       quiz.setAnswers( answers );
       currentAnswer = 0;
       answersCount = answers == null? -1: answers.size();
@@ -87,6 +91,14 @@ public class ApplicationX extends Application {
       return currentAnswer;
    }
 
+   public void setCurrentAnswer( int index ) {
+      currentAnswer = index;
+      if( currentAnswer < 0 )
+         currentAnswer = 0;
+      if( currentAnswer > answersCount )
+         currentAnswer = answersCount;
+   }
+
    public void moveFirst() {
       currentAnswer = 0;
       pager.setCurrentItem( currentAnswer );
@@ -109,41 +121,5 @@ public class ApplicationX extends Application {
    public void moveLast() {
       currentAnswer = answersCount;
       pager.setCurrentItem( currentAnswer );
-   }
-
-   // --- History List state.
-
-   public Long getHistoryList_selectedId() {
-      return historyList_selectedId;
-   }
-
-   public void setHistoryList_selectedId( long historyList_selectedId ) {
-      this.historyList_selectedId = historyList_selectedId;
-   }
-
-   public Integer getHistoryList_selectedPos() {
-      return historyList_selectedPos;
-   }
-
-   public void setHistoryList_selectedPos( int historyList_selectedPos ) {
-      this.historyList_selectedPos = historyList_selectedPos;
-   }
-
-   // --- Quiz List state.
-
-   public Long getQuizList_selectedId() {
-      return quizList_selectedId;
-   }
-
-   public void setQuizList_selectedId( long quizList_selectedId ) {
-      this.quizList_selectedId = quizList_selectedId;
-   }
-
-   public Integer getQuizList_selectedPos() {
-      return quizList_selectedPos;
-   }
-
-   public void setQuizList_selectedPos( int quizList_selectedPos ) {
-      this.quizList_selectedPos = quizList_selectedPos;
    }
 }

@@ -7,23 +7,23 @@
     android:orientation="horizontal" >
 
     <TextView
-        android:id="@+id/answer_questionNumber"
+        android:id="@+id/answers_item_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
-        android:id="@+id/answer_questionId"
+        android:id="@+id/answers_item_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/answer_questionNumber"
+        android:layout_toRightOf="@+id/answers_item_number"
         android:visibility="invisible" />
     <TextView
-        android:id="@+id/answer_questionDescription"
+        android:id="@+id/answers_item_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/answer_questionNumber" />
+        android:layout_below="@+id/answers_item_number" />
     <ImageView
-        android:id="@+id/answer_questionStatus"
-        android:contentDescription="@string/answer_image"
+        android:id="@+id/answers_item_status"
+        android:contentDescription="@string/answers_item_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true" />

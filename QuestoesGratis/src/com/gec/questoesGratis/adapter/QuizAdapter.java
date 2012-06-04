@@ -32,31 +32,36 @@ public class QuizAdapter extends ArrayAdapter< Quiz > {
 
    @Override
    public View getView( int position, View convertView, ViewGroup parent ) {
+
       View row = convertView;
       try {
          if( row == null ) {
-            LayoutInflater li = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+            final LayoutInflater li = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
             row = li.inflate( R.layout.quizzes_item, null );
          }
 
-         Quiz quiz = list.get( position );
+         final Quiz quiz = list.get( position );
          if( quiz != null ) {
 
-            TextView vDate = (TextView) row.findViewById( R.id.quizzes_item_date );
-            String sDate = sdf.format( quiz.getDate() );
+            final TextView vDate = (TextView) row.findViewById( R.id.quizzes_item_date );
+            final String sDate = sdf.format( quiz.getDate() );
             vDate.setText( sDate );
 
-            TextView vStatus = (TextView) row.findViewById( R.id.quizzes_item_status );
-            String sStatus = quiz.getStatus().name;
+            final TextView vStatus = (TextView) row.findViewById( R.id.quizzes_item_status );
+            final String sStatus = quiz.getStatus().name;
             vStatus.setText( sStatus );
 
-            TextView vRating = (TextView) row.findViewById( R.id.quizzes_item_rating );
-            String sRating = String.valueOf( quiz.getRating() ) + " %";
+            final TextView vRating = (TextView) row.findViewById( R.id.quizzes_item_rating );
+            final String sRating = String.valueOf( quiz.getRating() ) + " %";
             vRating.setText( sRating );
          }
       } catch( Exception e ) {
          log.e( e );
       }
       return row;
+   }
+
+   public Quiz getQuiz( int index ) {
+      return list.get( index );
    }
 }

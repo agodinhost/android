@@ -34,26 +34,26 @@ public class AnswerAdapter extends ArrayAdapter< Answer > {
       try {
          if( row == null ) {
             LayoutInflater li = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-            row = li.inflate( R.layout.answer_item, null );
+            row = li.inflate( R.layout.answers_item, null );
          }
 
-         Answer answer = list.get( position );
+         final Answer answer = list.get( position );
          if( answer != null ) {
 
-            TextView vNumber = (TextView) row.findViewById( R.id.answer_questionNumber );
-            String sNumber = answer.getNumberD();
+            final TextView vNumber = (TextView) row.findViewById( R.id.answers_item_number );
+            final String sNumber = answer.getNumberD();
             vNumber.setText( sNumber );
 
-            TextView vId = (TextView) row.findViewById( R.id.answer_questionId );
-            String sId = String.valueOf( answer.getId() );
+            final TextView vId = (TextView) row.findViewById( R.id.answers_item_id );
+            final String sId = String.valueOf( answer.getId() );
             vId.setText( sId );
 
-            TextView vDescription = (TextView) row.findViewById( R.id.answer_questionDescription );
-            String sDescription = answer.getQualifierD();
+            final TextView vDescription = (TextView) row.findViewById( R.id.answers_item_description );
+            final String sDescription = answer.getQualifierD();
             vDescription.setText( sDescription );
 
-            ImageView vStatus = (ImageView) row.findViewById( R.id.answer_questionStatus );
-            Boolean bStatus = answer.getStatus();
+            final ImageView vStatus = (ImageView) row.findViewById( R.id.answers_item_status );
+            final Boolean bStatus = answer.getStatus();
             if( bStatus == null ) {
                vStatus.setImageResource( R.drawable.empty );
             } else if( bStatus ) {

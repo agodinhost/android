@@ -49,8 +49,8 @@
 
     <string name="quizzes_title">Meu Histórico:</string>
     
-    <string name="answer_title">Questionário:</string>
-    <string name="answer_image">Conclusão</string>
+    <string name="answers_title">Questionário:</string>
+    <string name="answers_item_image">Conclusão</string>
     
     <string name="question_details">ver mais</string>
     

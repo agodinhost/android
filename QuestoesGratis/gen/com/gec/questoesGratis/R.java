@@ -104,11 +104,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int actionbar_compat_container=0x7f060001;
         public static final int actionbar_compat_logo=0x7f060002;
         public static final int actionbar_compat_text=0x7f060003;
-        public static final int answer_list=0x7f060004;
-        public static final int answer_questionDescription=0x7f060007;
-        public static final int answer_questionId=0x7f060006;
-        public static final int answer_questionNumber=0x7f060005;
-        public static final int answer_questionStatus=0x7f060008;
+        public static final int answers_item_description=0x7f060007;
+        public static final int answers_item_id=0x7f060006;
+        public static final int answers_item_number=0x7f060005;
+        public static final int answers_item_status=0x7f060008;
+        public static final int answers_list=0x7f060004;
         public static final int details_description=0x7f060009;
         public static final int details_wv=0x7f06000a;
         public static final int filter_ms_ano=0x7f06000f;
@@ -141,8 +141,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class layout {
         public static final int about=0x7f030000;
-        public static final int answer=0x7f030001;
-        public static final int answer_item=0x7f030002;
+        public static final int answers=0x7f030001;
+        public static final int answers_item=0x7f030002;
         public static final int details=0x7f030003;
         public static final int filter=0x7f030004;
         public static final int marketing=0x7f030005;
@@ -166,8 +166,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int about_title=0x7f07001f;
         public static final int about_web_action=0x7f070025;
         public static final int about_web_label=0x7f070024;
-        public static final int answer_image=0x7f07001b;
-        public static final int answer_title=0x7f07001a;
+        public static final int answers_item_image=0x7f07001b;
+        public static final int answers_title=0x7f07001a;
         public static final int app_name=0x7f070000;
         public static final int filter_ano=0x7f070013;
         public static final int filter_assunto=0x7f070018;
