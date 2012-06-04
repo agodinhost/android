@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.adapter;
 
 import java.text.SimpleDateFormat;
@@ -15,34 +14,33 @@ import com.gec.questoesGratis.R;
 import com.gec.questoesGratis.model.Quiz;
 import com.gec.questoesGratis.tools.LogX;
 
-public class QuizAdapter extends ArrayAdapter< Quiz > {
+public final class QuizzesAdapter extends ArrayAdapter< Quiz > {
 
-   private static final LogX             log = new LogX( QuizAdapter.class );
+   private static final LogX             log = new LogX( QuizzesAdapter.class );
+   private static final SimpleDateFormat sdf = new SimpleDateFormat( "dd/mm/yyyy - HH:mm" );
 
    private List< Quiz >                  list;
    private Context                       context;
 
-   private static final SimpleDateFormat sdf = new SimpleDateFormat( "dd/mm/yyyy - HH:mm" );
-
-   public QuizAdapter( Context context, int textViewResourceId, List< Quiz > objects ) {
-      super( context, textViewResourceId, objects );
-      this.list = objects;
-      this.context = context;
+   public QuizzesAdapter( Context contextP, int textViewResourceId, List< Quiz > listP ) {
+      super( contextP, textViewResourceId, listP );
+      context = contextP;
+      list = listP;
    }
 
    @Override
    public View getView( int position, View convertView, ViewGroup parent ) {
+      final View row;
+      if( convertView == null ) {
+         final LayoutInflater li = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+         row = li.inflate( R.layout.quizzes_item, null );
+      } else {
+         row = convertView;
+      }
 
-      View row = convertView;
       try {
-         if( row == null ) {
-            final LayoutInflater li = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-            row = li.inflate( R.layout.quizzes_item, null );
-         }
-
          final Quiz quiz = list.get( position );
          if( quiz != null ) {
-
             final TextView vDate = (TextView) row.findViewById( R.id.quizzes_item_date );
             final String sDate = sdf.format( quiz.getDate() );
             vDate.setText( sDate );

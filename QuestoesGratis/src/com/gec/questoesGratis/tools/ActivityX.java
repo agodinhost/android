@@ -18,13 +18,13 @@ import com.gec.questoesGratis.R;
  * such as setting up the action bar. Taken from Google IO 2011 app and
  * modified.
  */
-public class ActivityHelper {
+public class ActivityX {
 
    private final Activity activity;
 
    private TextView       titleText;
 
-   public ActivityHelper( Activity activity ) {
+   public ActivityX( Activity activity ) {
       this.activity = activity;
    }
 

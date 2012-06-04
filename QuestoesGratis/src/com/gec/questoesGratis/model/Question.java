@@ -1,6 +1,5 @@
 package com.gec.questoesGratis.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,16 +7,14 @@ import java.util.List;
  * 
  * @author agodinho
  */
-public final class Question implements Serializable {
+public final class Question {
 
-   private static final long serialVersionUID = 4426101449359618224L;
-
-   private Long              id;
-   private Qualifier         q;
-   private String            description;
-   private List< String >    options;
-   private String            match;
-   private String            used;
+   private Long           id;
+   private Qualifier      q;
+   private String         description;
+   private List< String > options;
+   private String         match;
+   private String         used;
 
    public Long getId() {
       return id;
@@ -73,7 +70,7 @@ public final class Question implements Serializable {
 
    /**
     * Get the used string according to:
-    * u - used at least once;
+    * --, r-, -w, rw, not null - used at least once;
     * r - right at least once;
     * w - wrong at least once;
     * 

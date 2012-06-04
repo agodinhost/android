@@ -1,20 +1,16 @@
 package com.gec.questoesGratis.model;
 
-import java.io.Serializable;
-
 /**
  * Question TO.
  * 
  * @author agodinho
  */
-public final class Answer implements Serializable {
+public final class Answer {
 
-   private static final long serialVersionUID = -6396025902437961658L;
-
-   private Long              id;
-   private Integer           number;
-   private String            answer;
-   private Question          question;
+   private Long     id;
+   private Integer  number;
+   private String   answer;
+   private Question question;
 
    public Long getId() {
       return id;

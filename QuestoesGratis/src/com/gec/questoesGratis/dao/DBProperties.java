@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.dao;
 
 import com.gec.questoesGratis.ApplicationX;
@@ -7,7 +6,7 @@ import com.gec.questoesGratis.tools.PropertiesX;
 public final class DBProperties {
 
    private static final String      DB_PROPERTIES          = "database.properties";
-   private static final PropertiesX p                      = new PropertiesX( ApplicationX.getInstance(), DB_PROPERTIES );
+   private static final PropertiesX p                      = new PropertiesX( ApplicationX.getContext(), DB_PROPERTIES );
 
    public static final String       DB_PATH                = p.getString( "DB_PATH" );
    public static final String       DB_NAME                = p.getString( "DB_NAME" );

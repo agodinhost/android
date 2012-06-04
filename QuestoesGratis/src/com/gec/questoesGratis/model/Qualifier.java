@@ -1,24 +1,19 @@
-
 package com.gec.questoesGratis.model;
-
-import java.io.Serializable;
 
 /**
  * Question Qualifier TO.
  * 
  * @author agodinho
  */
-public final class Qualifier implements Serializable {
+public final class Qualifier {
 
-   private static final long serialVersionUID = -5113532576775005824L;
-
-   protected String          banca;
-   protected String          ano;
-   protected String          orgao;
-   protected String          uf;
-   protected String          cargo;
-   protected String          disciplina;
-   protected String          assunto;
+   protected String banca;
+   protected String ano;
+   protected String orgao;
+   protected String uf;
+   protected String cargo;
+   protected String disciplina;
+   protected String assunto;
 
    public String getBanca() {
       return banca;
@@ -77,22 +72,22 @@ public final class Qualifier implements Serializable {
    }
 
    public String getDescription() {
-      String d = "";
-      d = addStr( d, banca, "TODAS" );
-      d = addStr( d, String.valueOf( ano ), "TODOS" );
-      d = addStr( d, orgao, "TODOS" );
-      d = addStr( d, uf, "TODAS" );
-      d = addStr( d, cargo, "TODOS" );
-      d = addStr( d, disciplina, "TODAS" );
-      d = addStr( d, assunto, "TODOS" );
-      return d;
+      final StringBuffer b = new StringBuffer();
+      addStr( b, banca );
+      addStr( b, String.valueOf( ano ) );
+      addStr( b, orgao );
+      addStr( b, uf );
+      addStr( b, cargo );
+      addStr( b, disciplina );
+      addStr( b, assunto );
+      return b.toString();
    }
 
-   private String addStr( String str, String filter, String all ) {
-      if( filter != null && !all.equals( filter ) ) {
-         if( str.length() > 0 ) str += " - ";
-         str += filter;
+   private void addStr( StringBuffer b, String filter ) {
+      if( filter != null ) {
+         if( b.length() > 0 )
+            b.append( " - " );
+         b.append( filter );
       }
-      return str;
    }
 }

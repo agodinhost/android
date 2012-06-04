@@ -1,11 +1,10 @@
-
 package com.gec.questoesGratis.tools;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import android.app.Application;
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 
@@ -20,9 +19,9 @@ public final class PropertiesX {
 
    private final Properties  properties;
 
-   public PropertiesX( Application xApp, String filename ) {
+   public PropertiesX( Context context, String filename ) {
 
-      final Resources resources = xApp.getResources();
+      final Resources resources = context.getResources();
       if( resources == null ) {
          throw new RuntimeException( "Could not get the application resources ..." );
       }

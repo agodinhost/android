@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis;
 
 import android.os.Bundle;
@@ -6,22 +5,21 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.gec.questoesGratis.adapter.PagerAdapter;
-import com.gec.questoesGratis.tools.ActivityHelper;
+import com.gec.questoesGratis.adapter.AnswerPagerAdapter;
+import com.gec.questoesGratis.tools.ActivityX;
 
-public class PagerActivity extends FragmentActivity {
+public final class AnswerPagerActivity extends FragmentActivity {
 
-   private ApplicationX xApp;
+   private static final ApplicationX xApp = ApplicationX.getInstance();
 
    @Override
    protected void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
       setContentView( R.layout.pager );
-      new ActivityHelper( this ).setupActionBar( getString( R.string.app_name ) );
+      new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
 
-      xApp = (ApplicationX) getApplication();
-      PagerAdapter adapter = new PagerAdapter( getSupportFragmentManager(), xApp );
-      ViewPager pager = (ViewPager) findViewById( R.id.pager );
+      final AnswerPagerAdapter adapter = new AnswerPagerAdapter( getSupportFragmentManager() );
+      final ViewPager pager = (ViewPager) findViewById( R.id.pager );
       pager.setAdapter( adapter );
       xApp.setPager( pager );
    }

@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.dao;
 
 import static com.gec.questoesGratis.tools.ListX.randomStart;
@@ -45,10 +44,9 @@ public final class DBHelper extends SQLiteOpenHelper {
 
    private SQLiteDatabase                database;
 
-   public DBHelper( Context context ) {
-
-      super( context, DBProperties.DB_NAME, null, DBProperties.DB_VERSION );
-      this.context = context;
+   public DBHelper( Context contextP ) {
+      super( contextP, DBProperties.DB_NAME, null, DBProperties.DB_VERSION );
+      context = contextP;
    }
 
    @Override
@@ -64,13 +62,11 @@ public final class DBHelper extends SQLiteOpenHelper {
    }
 
    public void openDataBase() throws SQLException {
-
       database = this.getWritableDatabase();
    }
 
    @Override
    public synchronized void close() {
-
       if( database != null )
          database.close();
       super.close();
@@ -203,12 +199,12 @@ public final class DBHelper extends SQLiteOpenHelper {
       return getNames( DBProperties.SQL_SELECT_Assuntos );
    }
 
-   private StringBuffer getPlick( List< String > list ) {
+   private static StringBuffer getPlick( List< String > list ) {
 
       final StringBuffer b = new StringBuffer();
 
       if( list != null )
-         for( String item : list )
+         for( String item: list )
             b.append( "'" ) //
                   .append( item.trim() ) //
                   .append( "'" ) //
@@ -221,7 +217,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       return b;
    }
 
-   private StringBuffer getIn( String field, List< String > list ) {
+   private static StringBuffer getIn( String field, List< String > list ) {
 
       final StringBuffer b = new StringBuffer();
 
@@ -235,31 +231,30 @@ public final class DBHelper extends SQLiteOpenHelper {
       return b;
    }
 
-   private StringBuffer addAnd( StringBuffer b ) {
-
+   private static StringBuffer addAnd( StringBuffer b ) {
       if( b.length() > 0 )
          b.append( "AND " );
       return b;
    }
 
-   private void addInClause( StringBuffer b, String field, List< String > list ) {
+   private static void addInClause( StringBuffer b, String field, List< String > list ) {
 
       final StringBuffer in = getIn( field, list );
       if( in.length() > 0 )
          addAnd( b ).append( in );
    }
 
-   private StringBuffer getWhere( Filter filter ) {
+   private static StringBuffer getWhere( Filter filter ) {
 
       final StringBuffer b = new StringBuffer();
 
-      //TODO: filter precisa tb da qtd de questões (a tabela questions não precisa disso);
-
-      //TODO: preciso de dois campos na questions pra controlar isso ...
       final Ignore ignore = filter.getIgnore();
       if( Ignore.ANSWERED.equals( ignore ) ) {
+         addAnd( b ).append( "used IS NULL" );
       } else if( Ignore.RIGHT.equals( ignore ) ) {
+         addAnd( b ).append( "substr(coalesce(used,'--'),1,1)!='r'" );
       } else if( Ignore.WRONG.equals( ignore ) ) {
+         addAnd( b ).append( "substr(coalesce(used,'--'),2,1)!='w'" );
       }
 
       addInClause( b, "trim(banca)", filter.getBancas() );
@@ -273,7 +268,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       return b;
    }
 
-   private StringBuffer getRawWhere( Filter filter ) {
+   private static StringBuffer getRawWhere( Filter filter ) {
 
       final StringBuffer b = new StringBuffer();
 
@@ -288,8 +283,8 @@ public final class DBHelper extends SQLiteOpenHelper {
    public int getQuestionsCount( Filter filter ) {
 
       final StringBuffer b = //
-      new StringBuffer( "SELECT Count(1) FROM questions " ) //
-            .append( getRawWhere( filter ) );
+            new StringBuffer( "SELECT Count(1) FROM questions " ) //
+                  .append( getRawWhere( filter ) );
       final Cursor c = database.rawQuery( b.toString(), null );
       c.moveToFirst();
       int count = c.getInt( 0 );
@@ -354,7 +349,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       final Long quizId = quiz.getId();
       final List< Answer > list = quiz.getAnswers();
       if( list != null )
-         for( Answer answer : list )
+         for( Answer answer: list )
             insertAnswer( quizId, answer );
    }
 
@@ -402,7 +397,7 @@ public final class DBHelper extends SQLiteOpenHelper {
             /* groupBy */null, //
             /* having. */null, //
             /* orderBy */null //
-      );
+            );
 
       while( c.moveToNext() )
          list.add( getQuiz( c ) );
@@ -450,8 +445,19 @@ public final class DBHelper extends SQLiteOpenHelper {
       return list;
    }
 
-   public void updateAnswer( Answer answer ) {
-      //TODO: write this guy ...
+   public void updateAnswer( Long answerId, String answer ) {
+
+      final ContentValues values = new ContentValues();
+      values.put( "answer", answer );
+
+      database.update( //
+            /* table. */"answers", //
+            /* values */values, //
+            /* where. */"_id=?", //
+            /* whereA */new String[] { answerId.toString() } );
+
+      /*/ trg_answers_au -> update -> questions /*/
+      /*/ trg_answers_au -> update -> quizzes   /*/
    }
 
    private Quiz getQuiz( Cursor c ) {
@@ -507,8 +513,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       return q;
    }
 
-   private Date getDate( Cursor c, int index ) {
-
+   private static Date getDate( Cursor c, int index ) {
       try {
          return sdf.parse( c.getString( index ) );
       } catch( ParseException e ) {

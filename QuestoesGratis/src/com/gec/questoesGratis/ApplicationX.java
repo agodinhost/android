@@ -1,41 +1,109 @@
-
 package com.gec.questoesGratis;
 
+import java.io.IOException;
 import java.util.List;
 
 import android.app.Application;
+import android.content.Context;
+import android.database.SQLException;
 import android.support.v4.view.ViewPager;
 
 import com.gec.questoesGratis.dao.DBHelper;
 import com.gec.questoesGratis.model.Answer;
+import com.gec.questoesGratis.model.Filter;
 import com.gec.questoesGratis.model.Quiz;
 
-public class ApplicationX extends Application {
+/**
+ * Singleton.
+ * 
+ * @author agodinho
+ */
+public final class ApplicationX extends Application {
 
-   private static ApplicationX lastInstance;
+   private static ApplicationX instance;
+   private static Context      context;
+   private static DBHelper     dbHelper;
 
+   private ViewPager           pager;
    private Quiz                quiz;
+   private Filter              filter;
    private int                 currentAnswer;
    private int                 answersCount = -1;
 
-   private DBHelper            dbHelper;
-   private ViewPager           pager;
-
-   public ApplicationX() {
-      super();
-      lastInstance = this;
-   }
-
    public static ApplicationX getInstance() {
-      return lastInstance;
+      return instance;
    }
 
-   public DBHelper getDbHelper() {
-      return dbHelper;
+   public static Context getContext() {
+      return context;
    }
 
-   public void setDbHelper( DBHelper dbHelperP ) {
-      dbHelper = dbHelperP;
+   @Override
+   public void onCreate() {
+      instance = this;
+      context = instance.getApplicationContext();
+      dbHelper = new DBHelper( context );
+
+      try {
+         dbHelper.createDataBase();
+      } catch( IOException e ) {
+         throw new Error( "Unable to create the application database ..." );
+      }
+
+      try {
+         dbHelper.openDataBase();
+      } catch( SQLException e ) {
+         throw new Error( "Unable to open the application database ..." );
+      }
+   }
+
+   @Override
+   public void onTerminate() {
+      try {
+         dbHelper.close();
+      } catch( Exception e ) {
+         // just ignore.
+      }
+   }
+
+   public List< String > getBancas() {
+      return dbHelper.getBancas();
+   }
+
+   public List< String > getAnos() {
+      return dbHelper.getAnos();
+   }
+
+   public List< String > getOrgaos() {
+      return dbHelper.getOrgaos();
+   }
+
+   public List< String > getUFs() {
+      return dbHelper.getUFs();
+   }
+
+   public List< String > getCargos() {
+      return dbHelper.getCargos();
+   }
+
+   public List< String > getDisciplinas() {
+      return dbHelper.getDisciplinas();
+   }
+
+   public List< String > getAssuntos() {
+      return dbHelper.getAssuntos();
+   }
+
+   public void setFilter( Filter filterP ) {
+      filter = filterP;
+   }
+
+   public int getQuestionsCount() {
+      return dbHelper.getQuestionsCount( filter );
+   }
+
+   public void createQuiz() {
+      setQuiz( dbHelper.createQuiz( filter ) );
    }
 
    public void setPager( ViewPager pagerP ) {
@@ -70,17 +138,15 @@ public class ApplicationX extends Application {
    }
 
    public Answer getAnswer() {
-      Answer a = null;
-      if( answersCount > 0 )
-         a = quiz.getAnswers().get( currentAnswer );
-      return a;
+      return answersCount > 0? //
+            quiz.getAnswers().get( currentAnswer ): //
+            null;
    }
 
    public Answer getAnswer( int index ) {
-      Answer a = null;
-      if( answersCount > 0 )
-         a = quiz.getAnswers().get( index );
-      return a;
+      return answersCount > 0? //
+            quiz.getAnswers().get( index ): //
+            null;
    }
 
    public int getAnswersCount() {

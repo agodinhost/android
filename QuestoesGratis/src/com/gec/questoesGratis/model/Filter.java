@@ -1,6 +1,5 @@
 package com.gec.questoesGratis.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +7,7 @@ import java.util.List;
  * 
  * @author agodinho
  */
-public final class Filter implements Serializable {
+public final class Filter {
 
    public static enum Ignore {
       NONE, //
@@ -20,11 +19,11 @@ public final class Filter implements Serializable {
    private Integer        total;
    private Ignore         ignore;
 
-   private List< String > ufs;
    private List< String > bancas;
-   private List< String > orgaos;
-   private List< String > cargos;
    private List< String > anos;
+   private List< String > orgaos;
+   private List< String > ufs;
+   private List< String > cargos;
    private List< String > disciplinas;
    private List< String > assuntos;
 
@@ -44,20 +43,20 @@ public final class Filter implements Serializable {
       this.ignore = ignore;
    }
 
-   public List< String > getUFs() {
-      return ufs;
-   }
-
-   public void setUFs( List< String > ufs ) {
-      this.ufs = ufs;
-   }
-
    public List< String > getBancas() {
       return bancas;
    }
 
    public void setBancas( List< String > bancas ) {
       this.bancas = bancas;
+   }
+
+   public List< String > getAnos() {
+      return anos;
+   }
+
+   public void setAnos( List< String > anos ) {
+      this.anos = anos;
    }
 
    public List< String > getOrgaos() {
@@ -68,20 +67,20 @@ public final class Filter implements Serializable {
       this.orgaos = orgaos;
    }
 
+   public List< String > getUFs() {
+      return ufs;
+   }
+
+   public void setUFs( List< String > ufs ) {
+      this.ufs = ufs;
+   }
+
    public List< String > getCargos() {
       return cargos;
    }
 
    public void setCargos( List< String > cargos ) {
       this.cargos = cargos;
-   }
-
-   public List< String > getAnos() {
-      return anos;
-   }
-
-   public void setAnos( List< String > anos ) {
-      this.anos = anos;
    }
 
    public List< String > getDisciplinas() {
@@ -100,27 +99,35 @@ public final class Filter implements Serializable {
       this.assuntos = assuntos;
    }
 
-   //TODO: rever ...
    public String getDescription() {
-      String d = "description ...";
-      /*
-      String d = "";
-      d = addStr( d, banca, "TODAS" );
-      d = addStr( d, String.valueOf( ano ), "TODOS" );
-      d = addStr( d, orgao, "TODOS" );
-      d = addStr( d, uf, "TODAS" );
-      d = addStr( d, cargo, "TODOS" );
-      d = addStr( d, disciplina, "TODAS" );
-      d = addStr( d, assunto, "TODOS" );
-      */
-      return d;
+      final StringBuffer b = new StringBuffer();
+      addStr( b, bancas, "Bancas", "TODAS" );
+      addStr( b, anos, "Anos", "TODOS" );
+      addStr( b, orgaos, "Orgãos", "TODOS" );
+      addStr( b, ufs, "UFs", "TODAS" );
+      addStr( b, cargos, "Cargos", "TODOS" );
+      addStr( b, disciplinas, "Disciplinas", "TODAS" );
+      addStr( b, assuntos, "Assuntos", "TODOS" );
+      return b.toString();
    }
 
-   private String addStr( String str, String filter, String all ) {
-      if( filter != null && !all.equals( filter ) ) {
-         if( str.length() > 0 ) str += " - ";
-         str += filter;
+   private static void addStr( StringBuffer b, List< String > list, String title, String all ) {
+      if( b.length() > 0 )
+         b.append( " - " );
+      b.append( title ).append( ": " );
+      if( list == null )
+         b.append( all );
+      else
+         b.append( addList( list ) );
+   }
+
+   private static StringBuffer addList( List< String > list ) {
+      final StringBuffer b = new StringBuffer();
+      for( String string: list ) {
+         if( b.length() > 0 )
+            b.append( "," );
+         b.append( string );
       }
-      return str;
+      return b;
    }
 }

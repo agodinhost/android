@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.adapter;
 
 import java.util.List;
@@ -15,31 +14,32 @@ import com.gec.questoesGratis.R;
 import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.tools.LogX;
 
-public class AnswerAdapter extends ArrayAdapter< Answer > {
+public final class AnswersAdapter extends ArrayAdapter< Answer > {
 
-   private static final LogX log = new LogX( AnswerAdapter.class );
+   private static final LogX log = new LogX( AnswersAdapter.class );
 
    private List< Answer >    list;
    private Context           context;
 
-   public AnswerAdapter( Context context, int textViewResourceId, List< Answer > objects ) {
-      super( context, textViewResourceId, objects );
-      this.list = objects;
-      this.context = context;
+   public AnswersAdapter( Context contextP, int textViewResourceId, List< Answer > listP ) {
+      super( contextP, textViewResourceId, listP );
+      context = contextP;
+      list = listP;
    }
 
    @Override
    public View getView( int position, View convertView, ViewGroup parent ) {
-      View row = convertView;
-      try {
-         if( row == null ) {
-            LayoutInflater li = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-            row = li.inflate( R.layout.answers_item, null );
-         }
+      final View row;
+      if( convertView == null ) {
+         final LayoutInflater li = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+         row = li.inflate( R.layout.answers_item, null );
+      } else {
+         row = convertView;
+      }
 
+      try {
          final Answer answer = list.get( position );
          if( answer != null ) {
-
             final TextView vNumber = (TextView) row.findViewById( R.id.answers_item_number );
             final String sNumber = answer.getNumberD();
             vNumber.setText( sNumber );

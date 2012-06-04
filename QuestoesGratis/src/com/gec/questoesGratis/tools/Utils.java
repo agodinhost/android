@@ -11,7 +11,7 @@ import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 
-import com.gec.questoesGratis.tools.Preferences.PrefType;
+import com.gec.questoesGratis.tools.PreferencesX.PrefType;
 
 /**
  * Utility functions, mainly for formatting.
@@ -81,7 +81,7 @@ public class Utils {
     * Extracts LDAP username from user email.
     */
    public static String getLdap( Context context ) {
-      return Preferences.getString( PrefType.USER_EMAIL, context ).split( "@" )[ 0 ];
+      return PreferencesX.getString( PrefType.USER_EMAIL, context ).split( "@" )[ 0 ];
    }
 
    /**

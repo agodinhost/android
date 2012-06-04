@@ -38,14 +38,22 @@
     <string name="menu_more">Mais Questões</string>
     <string name="menu_about">Sobre Nós</string>
 
-    <string name="filter_title">Selecione os filtros desejados:</string>
-    <string name="filter_banca">Banca</string>
-    <string name="filter_ano">Ano</string>
-    <string name="filter_orgao">Órgão</string>
-    <string name="filter_uf">UF</string>
-    <string name="filter_cargo">Cargo</string>
-    <string name="filter_disciplina">Disciplina</string>
-    <string name="filter_assunto">Assunto</string>
+    <string name="create_title">Selecione os filtros desejados:</string>
+
+    <string name="create_ignore_none"> Considerar TODAS Questões</string>
+    <string name="create_ignore_answered"> Ignorar Questões Já Respondidas</string>
+    <string name="create_ignore_right"> Ignorar Questões Corretas</string>
+    <string name="create_ignore_wrong"> Ignorar Questões Incorretas</string>
+    
+    <string name="create_total">Quantidade de questões:</string>
+    
+    <string name="create_banca">Banca</string>
+    <string name="create_ano">Ano</string>
+    <string name="create_orgao">Órgão</string>
+    <string name="create_uf">UF</string>
+    <string name="create_cargo">Cargo</string>
+    <string name="create_disciplina">Disciplina</string>
+    <string name="create_assunto">Assunto</string>
 
     <string name="quizzes_title">Meu Histórico:</string>
     
@@ -54,8 +62,8 @@
     
     <string name="question_details">ver mais</string>
     
-    <string name="marketing_title">Marketing</string>
-    <string name="marketing_uri">http://www.google.com</string>
+    <string name="more_title">More</string>
+    <string name="more_uri">http://www.questoesGratis.com.br</string>
     
     <string name="about_title">Sobre</string>
     <string name="about_mail_label">Críticas, problemas, idéias ou sugestões?</string>

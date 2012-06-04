@@ -47,11 +47,11 @@
 		    android:launchMode="singleTask"
 			android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         <activity
-            android:name=".FilterActivity"
+            android:name=".CreateActivity"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity
-            android:name=".PagerActivity"
+            android:name=".AnswerPagerActivity"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity
@@ -67,7 +67,7 @@
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity
-            android:name=".MarketingActivity"
+            android:name=".MoreActivity"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity

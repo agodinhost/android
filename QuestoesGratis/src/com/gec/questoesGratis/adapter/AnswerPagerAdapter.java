@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.adapter;
 
 import android.content.Context;
@@ -25,16 +24,14 @@ import com.gec.questoesGratis.model.Question;
 import com.gec.questoesGratis.tools.EmbeddedWebView;
 import com.gec.questoesGratis.tools.LogX;
 
-public final class PagerAdapter extends FragmentStatePagerAdapter {
+public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
 
-   private static ApplicationX xApp;
+   private static final LogX         log         = new LogX( AnswerPagerAdapter.class );
+   private static final ApplicationX xApp        = ApplicationX.getInstance();
+   private static final int          P_MAX_CHARS = 150;
 
-   private static final LogX   log         = new LogX( PagerAdapter.class );
-   private static final int    P_MAX_CHARS = 150;
-
-   public PagerAdapter( FragmentManager fm, ApplicationX xInstance ) {
+   public AnswerPagerAdapter( FragmentManager fm ) {
       super( fm );
-      xApp = xInstance;
       log.d( "constructor" );
    }
 
@@ -47,23 +44,23 @@ public final class PagerAdapter extends FragmentStatePagerAdapter {
    @Override
    public Fragment getItem( int item ) {
       log.d( "getItem {0}", item );
-      return QuestionFragment.newInstance( item );
+      return AnswerFragment.newInstance( item );
    }
 
-   private static final class QuestionFragment extends Fragment implements OnClickListener {
+   private static final class AnswerFragment extends Fragment implements OnClickListener {
 
       private int questionNumber = 0;
       private int userOption     = -1;
 
-      static final QuestionFragment newInstance( int questionNumber ) {
+      static final AnswerFragment newInstance( int questionNumber ) {
 
          log.d( "newInstance of questionNumber {0}", questionNumber );
 
-         Bundle bundle = new Bundle();
+         final Bundle bundle = new Bundle();
          bundle.putInt( "questionNumber", questionNumber );
          bundle.putInt( "userOption", -1 );
 
-         QuestionFragment f = new QuestionFragment();
+         final AnswerFragment f = new AnswerFragment();
          f.setArguments( bundle );
 
          return f;
@@ -73,7 +70,7 @@ public final class PagerAdapter extends FragmentStatePagerAdapter {
       public void onCreate( Bundle savedInstanceState ) {
          log.d( "onCreate questionNumber {0}", questionNumber );
          super.onCreate( savedInstanceState );
-         Bundle bundle = getArguments();
+         final Bundle bundle = getArguments();
          if( bundle != null ) {
             questionNumber = bundle.getInt( "questionNumber" );
             userOption = bundle.getInt( "userOption" );
@@ -83,7 +80,7 @@ public final class PagerAdapter extends FragmentStatePagerAdapter {
       @Override
       public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
          log.d( "onCreateView questionNumber {0}", questionNumber );
-         View view = inflater.inflate( R.layout.pager_item, container, false );
+         final View view = inflater.inflate( R.layout.pager_item, container, false );
          setup( view );
          return view;
       }
@@ -94,37 +91,36 @@ public final class PagerAdapter extends FragmentStatePagerAdapter {
        */
       private void setup( View view ) {
 
-         Answer answer = xApp.getAnswer( questionNumber );
+         final Answer answer = xApp.getAnswer( questionNumber );
 
-         TextView qd = (TextView) view.findViewById( R.id.question_description );
+         final TextView qd = (TextView) view.findViewById( R.id.question_description );
          qd.setText( answer.getQualifierD() );
 
          String qp = answer.getQuestionD();
-         boolean showDetails = qp != null && ( qp.length() > P_MAX_CHARS || qp.contains( "<image" ) );
+         final boolean showDetails = qp != null && ( qp.length() > P_MAX_CHARS || qp.contains( "<image" ) );
          if( showDetails ) {
             qp = qp.substring( 0, P_MAX_CHARS - 1 ) + " ...";
          }
 
-         WebView webView = (WebView) view.findViewById( R.id.question_wv );
+         final WebView webView = (WebView) view.findViewById( R.id.question_wv );
          EmbeddedWebView.loadData( webView, qp );
 
          // Simple approach to decide weather to display the "details" button.
          // It does not take into account any image or fancy sizing style.
-         TextView details = (TextView) view.findViewById( R.id.question_details );
+         final TextView details = (TextView) view.findViewById( R.id.question_details );
          details.setVisibility( showDetails? TextView.VISIBLE: TextView.GONE );
          details.setOnClickListener( this );
 
-         RadioGroup radioGroup = (RadioGroup) view.findViewById( R.id.question_group );
+         final RadioGroup radioGroup = (RadioGroup) view.findViewById( R.id.question_group );
          setup( radioGroup, answer.getQuestion() );
       }
 
       private void setup( RadioGroup radioGroup, Question question ) {
-
-         int l = radioGroup.getChildCount();
+         final int l = radioGroup.getChildCount();
          for( int i = 0; i < l; i++ ) {
-            RadioButton r = (RadioButton) radioGroup.getChildAt( i );
+            final RadioButton r = (RadioButton) radioGroup.getChildAt( i );
             r.setChecked( i == userOption );
-            String o = question.getOption( i );
+            final String o = question.getOption( i );
             if( o != null ) {
                r.setText( o );
                r.setVisibility( RadioGroup.VISIBLE );
@@ -137,12 +133,10 @@ public final class PagerAdapter extends FragmentStatePagerAdapter {
 
       @Override
       public void onClick( View view ) {
-
-         Context context = view.getContext();
-         int id = view.getId();
+         final Context context = view.getContext();
+         final int id = view.getId();
          if( id == R.id.question_details ) {
-            Intent intent = new Intent( context, DetailsActivity.class );
-            startActivity( intent );
+            startActivity( new Intent( context, DetailsActivity.class ) );
          } else {
             Toast.makeText( view.getContext(), "onClick " + id, Toast.LENGTH_SHORT ).show();
          }

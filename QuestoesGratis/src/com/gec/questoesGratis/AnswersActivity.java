@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis;
 
 import android.app.Activity;
@@ -9,39 +8,35 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.gec.questoesGratis.adapter.AnswerAdapter;
-import com.gec.questoesGratis.tools.ActivityHelper;
+import com.gec.questoesGratis.adapter.AnswersAdapter;
+import com.gec.questoesGratis.tools.ActivityX;
 
 /**
- * Activity / View to list the quiz answers.
+ * Activity / View to list the quiz details.
  */
-public class AnswersActivity extends Activity implements OnItemClickListener {
+public final class AnswersActivity extends Activity implements OnItemClickListener {
 
-   private ApplicationX xApp;
+   private static final ApplicationX xApp = ApplicationX.getInstance();
 
    @Override
    public void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
       setContentView( R.layout.answers );
-      new ActivityHelper( this ).setupActionBar( getString( R.string.app_name ) );
+      new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
 
-      xApp = (ApplicationX) getApplication();
-      final AnswerAdapter adapter = new AnswerAdapter( getApplicationContext(), R.id.answers_item_id, xApp.getAnswers() );
-
+      final AnswersAdapter adapter = new AnswersAdapter( getApplicationContext(), R.id.answers_item_id, xApp.getAnswers() );
       final ListView listView = (ListView) findViewById( R.id.answers_list );
       listView.setAdapter( adapter );
       listView.setOnItemClickListener( this );
    }
 
    public void onClick_previous( View view ) {
-      final Intent intent = new Intent( AnswersActivity.this, QuizzesActivity.class );
-      startActivity( intent );
+      startActivity( new Intent( this, QuizzesActivity.class ) );
    }
 
    @Override
    public void onItemClick( AdapterView< ? > av, View view, int index, long id ) {
       xApp.setCurrentAnswer( index );
-      final Intent intent = new Intent( AnswersActivity.this, DetailsActivity.class );
-      startActivity( intent );
+      startActivity( new Intent( this, DetailsActivity.class ) );
    }
 }

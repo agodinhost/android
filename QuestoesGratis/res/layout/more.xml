@@ -9,7 +9,7 @@
     <LinearLayout style="@style/ActionBarCompat" />
 
     <WebView
-        android:id="@+id/marketing_wv"
+        android:id="@+id/more_wv"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="1"

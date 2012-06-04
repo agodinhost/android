@@ -22,64 +22,117 @@
             android:orientation="vertical"
             android:padding="@dimen/padding" >
 
+            <RadioGroup
+                android:id="@+id/create_ignore_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/create_ignore_none"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_ignore_none" />
+                <RadioButton
+                    android:id="@+id/create_ignore_answered"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_ignore_answered" />
+                <RadioButton
+                    android:id="@+id/create_ignore_right"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_ignore_right" />
+                <RadioButton
+                    android:id="@+id/create_ignore_wrong"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_ignore_wrong" />
+            </RadioGroup>
+
             <TextView
                 style="@style/TextView"
                 android:layout_marginTop="10dp"
-                android:text="@string/filter_title" />
+                android:text="@string/create_total" />
+
+            <SeekBar
+                android:id="@+id/create_total"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="50"
+                android:progress="50" />
+
             <TextView
                 style="@style/TextView"
                 android:layout_marginTop="10dp"
-                android:text="@string/filter_uf" />
+                android:text="@string/create_title" />
+
+            <TextView
+                style="@style/TextView"
+                android:layout_marginTop="10dp"
+                android:text="@string/create_uf" />
+
             <com.gec.questoesGratis.widgets.MultiSpinner
-                android:id="@+id/filter_ms_uf"
+                android:id="@+id/create_ms_uf"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
+
             <TextView
                 style="@style/TextView"
                 android:layout_marginTop="10dp"
-                android:text="@string/filter_banca" />
+                android:text="@string/create_banca" />
+
             <com.gec.questoesGratis.widgets.MultiSpinner
-                android:id="@+id/filter_ms_banca"
+                android:id="@+id/create_ms_banca"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
+
             <TextView
                 style="@style/TextView"
                 android:layout_marginTop="10dp"
-                android:text="@string/filter_orgao" />
+                android:text="@string/create_orgao" />
+
             <com.gec.questoesGratis.widgets.MultiSpinner
-                android:id="@+id/filter_ms_orgao"
+                android:id="@+id/create_ms_orgao"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
+
             <TextView
                 style="@style/TextView"
                 android:layout_marginTop="10dp"
-                android:text="@string/filter_cargo" />
+                android:text="@string/create_cargo" />
+
             <com.gec.questoesGratis.widgets.MultiSpinner
-                android:id="@+id/filter_ms_cargo"
+                android:id="@+id/create_ms_cargo"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
+
             <TextView
                 style="@style/TextView"
                 android:layout_marginTop="10dp"
-                android:text="@string/filter_ano" />
+                android:text="@string/create_ano" />
+
             <com.gec.questoesGratis.widgets.MultiSpinner
-                android:id="@+id/filter_ms_ano"
+                android:id="@+id/create_ms_ano"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
+
             <TextView
                 style="@style/TextView"
                 android:layout_marginTop="10dp"
-                android:text="@string/filter_disciplina" />
+                android:text="@string/create_disciplina" />
+
             <com.gec.questoesGratis.widgets.MultiSpinner
-                android:id="@+id/filter_ms_disciplina"
+                android:id="@+id/create_ms_disciplina"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
+
             <TextView
                 style="@style/TextView"
                 android:layout_marginTop="10dp"
-                android:text="@string/filter_assunto" />
+                android:text="@string/create_assunto" />
+
             <com.gec.questoesGratis.widgets.MultiSpinner
-                android:id="@+id/filter_ms_assunto"
+                android:id="@+id/create_ms_assunto"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -89,10 +142,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal" >
+
         <Button
             style="@style/Button"
             android:onClick="onClick_previous"
             android:text="@string/g_previous" />
+
         <Button
             style="@style/Button"
             android:onClick="onClick_next"

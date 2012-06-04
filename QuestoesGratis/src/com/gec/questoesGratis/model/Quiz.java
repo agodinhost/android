@@ -1,6 +1,5 @@
 package com.gec.questoesGratis.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -9,9 +8,7 @@ import java.util.List;
  * 
  * @author agodinho
  */
-public final class Quiz implements Serializable {
-
-   private static final long serialVersionUID = 5133709787700431019L;
+public final class Quiz {
 
    public static enum Status {
       //
@@ -27,8 +24,10 @@ public final class Quiz implements Serializable {
       }
 
       public static Status valueOf( int id ) {
-         if( id == 0 ) return UNFINISHED;
-         else return FINISHED;
+         if( id == 0 )
+            return UNFINISHED;
+         else
+            return FINISHED;
       }
    }
 

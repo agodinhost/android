@@ -116,7 +116,7 @@ public final class MultiSpinner extends Spinner implements OnMultiChoiceClickLis
 
    /**
     * Return a list with all selected items OR:
-    * null - if NONE items were selected;
+    * null - if ALL items were selected;
     * empty list - if no items were selected;
     * normal list - normal selection.
     */
