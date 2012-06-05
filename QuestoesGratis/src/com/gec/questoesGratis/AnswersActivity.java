@@ -23,7 +23,7 @@ public final class AnswersActivity extends Activity implements OnItemClickListen
    public void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
       setContentView( R.layout.answers );
-      new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
+      new ActivityX( this ).setupActionBar( getString( R.string.g_APP_NAME ) );
 
       final ListView listView = (ListView) findViewById( R.id.answers_list );
       listView.setAdapter( new AnswersAdapter( getApplicationContext(), //
@@ -32,7 +32,7 @@ public final class AnswersActivity extends Activity implements OnItemClickListen
       listView.setOnItemClickListener( this );
    }
 
-   public void onClick_previous( View view ) {
+   public void onClick_PREVIOUS( View view ) {
       startActivity( new Intent( this, QuizzesActivity.class ) );
    }
 

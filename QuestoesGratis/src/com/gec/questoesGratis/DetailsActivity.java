@@ -20,12 +20,12 @@ public final class DetailsActivity extends FragmentActivity {
    protected void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
       setContentView( R.layout.details );
-      new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
+      new ActivityX( this ).setupActionBar( getString( R.string.g_APP_NAME ) );
 
       setup();
    }
 
-   public void onClick_previous( View view ) {
+   public void onClick_PREVIOUS( View view ) {
       finish();
    }
 

@@ -2,49 +2,47 @@
 
 <resources>
 
-    <string name="app_name">Questões Grátis</string>
-
-	<!-- Replace with your own AdSense client ID - "ca-mb-app-pub-nnnnnnnnnnnnnnnn".
-    <string name="g_ADS_UNIT_ID">ca-pub-7837586323702893</string>
-    -->
-    <string name="g_ADS_UNIT_ID">000000000000000</string>
+    <!--
+    ===========================================================================================
     
-    <!-- Replace with your own company name. -->
+    g_APP_NAME         = Replace with your own application name.
+    g_ADS_COMPANY_NAME = Replace with your own company name.
+
+    g_ADS_UNIT_ID      = Replace with your own AdSense client ID.
+    					 "ca-mb-app-pub-nnnnnnnnnnnnnnnn".
+                         production: ca-pub-7837586323702893
+                         test mode.: 000000000000000
+    g_ADS_KEYWORDS     = Replace with your own keywords used to target Google ad.
+                         Join multiple words in a phrase with '+' and join multiple phrases with ','.
+	g_ADS_CHANNEL_ID   = Replace with your own AdSense channel ID.
+	g_ADS_TEST_DEVICES = Replace with your own test devices.
+
+    ===========================================================================================	-->
+
+    <string name="g_APP_NAME">Questões Grátis</string>
+
     <string name="g_ADS_COMPANY_NAME">Anaximandro de Godinho</string>
-
-    <!-- Replace with your own application name. -->
-    <string name="g_ADS_APP_NAME">Questões Grátis</string>
-
-	<!-- Replace with your own keywords used to target Google ad. -->
-	<!-- Join multiple words in a phrase with '+' and join multiple phrases with ','. -->
+    <string name="g_ADS_UNIT_ID">ca-pub-7837586323702893</string>
     <string name="g_ADS_KEYWORDS">exames,testes,preparatórios</string>
-
-	<!-- Replace with your own AdSense channel ID. -->
     <string name="g_ADS_CHANNEL_ID">exames,testes,preparatórios</string>
-
-	<!-- Replace with your own test devices. -->
     <string name="g_ADS_TEST_DEVICES">TEST_EMULATOR, emulator-5554</string>
 
-    <string name="g_previous">Voltar</string>
-    <string name="g_next">Prosseguir</string>
-    <string name="g_all_male">TODOS</string>
-    <string name="g_all_female">TODAS</string>
+    <string name="g_PREVIOUS">Voltar</string>
+    <string name="g_NEXT">Prosseguir</string>
+    <string name="g_ALL_MALE">TODOS</string>
+    <string name="g_ALL_FEMALE">TODAS</string>
 
-    <string name="menu_title">Menu Principal</string>
-    <string name="menu_new">Novo Simulado</string>
-    <string name="menu_history">Meus Simulados</string>
+    <string name="menu_create">Novo Simulado</string>
+    <string name="menu_quizzes">Meus Simulados</string>
     <string name="menu_more">Mais Questões</string>
     <string name="menu_about">Sobre Nós</string>
 
     <string name="create_title">Selecione os filtros desejados:</string>
-
     <string name="create_ignore_none"> Considerar TODAS Questões</string>
     <string name="create_ignore_answered"> Ignorar Questões Já Respondidas</string>
     <string name="create_ignore_right"> Ignorar Questões Corretas</string>
     <string name="create_ignore_wrong"> Ignorar Questões Incorretas</string>
-    
     <string name="create_total">Quantidade de questões:</string>
-    
     <string name="create_banca">Banca</string>
     <string name="create_ano">Ano</string>
     <string name="create_orgao">Órgão</string>
@@ -52,20 +50,17 @@
     <string name="create_cargo">Cargo</string>
     <string name="create_disciplina">Disciplina</string>
     <string name="create_assunto">Assunto</string>
-    
-    <string name="create_no_data">Não há questões que atendam ao filtro selecionado, por favor, altere o filtro e tente novamente &#8230;</string>
-    <string name="create_wait">Aguarde, criando novo questionário &#8230;</string>
-    
+    <string name="create_no_data">Não há questões que atendam ao filtro selecionado, por favor, altere o filtro e tente novamente …</string>
+    <string name="create_wait">Aguarde, criando novo questionário …</string>
+
     <string name="quizzes_title">Meu Histórico:</string>
-    
+
     <string name="answers_title">Questionário:</string>
     <string name="answers_item_image">Conclusão</string>
-    
-    <string name="question_details">ver mais</string>
-    
+
     <string name="more_title">More</string>
     <string name="more_uri">http://www.questoesGratis.com.br</string>
-    
+
     <string name="about_title">Sobre</string>
     <string name="about_mail_label">Críticas, problemas, idéias ou sugestões?</string>
     <string name="about_mail_action">Email desenvolvedor</string>
@@ -75,14 +70,12 @@
     <string name="about_web_action">Visite o website</string>
     <string name="about_feedback_subject">Feedback do Questões Grátis</string>
     <string name="about_feedback_text">Qual o seu telefone?\n%s\n\nSeu feedback aqui:\n</string>
-
     <string name="about_feedback_email">johnDoe@somewhere.com</string>
     <string name="about_market_uri">market://details?id=com.gec.questoesGratis</string>
     <string name="about_info_uri">http://www.questoesGratis.com.br</string>
-
     <string name="about_created_by">Escrito por</string>
     <string name="about_gec">G&amp;C Consultoria e Informática Ltda.</string>
     <string name="about_opensource_under">Open-sourced under</string>
     <string name="about_apache_20">Apache 2.0 License</string>
-    
+
 </resources>

@@ -31,7 +31,8 @@
                     android:id="@+id/create_ignore_none"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/create_ignore_none" />
+                    android:text="@string/create_ignore_none"
+                    android:checked="true" />
                 <RadioButton
                     android:id="@+id/create_ignore_answered"
                     android:layout_width="fill_parent"
@@ -145,13 +146,13 @@
 
         <Button
             style="@style/Button"
-            android:onClick="onClick_previous"
-            android:text="@string/g_previous" />
+            android:onClick="onClick_PREVIOUS"
+            android:text="@string/g_PREVIOUS" />
 
         <Button
             style="@style/Button"
-            android:onClick="onClick_next"
-            android:text="@string/g_next" />
+            android:onClick="onClick_NEXT"
+            android:text="@string/g_NEXT" />
     </LinearLayout>
 
 </LinearLayout>

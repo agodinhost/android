@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import android.app.Activity;
@@ -13,16 +14,16 @@ public final class MenuActivity extends Activity {
    public void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
       setContentView( R.layout.menu );
-      new ActivityX( this ).setupActionBar( getString( R.string.app_name ), false );
+      new ActivityX( this ).setupActionBar( getString( R.string.g_APP_NAME ), false );
 
       getApplication();
    }
 
-   public void onClick_NEW( View v ) {
+   public void onClick_CREATE( View v ) {
       startActivity( new Intent( this, CreateActivity.class ) );
    }
 
-   public void onClick_HISTORY( View v ) {
+   public void onClick_QUIZZES( View v ) {
       startActivity( new Intent( this, QuizzesActivity.class ) );
    }
 

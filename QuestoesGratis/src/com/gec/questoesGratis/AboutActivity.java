@@ -24,7 +24,7 @@ public final class AboutActivity extends Activity {
    public void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
       setContentView( R.layout.about );
-      new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
+      new ActivityX( this ).setupActionBar( getString( R.string.g_APP_NAME ) );
    }
 
    /**

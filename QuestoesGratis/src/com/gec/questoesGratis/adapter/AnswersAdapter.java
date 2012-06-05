@@ -53,11 +53,11 @@ public final class AnswersAdapter extends ArrayAdapter< Answer > {
             final ImageView vStatus = (ImageView) row.findViewById( R.id.answers_item_status );
             final Boolean bStatus = answer.getStatus();
             if( bStatus == null ) {
-               vStatus.setImageResource( R.drawable.empty );
+               vStatus.setImageResource( R.drawable.ic_answers_empty );
             } else if( bStatus ) {
-               vStatus.setImageResource( R.drawable.right );
+               vStatus.setImageResource( R.drawable.ic_answers_right );
             } else {
-               vStatus.setImageResource( R.drawable.wrong );
+               vStatus.setImageResource( R.drawable.ic_answers_wrong );
             }
          }
       } catch( Exception e ) {

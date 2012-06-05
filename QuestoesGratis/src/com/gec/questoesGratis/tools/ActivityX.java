@@ -86,7 +86,7 @@ public final class ActivityX {
          // Add app name.
          titleText = new TextView( activity, null, R.attr.actionbarCompatTextStyle );
          titleText.setLayoutParams( springLayoutParams );
-         titleText.setText( R.string.app_name );
+         titleText.setText( R.string.g_APP_NAME );
          titleText.setSingleLine();
          actionBarCompat.addView( titleText );
 

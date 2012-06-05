@@ -25,8 +25,8 @@ import com.gec.questoesGratis.widgets.MultiSpinner;
 public final class CreateActivity extends Activity implements OnSeekBarChangeListener {
 
    private static final ApplicationX xApp        = ApplicationX.getInstance();
-   private static final String       ALL_MALE    = xApp.getString( R.string.g_all_male );
-   private static final String       ALL_FEMALE  = xApp.getString( R.string.g_all_female );
+   private static final String       ALL_MALE    = xApp.getString( R.string.g_ALL_MALE );
+   private static final String       ALL_FEMALE  = xApp.getString( R.string.g_ALL_FEMALE );
    private static final String       CREATE_WAIT = xApp.getString( R.string.create_wait );
 
    private Handler                   handler;
@@ -36,7 +36,7 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
    public void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
       setContentView( R.layout.create );
-      new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
+      new ActivityX( this ).setupActionBar( getString( R.string.g_APP_NAME ) );
 
       final SeekBar seekbar = (SeekBar) findViewById( R.id.create_total );
       seekbar.setOnSeekBarChangeListener( this );
@@ -55,11 +55,11 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
       super.onDestroy();
    }
 
-   public void onClick_previous( View view ) {
+   public void onClick_PREVIOUS( View view ) {
       startActivity( new Intent( this, MenuActivity.class ) );
    }
 
-   public void onClick_next( View view ) {
+   public void onClick_NEXT( View view ) {
       handler = new Handler();
       pDialog = ProgressDialog.show( this, null, CREATE_WAIT, true );
       new Thread( onClick_next ).start();

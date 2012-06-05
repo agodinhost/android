@@ -24,7 +24,7 @@ public final class QuizzesActivity extends Activity implements OnItemClickListen
    public void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
       setContentView( R.layout.quizzes );
-      new ActivityX( this ).setupActionBar( getString( R.string.app_name ) );
+      new ActivityX( this ).setupActionBar( getString( R.string.g_APP_NAME ) );
 
       adapter = new QuizzesAdapter( getApplicationContext(), R.id.quizzes_list, xApp.getQuizzes() );
 
@@ -33,7 +33,7 @@ public final class QuizzesActivity extends Activity implements OnItemClickListen
       listView.setOnItemClickListener( this );
    }
 
-   public void onClick_previous( View view ) {
+   public void onClick_PREVIOUS( View view ) {
       startActivity( new Intent( this, MenuActivity.class ) );
    }
 
