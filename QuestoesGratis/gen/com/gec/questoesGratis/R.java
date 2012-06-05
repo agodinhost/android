@@ -130,19 +130,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int menu=0x7f060017;
         public static final int more_wv=0x7f06001c;
         public static final int pager=0x7f06001d;
-        public static final int question_description=0x7f06001e;
-        public static final int question_details=0x7f060020;
-        public static final int question_group=0x7f060021;
-        public static final int question_option_0=0x7f060022;
-        public static final int question_option_1=0x7f060023;
-        public static final int question_option_2=0x7f060024;
-        public static final int question_option_3=0x7f060025;
-        public static final int question_option_4=0x7f060026;
-        public static final int question_wv=0x7f06001f;
-        public static final int quizzes_item_date=0x7f060028;
-        public static final int quizzes_item_rating=0x7f06002a;
-        public static final int quizzes_item_status=0x7f060029;
-        public static final int quizzes_list=0x7f060027;
+        public static final int question_description=0x7f06001f;
+        public static final int question_group=0x7f060020;
+        public static final int question_option_0=0x7f060021;
+        public static final int question_option_1=0x7f060022;
+        public static final int question_option_2=0x7f060023;
+        public static final int question_option_3=0x7f060024;
+        public static final int question_option_4=0x7f060025;
+        public static final int question_qualifier=0x7f06001e;
+        public static final int quizzes_item_date=0x7f060027;
+        public static final int quizzes_item_rating=0x7f060029;
+        public static final int quizzes_item_status=0x7f060028;
+        public static final int quizzes_list=0x7f060026;
     }
     public static final class layout {
         public static final int about=0x7f030000;

@@ -1,8 +1,6 @@
 
 package com.gec.questoesGratis.adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gec.questoesGratis.ApplicationX;
-import com.gec.questoesGratis.DetailsActivity;
 import com.gec.questoesGratis.R;
 import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.model.Question;
@@ -29,7 +26,6 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
 
    private static final LogX         log         = new LogX( AnswerPagerAdapter.class );
    private static final ApplicationX xApp        = ApplicationX.getInstance();
-   private static final int          P_MAX_CHARS = 150;
    private static final String       LAST_NUMBER = "lastNumber";
    private static final String       USER_ANSWER = "userAnswer";
 
@@ -96,23 +92,12 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
 
          final Answer answer = xApp.getAnswer( lastNumber );
 
-         final TextView qd = (TextView) view.findViewById( R.id.question_description );
-         qd.setText( answer.getQualifierD() );
+         final TextView vQualifier = (TextView) view.findViewById( R.id.question_qualifier );
+         vQualifier.setText( answer.getQualifierD() );
 
-         String qp = answer.getQuestionD();
-         final boolean showDetails = qp != null && ( qp.length() > P_MAX_CHARS || qp.contains( "<image" ) );
-         if( showDetails ) {
-            qp = qp.substring( 0, P_MAX_CHARS - 1 ) + " ...";
-         }
-
-         final WebView webView = (WebView) view.findViewById( R.id.question_wv );
-         WebViewClientX.loadData( webView, qp );
-
-         // Simple approach to decide weather to display the "details" button.
-         // It does not take into account any image or fancy sizing style.
-         final TextView details = (TextView) view.findViewById( R.id.question_details );
-         details.setVisibility( showDetails? TextView.VISIBLE: TextView.GONE );
-         details.setOnClickListener( this );
+         final WebView vDescription = (WebView) view.findViewById( R.id.question_description );
+         final String sDescription = answer.getQuestionD();
+         WebViewClientX.loadData( vDescription, sDescription );
 
          final RadioGroup radioGroup = (RadioGroup) view.findViewById( R.id.question_group );
          setup( radioGroup, answer.getQuestion() );
@@ -136,13 +121,9 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
 
       @Override
       public void onClick( View view ) {
-         final Context context = view.getContext();
+         //final Context context = view.getContext();
          final int id = view.getId();
-         if( id == R.id.question_details ) {
-            startActivity( new Intent( context, DetailsActivity.class ) );
-         } else {
-            Toast.makeText( view.getContext(), "onClick " + id, Toast.LENGTH_SHORT ).show();
-         }
+         Toast.makeText( view.getContext(), "onClick " + id, Toast.LENGTH_SHORT ).show();
       }
    }
 }
