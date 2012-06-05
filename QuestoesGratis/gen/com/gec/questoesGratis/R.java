@@ -227,23 +227,24 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int quizzes_title=0x7f07001f;
     }
     public static final class style {
-        public static final int ActionBarCompat=0x7f080009;
-        public static final int ActionBarCompatButton=0x7f08000a;
-        public static final int ActionBarCompatLogo=0x7f08000d;
-        public static final int ActionBarCompatProgressIndicator=0x7f08000b;
-        public static final int ActionBarCompatSeparator=0x7f08000c;
-        public static final int ActionBarCompatText=0x7f08000e;
-        public static final int Button=0x7f080003;
-        public static final int CheckBox=0x7f080006;
-        public static final int DashboardButton=0x7f08000f;
+        public static final int ActionBarCompat=0x7f08000a;
+        public static final int ActionBarCompatButton=0x7f08000b;
+        public static final int ActionBarCompatLogo=0x7f08000e;
+        public static final int ActionBarCompatProgressIndicator=0x7f08000c;
+        public static final int ActionBarCompatSeparator=0x7f08000d;
+        public static final int ActionBarCompatText=0x7f08000f;
+        public static final int Button=0x7f080005;
+        public static final int CheckBox=0x7f080003;
+        public static final int DashboardButton=0x7f080010;
         public static final int EditText=0x7f080001;
-        public static final int ImageButton=0x7f080005;
-        public static final int ImportantButton=0x7f080004;
-        public static final int ScrollView=0x7f080007;
-        public static final int Separator=0x7f080008;
-        public static final int Spinner=0x7f080002;
+        public static final int ImageButton=0x7f080007;
+        public static final int ImportantButton=0x7f080006;
+        public static final int RadioButton=0x7f080002;
+        public static final int ScrollView=0x7f080008;
+        public static final int Separator=0x7f080009;
+        public static final int Spinner=0x7f080004;
         public static final int TextView=0x7f080000;
-        public static final int Theme_QuestoesGratis=0x7f080010;
+        public static final int Theme_QuestoesGratis=0x7f080011;
     }
     public static final class styleable {
         /** Attributes that can be used with a AppTheme.

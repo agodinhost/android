@@ -85,8 +85,7 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
       }
 
       /**
-       * TODO: one webview per fragment IS kinda heavy!!! find a way to optimize
-       * it (reload the html using the same webview instance?)
+       * TODO: need to see the weight of a fragment with a webview client inside ...
        */
       private void setup( View view ) {
 

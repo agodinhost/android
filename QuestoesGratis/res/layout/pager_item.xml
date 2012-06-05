@@ -13,47 +13,42 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-	    <TextView
-	        style="@style/TextView"
-	        android:id="@+id/question_qualifier" />
+        <TextView
+            android:id="@+id/question_qualifier"
+            style="@style/TextView"
+            android:layout_marginBottom="10dip" />
 
         <WebView
             android:id="@+id/question_description"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="0dip"
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_weight="1"
-	        android:layout_marginTop="10dp" />
+            android:layout_margin="0dip"
+            android:padding="0dip" />
 
         <RadioGroup
             android:id="@+id/question_group"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_margin="0dip"
+            android:padding="0dip" >
 
             <RadioButton
                 android:id="@+id/question_option_0"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-
+                style="@style/RadioButton" />
             <RadioButton
                 android:id="@+id/question_option_1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-
+                style="@style/RadioButton" />
             <RadioButton
                 android:id="@+id/question_option_2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-
+                style="@style/RadioButton" />
             <RadioButton
                 android:id="@+id/question_option_3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
-
+                style="@style/RadioButton" />
             <RadioButton
                 android:id="@+id/question_option_4"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                style="@style/RadioButton" />
         </RadioGroup>
     </LinearLayout>
 
