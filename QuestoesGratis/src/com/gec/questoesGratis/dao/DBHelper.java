@@ -402,11 +402,12 @@ public final class DBHelper extends SQLiteOpenHelper {
 
       final List< Long > ids = getQuestionsId( filter );
       shuffle( ids );
-      final int start = randomStart( ids, total );
-      for( int n = 0; n < total; n++ ) {
-
+      final int startPos = randomStart( ids, total );
+      final int size = ids.size();
+      final int finalPos = size < total? size: total;
+      for( int n = 0; n < finalPos; n++ ) {
          final Question q = new Question();
-         q.setId( ids.get( start + n ) );
+         q.setId( ids.get( startPos + n ) );
          final Answer a = new Answer();
          a.setQuestion( q );
          a.setNumber( n + 1 );

@@ -44,19 +44,19 @@ public final class ListX {
     * Return a random start index to get a sub list of the given list.
     * 
     * @param list
-    * @param count the items count to get.
+    * @param total the items count to get.
     * @return the random start index.
     */
-   public static int randomStart( List< Long > list, int count ) {
+   public static int randomStart( List< Long > list, int total ) {
 
       final int r;
 
       final int n = list.size();
-      if( count > n ) {
+      if( total > n ) {
          r = 0;
       } else {
          final Random random = new Random();
-         r = random.nextInt( n - count );
+         r = random.nextInt( n - total );
       }
 
       return r;
