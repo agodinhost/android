@@ -261,44 +261,4 @@ public final class LogX {
          Log.v( tag, null, t );
       }
    }
-
-   /**
-    * Log WTF message.
-    * @param message the WTF message to log.
-    * @param args optional message format arguments to apply in the message.
-    */
-   public void wtf( String message, Object... args ) {
-
-      if( args == null ) {
-         Log.wtf( tag, message );
-      } else {
-         String format = MessageFormat.format( message, args );
-         Log.wtf( tag, format );
-      }
-   }
-
-   /**
-    * Log WTF message.
-    * @param t the throwable to log.
-    * @param message the WTF message to log.
-    * @param args optional message format arguments to apply in the message.
-    */
-   public void wtf( Throwable t, String message, Object... args ) {
-
-      if( args == null ) {
-         Log.wtf( tag, message, t );
-      } else {
-         String format = MessageFormat.format( message, args );
-         Log.wtf( tag, format, t );
-      }
-   }
-
-   /**
-    * Log WTF message.
-    * @param t the throwable to log.
-    */
-   public void wtf( Throwable t ) {
-
-      Log.wtf( tag, null, t );
-   }
 }
