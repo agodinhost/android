@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="horizontal" >
 
     <TextView
-        android:id="@+id/answers_item_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
         android:id="@+id/answers_item_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/answers_item_number"
-        android:visibility="invisible" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
     <TextView
-        android:id="@+id/answers_item_description"
-        android:layout_width="wrap_content"
+        android:id="@+id/answers_item_qualifier"
+        android:layout_width="0dip"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/answers_item_number" />
+        android:layout_weight="1"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:textColor="@color/positive" />
+
     <ImageView
         android:id="@+id/answers_item_status"
-        android:contentDescription="@string/answers_item_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true" />
+        android:contentDescription="@string/answers_item_image" />
 
-</RelativeLayout>
+</LinearLayout>

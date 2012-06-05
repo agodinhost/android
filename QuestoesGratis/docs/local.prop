@@ -1,0 +1,6 @@
+
+# /data/local.prop
+
+log.tag.AnswerPagerActivity=VERBOSE
+log.tag.AnswerPagerAdapter=VERBOSE
+log.tag.DBHelper=VERBOSE

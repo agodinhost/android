@@ -39,11 +39,12 @@ public final class WebViewClientX extends WebViewClient {
 
       webView.setWebViewClient( new WebViewClientX() );
 
-      WebSettings webSettings = webView.getSettings();
-      webSettings.setSavePassword( false );
-      webSettings.setSaveFormData( false );
-      webSettings.setJavaScriptEnabled( false );
-      webSettings.setUseWideViewPort( false );
+      final WebSettings settings = webView.getSettings();
+      settings.setSavePassword( false );
+      settings.setSaveFormData( false );
+      settings.setJavaScriptEnabled( false );
+      settings.setUseWideViewPort( false );
+      settings.setDefaultTextEncodingName( P_ENCODING );
 
       webView.loadData( data, P_MIMETYPE, P_ENCODING );
    }
@@ -52,11 +53,12 @@ public final class WebViewClientX extends WebViewClient {
 
       webView.setWebViewClient( new WebViewClientX() );
 
-      WebSettings webSettings = webView.getSettings();
-      webSettings.setSavePassword( false );
-      webSettings.setSaveFormData( false );
-      webSettings.setJavaScriptEnabled( false );
-      webSettings.setUseWideViewPort( false );
+      final WebSettings settings = webView.getSettings();
+      settings.setSavePassword( false );
+      settings.setSaveFormData( false );
+      settings.setJavaScriptEnabled( false );
+      settings.setUseWideViewPort( false );
+      settings.setDefaultTextEncodingName( P_ENCODING );
 
       webView.loadDataWithBaseURL( baseUrl, data, P_MIMETYPE, P_ENCODING, null );
    }

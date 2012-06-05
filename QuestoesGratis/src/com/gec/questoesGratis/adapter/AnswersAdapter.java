@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.adapter;
 
 import java.util.List;
@@ -40,17 +41,14 @@ public final class AnswersAdapter extends ArrayAdapter< Answer > {
       try {
          final Answer answer = list.get( position );
          if( answer != null ) {
-            final TextView vNumber = (TextView) row.findViewById( R.id.answers_item_number );
-            final String sNumber = answer.getNumberD();
-            vNumber.setText( sNumber );
-
             final TextView vId = (TextView) row.findViewById( R.id.answers_item_id );
+            vId.setVisibility( TextView.GONE );
             final String sId = String.valueOf( answer.getId() );
             vId.setText( sId );
 
-            final TextView vDescription = (TextView) row.findViewById( R.id.answers_item_description );
-            final String sDescription = answer.getQualifierD();
-            vDescription.setText( sDescription );
+            final TextView vQualifier = (TextView) row.findViewById( R.id.answers_item_qualifier );
+            final String sQualifier = answer.getQualifierD();
+            vQualifier.setText( sQualifier );
 
             final ImageView vStatus = (ImageView) row.findViewById( R.id.answers_item_status );
             final Boolean bStatus = answer.getStatus();

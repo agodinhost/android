@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.adapter;
 
 import android.content.Context;
@@ -21,14 +22,16 @@ import com.gec.questoesGratis.DetailsActivity;
 import com.gec.questoesGratis.R;
 import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.model.Question;
-import com.gec.questoesGratis.tools.WebViewClientX;
 import com.gec.questoesGratis.tools.LogX;
+import com.gec.questoesGratis.tools.WebViewClientX;
 
 public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
 
    private static final LogX         log         = new LogX( AnswerPagerAdapter.class );
    private static final ApplicationX xApp        = ApplicationX.getInstance();
    private static final int          P_MAX_CHARS = 150;
+   private static final String       LAST_NUMBER = "lastNumber";
+   private static final String       USER_ANSWER = "userAnswer";
 
    public AnswerPagerAdapter( FragmentManager fm ) {
       super( fm );
@@ -49,16 +52,16 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
 
    private static final class AnswerFragment extends Fragment implements OnClickListener {
 
-      private int questionNumber = 0;
-      private int userOption     = -1;
+      private int lastNumber = 0;
+      private int userAnswer = -1;
 
-      static final AnswerFragment newInstance( int questionNumber ) {
+      static final AnswerFragment newInstance( int lastNumberP ) {
 
-         log.d( "newInstance of questionNumber {0}", questionNumber );
+         log.d( "newInstance of lastNumber {0}", lastNumberP );
 
          final Bundle bundle = new Bundle();
-         bundle.putInt( "questionNumber", questionNumber );
-         bundle.putInt( "userOption", -1 );
+         bundle.putInt( LAST_NUMBER, lastNumberP );
+         bundle.putInt( USER_ANSWER, -1 );
 
          final AnswerFragment f = new AnswerFragment();
          f.setArguments( bundle );
@@ -68,18 +71,18 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
 
       @Override
       public void onCreate( Bundle savedInstanceState ) {
-         log.d( "onCreate questionNumber {0}", questionNumber );
+         log.d( "onCreate lastNumber {0}", lastNumber );
          super.onCreate( savedInstanceState );
          final Bundle bundle = getArguments();
          if( bundle != null ) {
-            questionNumber = bundle.getInt( "questionNumber" );
-            userOption = bundle.getInt( "userOption" );
+            lastNumber = bundle.getInt( LAST_NUMBER );
+            userAnswer = bundle.getInt( USER_ANSWER );
          }
       }
 
       @Override
       public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
-         log.d( "onCreateView questionNumber {0}", questionNumber );
+         log.d( "onCreateView lastNumber {0}", lastNumber );
          final View view = inflater.inflate( R.layout.pager_item, container, false );
          setup( view );
          return view;
@@ -91,7 +94,7 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
        */
       private void setup( View view ) {
 
-         final Answer answer = xApp.getAnswer( questionNumber );
+         final Answer answer = xApp.getAnswer( lastNumber );
 
          final TextView qd = (TextView) view.findViewById( R.id.question_description );
          qd.setText( answer.getQualifierD() );
@@ -119,7 +122,7 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
          final int l = radioGroup.getChildCount();
          for( int i = 0; i < l; i++ ) {
             final RadioButton r = (RadioButton) radioGroup.getChildAt( i );
-            r.setChecked( i == userOption );
+            r.setChecked( i == userAnswer );
             final String o = question.getOption( i );
             if( o != null ) {
                r.setText( o );

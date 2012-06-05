@@ -48,11 +48,17 @@ public final class Answer {
       this.question = question;
    }
 
+   /**
+    * Null  - means not answered yet/
+    * true  - right;
+    * false - wrong;
+    * @return the answer status.
+    */
    public Boolean getStatus() {
       try {
          return answer.equalsIgnoreCase( question.getMatch() );
       } catch( NullPointerException e ) {
-         return false;
+         return null;
       }
    }
 
