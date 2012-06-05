@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.dao;
 
 import static com.gec.questoesGratis.tools.ListX.randomStart;
@@ -212,8 +211,8 @@ public final class DBHelper extends SQLiteOpenHelper {
    public int getQuestionsCount( Filter filter ) {
 
       final StringBuffer b = //
-      new StringBuffer( "SELECT Count(1) FROM questions " ) //
-            .append( getRawWhere( filter ) );
+            new StringBuffer( "SELECT Count(1) FROM questions " ) //
+                  .append( getRawWhere( filter ) );
       final Cursor c = database.rawQuery( b.toString(), null );
       c.moveToFirst();
       int count = c.getInt( 0 );
@@ -347,7 +346,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       final StringBuffer b = new StringBuffer();
 
       if( list != null )
-         for( String item : list )
+         for( String item: list )
             b.append( "'" ) //
                   .append( item.trim() ) //
                   .append( "'" ) //
@@ -423,7 +422,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       final Long quizId = quiz.getId();
       final List< Answer > list = quiz.getAnswers();
       if( list != null )
-         for( Answer answer : list )
+         for( Answer answer: list )
             insertAnswer( quizId, answer );
    }
 
@@ -453,7 +452,7 @@ public final class DBHelper extends SQLiteOpenHelper {
             );
 
       while( c.moveToNext() )
-         list.add( new Long( c.getLong( 0 ) ) );
+         list.add( new Long( c.getLong( EQuestions_id ) ) );
       c.close();
 
       return list;
@@ -474,10 +473,10 @@ public final class DBHelper extends SQLiteOpenHelper {
    private Answer getAnswer( Cursor c ) {
 
       final Answer a = new Answer();
+      a.setQuestion( getQuestion( c ) );
       a.setId( c.getLong( EAnswers_id ) );
       a.setNumber( c.getInt( EAnswers_number ) );
       a.setAnswer( c.getString( EAnswers_answer ) );
-      a.setQuestion( getQuestion( c ) );
       return a;
    }
 

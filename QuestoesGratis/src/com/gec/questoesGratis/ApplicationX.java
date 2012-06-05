@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis;
 
 import java.io.IOException;
@@ -136,16 +135,22 @@ public final class ApplicationX extends Application {
 
    public Answer getAnswer() {
       return answersCount > 0? //
-      quiz.getAnswers().get( currentAnswer )
-            : //
+            quiz.getAnswers().get( currentAnswer ): //
             null;
    }
 
    public Answer getAnswer( int index ) {
       return answersCount > 0? //
-      quiz.getAnswers().get( index )
-            : //
+            quiz.getAnswers().get( index ): //
             null;
+   }
+
+   public void updateAnswer( int index, int answerI ) {
+      if( answerI > 0 ) {
+         final Answer answer = getAnswer( index );
+         answer.setAnswer( answerI );
+         dbHelper.updateAnswer( answer.getId(), answer.getAnswer() );
+      }
    }
 
    public int getAnswersCount() {

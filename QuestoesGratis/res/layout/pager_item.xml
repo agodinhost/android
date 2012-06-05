@@ -35,19 +35,14 @@
             android:padding="0dip" >
 
             <RadioButton
-                android:id="@+id/question_option_0"
                 style="@style/RadioButton" />
             <RadioButton
-                android:id="@+id/question_option_1"
                 style="@style/RadioButton" />
             <RadioButton
-                android:id="@+id/question_option_2"
                 style="@style/RadioButton" />
             <RadioButton
-                android:id="@+id/question_option_3"
                 style="@style/RadioButton" />
             <RadioButton
-                android:id="@+id/question_option_4"
                 style="@style/RadioButton" />
         </RadioGroup>
     </LinearLayout>

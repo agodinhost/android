@@ -32,8 +32,21 @@ public final class Answer {
       return answer;
    }
 
+   public int getAnswerInt() {
+      if( answer == null )
+         return -1;
+      else
+         return answer.charAt( 0 ) - 'a';
+   }
+
    public void setAnswer( String answer ) {
       this.answer = answer;
+   }
+
+   public void setAnswer( int index ) {
+      answer = null;
+      if( index > -1 )
+         answer = String.valueOf( (char) ( 'a' + index ) );
    }
 
    public Long getQuestionId() {
