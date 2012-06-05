@@ -27,9 +27,8 @@
 
     <string name="g_previous">Voltar</string>
     <string name="g_next">Prosseguir</string>
-
-    <string name="g_all_M">TODOS</string>
-    <string name="g_all_W">TODAS</string>
+    <string name="g_all_male">TODOS</string>
+    <string name="g_all_female">TODAS</string>
 
     <string name="menu_title">Menu Principal</string>
     <string name="menu_new">Novo Simulado</string>
@@ -76,7 +75,11 @@
     <string name="about_web_action">Visite o website</string>
     <string name="about_feedback_subject">Feedback do Questões Grátis</string>
     <string name="about_feedback_text">Qual o seu telefone?\n%s\n\nSeu feedback aqui:\n</string>
-    
+
+    <string name="about_feedback_email">johnDoe@somewhere.com</string>
+    <string name="about_market_uri">market://details?id=com.gec.questoesGratis</string>
+    <string name="about_info_uri">http://www.questoesGratis.com.br</string>
+
     <string name="about_created_by">Escrito por</string>
     <string name="about_gec">G&amp;C Consultoria e Informática Ltda.</string>
     <string name="about_opensource_under">Open-sourced under</string>

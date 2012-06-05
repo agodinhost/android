@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import android.app.Activity;
@@ -14,10 +15,10 @@ import com.gec.questoesGratis.tools.ActivityX;
  */
 public final class AboutActivity extends Activity {
 
-   //TODO: external string!!!
-   public static final String INFO_URL       = "http://www.questoesGratis.com.br";
-   public static final String FEEDBACK_EMAIL = "johnDoe@somewhere.com";
-   public static final String MARKET_LISTING = "market://details?id=com.gec.questoesGratis";
+   private static final ApplicationX xApp           = ApplicationX.getInstance();
+   private static final String       FEEDBACK_EMAIL = xApp.getString( R.string.about_feedback_email );
+   private static final String       INFO_URI       = xApp.getString( R.string.about_info_uri );
+   private static final String       MARKET_URI     = xApp.getString( R.string.about_market_uri );
 
    @Override
    public void onCreate( Bundle savedInstanceState ) {
@@ -40,16 +41,16 @@ public final class AboutActivity extends Activity {
    }
 
    /**
-    * Opens website of the project.
+    * Opens the project website.
     */
    public void webClicked( View view ) {
-      startActivity( new Intent( Intent.ACTION_VIEW, Uri.parse( INFO_URL ) ) );
+      startActivity( new Intent( Intent.ACTION_VIEW, Uri.parse( INFO_URI ) ) );
    }
 
    /**
-    * Opens Android Market listing
+    * Opens the Android Market listing.
     */
    public void rate( View view ) {
-      startActivity( new Intent( Intent.ACTION_VIEW, Uri.parse( MARKET_LISTING ) ) );
+      startActivity( new Intent( Intent.ACTION_VIEW, Uri.parse( MARKET_URI ) ) );
    }
 }

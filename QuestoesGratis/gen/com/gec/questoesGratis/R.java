@@ -159,14 +159,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int quizzes_item=0x7f03000a;
     }
     public static final class string {
-        public static final int about_apache_20=0x7f070031;
-        public static final int about_created_by=0x7f07002e;
+        public static final int about_apache_20=0x7f070034;
+        public static final int about_created_by=0x7f070031;
+        public static final int about_feedback_email=0x7f07002e;
         public static final int about_feedback_subject=0x7f07002c;
         public static final int about_feedback_text=0x7f07002d;
-        public static final int about_gec=0x7f07002f;
+        public static final int about_gec=0x7f070032;
+        public static final int about_info_uri=0x7f070030;
         public static final int about_mail_action=0x7f070027;
         public static final int about_mail_label=0x7f070026;
-        public static final int about_opensource_under=0x7f070030;
+        public static final int about_market_uri=0x7f07002f;
+        public static final int about_opensource_under=0x7f070033;
         public static final int about_rate_action=0x7f070029;
         public static final int about_rate_label=0x7f070028;
         public static final int about_title=0x7f070025;
@@ -211,8 +214,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     
          */
         public static final int g_ADS_UNIT_ID=0x7f070001;
-        public static final int g_all_M=0x7f070009;
-        public static final int g_all_W=0x7f07000a;
+        public static final int g_all_female=0x7f07000a;
+        public static final int g_all_male=0x7f070009;
         public static final int g_next=0x7f070008;
         public static final int g_previous=0x7f070007;
         public static final int menu_about=0x7f07000f;

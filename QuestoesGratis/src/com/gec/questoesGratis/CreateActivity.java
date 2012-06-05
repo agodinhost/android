@@ -25,8 +25,8 @@ import com.gec.questoesGratis.widgets.MultiSpinner;
 public final class CreateActivity extends Activity implements OnSeekBarChangeListener {
 
    private static final ApplicationX xApp        = ApplicationX.getInstance();
-   private static final String       TODOS       = xApp.getString( R.string.g_all_M );
-   private static final String       TODAS       = xApp.getString( R.string.g_all_W );
+   private static final String       ALL_MALE    = xApp.getString( R.string.g_all_male );
+   private static final String       ALL_FEMALE  = xApp.getString( R.string.g_all_female );
    private static final String       CREATE_WAIT = xApp.getString( R.string.create_wait );
 
    private Handler                   handler;
@@ -41,13 +41,13 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
       final SeekBar seekbar = (SeekBar) findViewById( R.id.create_total );
       seekbar.setOnSeekBarChangeListener( this );
 
-      setItems( R.id.create_ms_banca, xApp.getBancas(), TODAS );
-      setItems( R.id.create_ms_ano, xApp.getAnos(), TODOS );
-      setItems( R.id.create_ms_orgao, xApp.getOrgaos(), TODOS );
-      setItems( R.id.create_ms_uf, xApp.getUFs(), TODAS );
-      setItems( R.id.create_ms_cargo, xApp.getCargos(), TODOS );
-      setItems( R.id.create_ms_disciplina, xApp.getDisciplinas(), TODAS );
-      setItems( R.id.create_ms_assunto, xApp.getAssuntos(), TODOS );
+      setItems( R.id.create_ms_banca, xApp.getBancas(), ALL_FEMALE );
+      setItems( R.id.create_ms_ano, xApp.getAnos(), ALL_MALE );
+      setItems( R.id.create_ms_orgao, xApp.getOrgaos(), ALL_MALE );
+      setItems( R.id.create_ms_uf, xApp.getUFs(), ALL_FEMALE );
+      setItems( R.id.create_ms_cargo, xApp.getCargos(), ALL_MALE );
+      setItems( R.id.create_ms_disciplina, xApp.getDisciplinas(), ALL_FEMALE );
+      setItems( R.id.create_ms_assunto, xApp.getAssuntos(), ALL_MALE );
    }
 
    @Override
