@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import java.io.IOException;
@@ -135,13 +136,15 @@ public final class ApplicationX extends Application {
 
    public Answer getAnswer() {
       return answersCount > 0? //
-            quiz.getAnswers().get( currentAnswer ): //
+      quiz.getAnswers().get( currentAnswer )
+            : //
             null;
    }
 
    public Answer getAnswer( int index ) {
       return answersCount > 0? //
-            quiz.getAnswers().get( index ): //
+      quiz.getAnswers().get( index )
+            : //
             null;
    }
 
@@ -196,5 +199,9 @@ public final class ApplicationX extends Application {
    public void moveLast() {
       currentAnswer = answersCount;
       pager.setCurrentItem( currentAnswer );
+   }
+
+   public boolean isLastAnswer() {
+      return currentAnswer == answersCount;
    }
 }

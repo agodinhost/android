@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.adapter;
 
 import android.os.Bundle;
@@ -79,21 +80,6 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
          return view;
       }
 
-      @Override
-      public void onSaveInstanceState( Bundle outState ) {
-         super.onSaveInstanceState( outState );
-         xApp.updateAnswer( iNumber, iAnswer );
-      }
-
-      @Override
-      public void onResume() {
-         super.onResume();
-         xApp.updateAnswer( iNumber, iAnswer );
-      }
-
-      /**
-       * TODO: need to see the weight of a fragment with a webview client inside ...
-       */
       private void setup( View view ) {
 
          final Answer answer = xApp.getAnswer( iNumber );
@@ -106,6 +92,8 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
 
          final RadioGroup radioGroup = (RadioGroup) view.findViewById( R.id.question_group );
          setup( radioGroup, answer.getQuestion() );
+
+         //TODO: if last answer then show finish button;
       }
 
       private void setup( RadioGroup radioGroup, Question question ) {
@@ -131,6 +119,7 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
          final Answer answer = xApp.getAnswer( iNumber );
          iAnswer = view.getId();
          answer.setAnswer( iAnswer );
+         xApp.updateAnswer( iNumber, iAnswer );
       }
    }
 }
