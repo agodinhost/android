@@ -147,12 +147,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal" >
-
         <Button
             style="@style/Button"
-            android:onClick="onClick_PREVIOUS"
-            android:text="@string/g_PREVIOUS" />
-
+            android:onClick="onClick_BACK"
+            android:text="@string/g_BACK" />
         <Button
             style="@style/Button"
             android:onClick="onClick_NEXT"

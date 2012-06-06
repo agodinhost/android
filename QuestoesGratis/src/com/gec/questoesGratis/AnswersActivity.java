@@ -32,7 +32,7 @@ public final class AnswersActivity extends Activity implements OnItemClickListen
       listView.setOnItemClickListener( this );
    }
 
-   public void onClick_PREVIOUS( View view ) {
+   public void onClick_BACK( View view ) {
       startActivity( new Intent( this, QuizzesActivity.class ) );
    }
 

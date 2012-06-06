@@ -20,25 +20,18 @@
         <item name="android:singleLine">true</item>
     </style>
 
-    <style name="RadioButton">
+    <style name="CheckBox">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="RadioButton" parent="CheckBox">
         <item name="android:layout_gravity">top</item>
         <item name="android:layout_margin">0dip</item>
         <item name="android:paddingTop">0dip</item>
         <item name="android:paddingRight">0dip</item>
         <item name="android:paddingBottom">10dip</item>
         <item name="android:paddingLeft">50dip</item>
-    </style>
-
-    <style name="CheckBox">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="Spinner" parent="android:style/Widget.Spinner">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="Button" parent="android:style/Widget.Button">
@@ -62,6 +55,12 @@
         <item name="android:background">@drawable/important_button</item>
     </style>
 
+    <style name="NavButton" parent="ImportantButton">
+        <item name="android:textSize">8dp</item>
+        <!-- <item name="android:layout_margin">0dp</item>  -->
+        <item name="android:padding">0dp</item>
+    </style>
+
     <style name="ImageButton" parent="android:style/Widget.ImageButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -76,6 +75,11 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@android:drawable/divider_horizontal_bright</item>
+    </style>
+
+    <style name="Spinner" parent="android:style/Widget.Spinner">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="ActionBarCompat">

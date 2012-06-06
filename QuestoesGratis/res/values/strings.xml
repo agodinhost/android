@@ -27,8 +27,12 @@
     <string name="g_ADS_CHANNEL_ID">exames,testes,preparatórios</string>
     <string name="g_ADS_TEST_DEVICES">TEST_EMULATOR, emulator-5554</string>
 
-    <string name="g_PREVIOUS">Voltar</string>
-    <string name="g_NEXT">Prosseguir</string>
+    <string name="g_BACK">Voltar</string>
+    <string name="g_FIRST">Primeira</string>
+    <string name="g_PREVIOUS">Anterior</string>
+    <string name="g_NEXT">Próxima</string>
+    <string name="g_LAST">Última</string>
+    <string name="g_FINISH">Finalizar</string>
     <string name="g_ALL_MALE">TODOS</string>
     <string name="g_ALL_FEMALE">TODAS</string>
 
@@ -53,12 +57,15 @@
     <string name="create_no_data">Não há questões que atendam ao filtro selecionado, por favor, altere o filtro e tente novamente …</string>
     <string name="create_wait">Aguarde, criando novo questionário …</string>
 
-    <string name="quizzes_title">Meus Simulados:</string>
-    <string name="quizzes_empty">Não há simulados …</string>
-
     <string name="answers_title">Simulado:</string>
     <string name="answers_item_image">Conclusão</string>
 
+    <string name="answer_confirm_complete">Deseja finalizar o simulado? O simulado não pode ser alterado depois de finalizado.</string>
+    <string name="answer_confirm_incomplete">Ainda há questões não respondidas, deseja realmente finalizar o simulado?</string>
+    
+    <string name="quizzes_title">Meus Simulados:</string>
+    <string name="quizzes_empty">Não há simulados …</string>
+    
     <string name="more_title">Mais Questões:</string>
     <string name="more_uri">http://www.questoesGratis.com.br</string>
 

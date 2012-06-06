@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis.adapter;
 
 import android.os.Bundle;
@@ -26,13 +25,13 @@ import com.gec.questoesGratis.tools.WebViewClientX;
  * @author agodinho
  *
  */
-public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
+public final class AnswerAdapter extends FragmentStatePagerAdapter {
 
    private static final ApplicationX xApp   = ApplicationX.getInstance();
-   private static final String       NUMBER = "iNumber";
+   private static final String       INDEX  = "iIndex";
    private static final String       ANSWER = "iAnswer";
 
-   public AnswerPagerAdapter( FragmentManager fm ) {
+   public AnswerAdapter( FragmentManager fm ) {
       super( fm );
    }
 
@@ -51,7 +50,7 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
       static final AnswerFragment createInstance( Answer answer ) {
 
          final Bundle bundle = new Bundle();
-         bundle.putInt( NUMBER, answer.getNumber() );
+         bundle.putInt( INDEX, answer.getNumber() - 1 );
          bundle.putInt( ANSWER, answer.getAnswerInt() );
 
          final AnswerFragment f = new AnswerFragment();
@@ -59,7 +58,7 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
          return f;
       }
 
-      private int iNumber = 0;
+      private int iIndex  = 0;
       private int iAnswer = -1;
 
       @Override
@@ -68,32 +67,30 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
          super.onCreate( savedInstanceState );
          final Bundle bundle = getArguments();
          if( bundle != null ) {
-            iNumber = bundle.getInt( NUMBER );
+            iIndex = bundle.getInt( INDEX );
             iAnswer = bundle.getInt( ANSWER );
          }
       }
 
       @Override
       public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
-         final View view = inflater.inflate( R.layout.pager_item, container, false );
+         final View view = inflater.inflate( R.layout.answer_item, container, false );
          setup( view );
          return view;
       }
 
       private void setup( View view ) {
 
-         final Answer answer = xApp.getAnswer( iNumber );
+         final Answer answer = xApp.getAnswer( iIndex );
 
-         final TextView vQualifier = (TextView) view.findViewById( R.id.question_qualifier );
+         final TextView vQualifier = (TextView) view.findViewById( R.id.answer_item_qualifier );
          vQualifier.setText( answer.getQualifierD() );
 
-         final WebView vDescription = (WebView) view.findViewById( R.id.question_description );
+         final WebView vDescription = (WebView) view.findViewById( R.id.answer_item_description );
          WebViewClientX.loadData( vDescription, answer.getQuestionD() );
 
-         final RadioGroup radioGroup = (RadioGroup) view.findViewById( R.id.question_group );
+         final RadioGroup radioGroup = (RadioGroup) view.findViewById( R.id.answer_item_group );
          setup( radioGroup, answer.getQuestion() );
-
-         //TODO: if last answer then show finish button;
       }
 
       private void setup( RadioGroup radioGroup, Question question ) {
@@ -116,10 +113,10 @@ public final class AnswerPagerAdapter extends FragmentStatePagerAdapter {
 
       @Override
       public void onClick( View view ) {
-         final Answer answer = xApp.getAnswer( iNumber );
+         final Answer answer = xApp.getAnswer( iIndex );
          iAnswer = view.getId();
          answer.setAnswer( iAnswer );
-         xApp.updateAnswer( iNumber, iAnswer );
+         xApp.updateAnswer( iIndex, iAnswer );
       }
    }
 }

@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis;
 
 import java.io.IOException;
@@ -136,15 +135,13 @@ public final class ApplicationX extends Application {
 
    public Answer getAnswer() {
       return answersCount > 0? //
-      quiz.getAnswers().get( currentAnswer )
-            : //
+            quiz.getAnswers().get( currentAnswer ): //
             null;
    }
 
    public Answer getAnswer( int index ) {
       return answersCount > 0? //
-      quiz.getAnswers().get( index )
-            : //
+            quiz.getAnswers().get( index ): //
             null;
    }
 
@@ -168,8 +165,8 @@ public final class ApplicationX extends Application {
       currentAnswer = index;
       if( currentAnswer < 0 )
          currentAnswer = 0;
-      if( currentAnswer > answersCount )
-         currentAnswer = answersCount;
+      if( currentAnswer > answersCount - 1 )
+         currentAnswer = answersCount - 1;
    }
 
    public void setPager( ViewPager pagerP ) {
@@ -191,17 +188,44 @@ public final class ApplicationX extends Application {
 
    public void moveNext() {
       currentAnswer++;
-      if( currentAnswer > answersCount )
-         currentAnswer = answersCount;
+      if( currentAnswer > answersCount - 1 )
+         currentAnswer = answersCount - 1;
       pager.setCurrentItem( currentAnswer );
    }
 
    public void moveLast() {
-      currentAnswer = answersCount;
+      currentAnswer = answersCount - 1;
       pager.setCurrentItem( currentAnswer );
    }
 
+   public boolean isFirstAnswer() {
+      return currentAnswer == 0;
+   }
+
    public boolean isLastAnswer() {
-      return currentAnswer == answersCount;
+      return currentAnswer == answersCount - 1;
+   }
+
+   public boolean isComplete() {
+      return false;
+   }
+
+   public void rate() {
+      
+   }
+
+   public String getFormat2Fabebook() {
+      //TODO:"quiz string to facebook ...";
+      return "quiz string to facebook ...";
+   }
+
+   public String getFormat2Twitter() {
+      //TODO:"quiz string to twitter ...";
+      return "quiz string to twitter ...";
+   }
+
+   public String getFormat2Gmail() {
+      //TODO:"quiz string to gmail ...";
+      return "quiz string to gmail ...";
    }
 }

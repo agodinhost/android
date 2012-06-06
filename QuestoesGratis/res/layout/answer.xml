@@ -9,7 +9,7 @@
     <LinearLayout style="@style/ActionBarCompat" />
     
     <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+        android:id="@+id/answer_pager"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
@@ -22,13 +22,31 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal" >
         <Button
-            style="@style/Button"
+            android:id="@+id/answer_first"
+            style="@style/NavButton"
+            android:onClick="onClick_FIRST"
+            android:text="@string/g_FIRST" />
+        <Button
+            android:id="@+id/answer_previous"
+            style="@style/NavButton"
             android:onClick="onClick_PREVIOUS"
             android:text="@string/g_PREVIOUS" />
         <Button
-            style="@style/Button"
+            android:id="@+id/answer_next"
+            style="@style/NavButton"
             android:onClick="onClick_NEXT"
             android:text="@string/g_NEXT" />
-    </LinearLayout>
+        <Button
+            android:id="@+id/answer_last"
+            style="@style/NavButton"
+            android:onClick="onClick_LAST"
+            android:text="@string/g_LAST" />
+
+        <Button
+            android:id="@+id/answer_finish"
+            style="@style/ImportantButton"
+            android:onClick="onClick_FINISH"
+            android:text="@string/g_FINISH" />
+        </LinearLayout>
 
 </LinearLayout>

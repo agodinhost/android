@@ -1,22 +1,21 @@
-
 package com.gec.questoesGratis;
 
 import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.gec.questoesGratis.model.Filter;
+import com.gec.questoesGratis.model.Filter.Ignore;
 import com.gec.questoesGratis.tools.ActivityX;
+import com.gec.questoesGratis.tools.DialogX;
 import com.gec.questoesGratis.widgets.MultiSpinner;
 
 /**
@@ -30,7 +29,7 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
    private static final String       CREATE_WAIT = xApp.getString( R.string.create_wait );
 
    private Handler                   handler;
-   private ProgressDialog            pDialog;
+   private ProgressDialog            progress;
 
    @Override
    public void onCreate( Bundle savedInstanceState ) {
@@ -50,13 +49,13 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
       setItems( R.id.create_ms_assunto, xApp.getAssuntos(), ALL_MALE );
    }
 
-   public void onClick_PREVIOUS( View view ) {
+   public void onClick_BACK( View view ) {
       startActivity( new Intent( this, MenuActivity.class ) );
    }
 
    public void onClick_NEXT( View view ) {
       handler = new Handler();
-      pDialog = ProgressDialog.show( this, null, CREATE_WAIT, true );
+      progress = ProgressDialog.show( this, null, CREATE_WAIT, true );
       new Thread( onClick_next ).start();
    }
 
@@ -69,6 +68,7 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
 
    private Filter getFilter() {
       final Filter filter = new Filter();
+      filter.setIgnore( getIgnore( R.id.create_ignore_group ) );
       filter.setTotal( getProgress( R.id.create_total ) );
       filter.setBancas( getSelectedItems( R.id.create_ms_banca ) );
       filter.setAnos( getSelectedItems( R.id.create_ms_ano ) );
@@ -78,6 +78,21 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
       filter.setDisciplinas( getSelectedItems( R.id.create_ms_disciplina ) );
       filter.setAssuntos( getSelectedItems( R.id.create_ms_assunto ) );
       return filter;
+   }
+
+   private Ignore getIgnore( int viewId ) {
+      final RadioGroup rg = (RadioGroup) findViewById( viewId );
+      final int id = rg.getCheckedRadioButtonId();
+      if( id == R.id.create_ignore_answered )
+         return Ignore.ANSWERED;
+      else if( id == R.id.create_ignore_right )
+         return Ignore.RIGHT;
+      else if( id == R.id.create_ignore_wrong )
+         return Ignore.WRONG;
+      else if( id == R.id.create_ignore_none )
+         return Ignore.NONE;
+      else
+         return null;
    }
 
    private int getProgress( int viewId ) {
@@ -106,24 +121,11 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
    }
 
    /* @formatter:off */
-   private void alert( Integer stringId ) {
-      final AlertDialog dialog = new AlertDialog //
-         .Builder( CreateActivity.this ) //
-         .setMessage( stringId ) //
-         .setPositiveButton( android.R.string.ok, new OnClickListener() {
-            @Override
-            public void onClick( DialogInterface dialog, int which ) {
-               dialog.dismiss(); 
-            }
-         } ) //
-         .create();
-      dialog.show();
-   }
 
    private final Runnable noData = new Runnable() { //
       @Override
       public void run() {
-         alert( R.string.create_no_data );
+         DialogX.alert( CreateActivity.this, R.string.create_no_data );
       }
    };
    
@@ -133,13 +135,15 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
          xApp.setFilter( getFilter() );
          if( xApp.getQuestionsCount() > 0 ) {
             xApp.createQuiz( );
-            pDialog.dismiss();
-            startActivity( new Intent( CreateActivity.this, AnswerPagerActivity.class ) );
+            progress.dismiss();
+            startActivity( new Intent( CreateActivity.this, AnswerActivity.class ) );
          } else {
-            pDialog.dismiss();
+            progress.dismiss();
             handler.post( noData );
          }
       }
    };
+
    /* @formatter:on */
+
 }

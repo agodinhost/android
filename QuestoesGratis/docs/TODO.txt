@@ -14,6 +14,16 @@ OK	- quantidade máxima de questõex vs questões disponíveis (list limits);
 	
 	- AnswerPagerAdapter,  need to see the weight of a fragment with a webview client inside ...
 	
+	- remover details.xml, devo reutilizar o answer pager;
+	
+	- remover DBProperties, não há ganho visto a qtd de constantes (fazer backup);
+	
+	- UtilX, rever;
+	
+	- themes.xml, how to use it?
+	
+	- botões de navegação desabilitados ...
+	
 	
 	
 References:

@@ -24,7 +24,7 @@ public final class MoreActivity extends Activity {
       WebViewClientX.loadUrl( webView, getString( R.string.more_uri ) );
    }
 
-   public void onClick_PREVIOUS( View view ) {
+   public void onClick_BACK( View view ) {
       startActivity( new Intent( this, MenuActivity.class ) );
    }
 }

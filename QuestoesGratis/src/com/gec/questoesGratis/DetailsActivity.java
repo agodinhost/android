@@ -25,7 +25,7 @@ public final class DetailsActivity extends FragmentActivity {
       setup();
    }
 
-   public void onClick_PREVIOUS( View view ) {
+   public void onClick_BACK( View view ) {
       finish();
    }
 

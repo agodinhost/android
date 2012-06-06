@@ -1,4 +1,3 @@
-
 package com.gec.questoesGratis;
 
 import android.app.Activity;
@@ -15,8 +14,6 @@ public final class MenuActivity extends Activity {
       super.onCreate( savedInstanceState );
       setContentView( R.layout.menu );
       new ActivityX( this ).setupActionBar( getString( R.string.g_APP_NAME ), false );
-
-      getApplication();
    }
 
    public void onClick_CREATE( View v ) {

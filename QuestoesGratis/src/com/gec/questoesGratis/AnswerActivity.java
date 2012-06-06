@@ -1,9 +1,10 @@
-
 package com.gec.questoesGratis;
 
 import java.util.List;
 
 import android.content.ComponentName;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -12,45 +13,83 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Button;
 
-import com.gec.questoesGratis.adapter.AnswerPagerAdapter;
+import com.gec.questoesGratis.adapter.AnswerAdapter;
 import com.gec.questoesGratis.tools.ActivityX;
+import com.gec.questoesGratis.tools.DialogX;
 
-public final class AnswerPagerActivity extends FragmentActivity {
+public final class AnswerActivity extends FragmentActivity {
 
    private static final ApplicationX xApp = ApplicationX.getInstance();
 
    @Override
    public void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
-      setContentView( R.layout.pager );
+      setContentView( R.layout.answer );
 
       final ActivityX x = new ActivityX( this );
       x.setupActionBar( getString( R.string.g_APP_NAME ) );
       x.addActionButtonCompat( R.drawable.ic_title_share, onClick_share, false );
 
-      final ViewPager pager = (ViewPager) findViewById( R.id.pager );
-      pager.setAdapter( new AnswerPagerAdapter( getSupportFragmentManager() ) );
+      final ViewPager pager = (ViewPager) findViewById( R.id.answer_pager );
+      pager.setAdapter( new AnswerAdapter( getSupportFragmentManager() ) );
       xApp.setPager( pager );
+
+      updateNavButtons();
    }
 
    public void onClick_FIRST( View view ) {
       xApp.moveFirst();
+      updateNavButtons();
    }
 
    public void onClick_PREVIOUS( View view ) {
       xApp.movePrevious();
+      updateNavButtons();
    }
 
    public void onClick_NEXT( View view ) {
       xApp.moveNext();
+      updateNavButtons();
    }
 
    public void onClick_LAST( View view ) {
       xApp.moveLast();
+      updateNavButtons();
+   }
+
+   public void onClick_FINISH( View view ) {
+      DialogX.confirm( this, onClick_confirm, //
+            xApp.isComplete()? //
+                  R.string.answer_confirm_complete: //
+                  R.string.answer_confirm_incomplete );
+   }
+
+   private void updateNavButtons() {
+      update( R.id.answer_first, R.id.answer_previous, xApp.isFirstAnswer() );
+      update( R.id.answer_last, R.id.answer_next, xApp.isLastAnswer() );
+   }
+
+   private void update( int resId1, int resId2, boolean disabled ) {
+      final Button btn1 = (Button) findViewById( resId1 );
+      btn1.setEnabled( !disabled );
+      final Button btn2 = (Button) findViewById( resId2 );
+      btn2.setEnabled( !disabled );
    }
 
    /*@formatter:off*/
+
+   private static final DialogInterface.OnClickListener onClick_confirm = new OnClickListener() {
+      @Override
+      public void onClick( DialogInterface dialog, int response ) {
+         if( response == android.R.string.yes ) {
+            xApp.rate();
+            //TODO: move to screen ...
+         }
+      }
+   };
+
    private final View.OnClickListener onClick_share = new View.OnClickListener() {
 
       @Override
@@ -58,7 +97,7 @@ public final class AnswerPagerActivity extends FragmentActivity {
 
          final Intent intent = new Intent( android.content.Intent.ACTION_SEND );
          intent.setType( "text/plain" );
-         intent.putExtra( android.content.Intent.EXTRA_TEXT, "Content to share" );
+         intent.putExtra( android.content.Intent.EXTRA_TEXT, xApp.getFormat2Fabebook() );
 
          //share via facebook.
          final PackageManager pm = v.getContext().getPackageManager();
@@ -79,5 +118,7 @@ public final class AnswerPagerActivity extends FragmentActivity {
          //share via html email.
       }
    };
+
    /*@formatter:on*/
+
 }

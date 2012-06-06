@@ -51,7 +51,7 @@
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity
-            android:name=".AnswerPagerActivity"
+            android:name=".AnswerActivity"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden" />
         <activity
