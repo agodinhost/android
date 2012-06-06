@@ -1,15 +1,15 @@
 
 based on google Quiz and pool.
 
-	- resize das imagens - botões 96 x 96;
+OK	- resize das imagens - botões 96 x 96;
 	- remover images e estilos não utilizados;
 	- logo deve ficar em cima do google ad;
-	- botão more, remover (a pedidos, pra simplificar);
+OK	- botão more, remover (a pedidos, pra simplificar);
 	- status não concluído, não pode alterar o questionário;
 	
-	- banco;
+OK	- banco;
 	- send to (FB,email,etc, copiar do Quiz and Pool);
-	- quantidade máxima de questõex vs questões disponíveis (list limits);
+OK	- quantidade máxima de questõex vs questões disponíveis (list limits);
 	- histórico vazio, deve apresentar mensagem apropriada;
 	
 	
@@ -31,3 +31,8 @@ References:
 	http://www.html5rocks.com/en/tutorials/webdatabase/todo/
 	
 	http://sqlite.awardspace.info/syntax/sqlitepg09.htm
+	
+	SHARE (facebook, twitter, gmail)
+	http://stackoverflow.com/questions/3515198/share-text-on-facebook-from-android-app-via-action-send
+    http://vnstep.wordpress.com/2012/04/14/share-via-android/
+	

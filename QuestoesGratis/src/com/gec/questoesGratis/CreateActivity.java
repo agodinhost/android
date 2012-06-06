@@ -50,11 +50,6 @@ public final class CreateActivity extends Activity implements OnSeekBarChangeLis
       setItems( R.id.create_ms_assunto, xApp.getAssuntos(), ALL_MALE );
    }
 
-   @Override
-   protected void onDestroy() {
-      super.onDestroy();
-   }
-
    public void onClick_PREVIOUS( View view ) {
       startActivity( new Intent( this, MenuActivity.class ) );
    }

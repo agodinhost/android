@@ -19,13 +19,13 @@
         android:layout_height="0dip"
         android:layout_weight="1"
         android:fadeScrollbars="false"
-        android:padding="@dimen/padding" >
-    </ListView>
+        android:padding="@dimen/padding" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal" >
+
         <Button
             style="@style/Button"
             android:onClick="onClick_PREVIOUS"

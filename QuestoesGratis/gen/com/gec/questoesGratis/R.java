@@ -130,24 +130,24 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int quizzes_item=0x7f03000a;
     }
     public static final class string {
-        public static final int about_apache_20=0x7f070031;
-        public static final int about_created_by=0x7f07002e;
-        public static final int about_feedback_email=0x7f07002b;
-        public static final int about_feedback_subject=0x7f070029;
-        public static final int about_feedback_text=0x7f07002a;
-        public static final int about_gec=0x7f07002f;
-        public static final int about_info_uri=0x7f07002d;
-        public static final int about_mail_action=0x7f070024;
-        public static final int about_mail_label=0x7f070023;
-        public static final int about_market_uri=0x7f07002c;
-        public static final int about_opensource_under=0x7f070030;
-        public static final int about_rate_action=0x7f070026;
-        public static final int about_rate_label=0x7f070025;
-        public static final int about_title=0x7f070022;
-        public static final int about_web_action=0x7f070028;
-        public static final int about_web_label=0x7f070027;
-        public static final int answers_item_image=0x7f07001f;
-        public static final int answers_title=0x7f07001e;
+        public static final int about_apache_20=0x7f070032;
+        public static final int about_created_by=0x7f07002f;
+        public static final int about_feedback_email=0x7f07002c;
+        public static final int about_feedback_subject=0x7f07002a;
+        public static final int about_feedback_text=0x7f07002b;
+        public static final int about_gec=0x7f070030;
+        public static final int about_info_uri=0x7f07002e;
+        public static final int about_mail_action=0x7f070025;
+        public static final int about_mail_label=0x7f070024;
+        public static final int about_market_uri=0x7f07002d;
+        public static final int about_opensource_under=0x7f070031;
+        public static final int about_rate_action=0x7f070027;
+        public static final int about_rate_label=0x7f070026;
+        public static final int about_title=0x7f070023;
+        public static final int about_web_action=0x7f070029;
+        public static final int about_web_label=0x7f070028;
+        public static final int answers_item_image=0x7f070020;
+        public static final int answers_title=0x7f07001f;
         public static final int create_ano=0x7f070015;
         public static final int create_assunto=0x7f07001a;
         public static final int create_banca=0x7f070014;
@@ -195,8 +195,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int menu_create=0x7f07000a;
         public static final int menu_more=0x7f07000c;
         public static final int menu_quizzes=0x7f07000b;
-        public static final int more_title=0x7f070020;
-        public static final int more_uri=0x7f070021;
+        public static final int more_title=0x7f070021;
+        public static final int more_uri=0x7f070022;
+        public static final int quizzes_empty=0x7f07001e;
         public static final int quizzes_title=0x7f07001d;
     }
     public static final class style {

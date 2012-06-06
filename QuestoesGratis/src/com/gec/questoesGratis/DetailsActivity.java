@@ -17,7 +17,7 @@ public final class DetailsActivity extends FragmentActivity {
    private static final String       NO_DATA = xApp.getString( R.string.create_no_data );
 
    @Override
-   protected void onCreate( Bundle savedInstanceState ) {
+   public void onCreate( Bundle savedInstanceState ) {
       super.onCreate( savedInstanceState );
       setContentView( R.layout.details );
       new ActivityX( this ).setupActionBar( getString( R.string.g_APP_NAME ) );

@@ -54,6 +54,7 @@
     <string name="create_wait">Aguarde, criando novo questionário …</string>
 
     <string name="quizzes_title">Meu Histórico:</string>
+    <string name="quizzes_empty">Não há questionários …</string>
 
     <string name="answers_title">Questionário:</string>
     <string name="answers_item_image">Conclusão</string>
