@@ -9,8 +9,7 @@
     <LinearLayout style="@style/ActionBarCompat" />
 
     <TextView
-        style="@style/TextView"
-        android:layout_marginTop="10dp"
+        style="@style/Title"
         android:text="@string/quizzes_title" />
 
     <ListView

@@ -8,6 +8,10 @@
 
     <LinearLayout style="@style/ActionBarCompat" />
 
+    <TextView
+        style="@style/Title"
+        android:text="@string/create_title" />
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="0dip"

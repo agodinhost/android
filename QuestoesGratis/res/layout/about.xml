@@ -9,6 +9,10 @@
 
     <LinearLayout style="@style/ActionBarCompat" />
 
+    <TextView
+        style="@style/Title"
+        android:text="@string/about_title" />
+    
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="0dip"
@@ -28,23 +32,23 @@
             <TextView
                 style="@style/TextView"
                 android:layout_marginTop="10dp"
-                android:text="@string/about_mail_label" />
+                android:text="@string/about_feedback_label" />
 
             <Button
                 style="@style/Button"
                 android:layout_marginBottom="@dimen/padding"
-                android:onClick="mailClicked"
-                android:text="@string/about_mail_action" />
+                android:onClick="onClick_FEEDBACK"
+                android:text="@string/about_feedback_action" />
 
             <TextView
                 style="@style/TextView"
-                android:text="@string/about_rate_label" />
+                android:text="@string/about_market_label" />
 
             <Button
                 style="@style/Button"
                 android:layout_marginTop="10dp"
-                android:onClick="rate"
-                android:text="@string/about_rate_action" />
+                android:onClick="onClick_MARKET"
+                android:text="@string/about_market_action" />
 
             <TextView
                 style="@style/TextView"
@@ -54,7 +58,7 @@
             <Button
                 style="@style/Button"
                 android:layout_marginBottom="@dimen/padding"
-                android:onClick="webClicked"
+                android:onClick="onClick_WEB"
                 android:text="@string/about_web_action" />
 
             <TextView

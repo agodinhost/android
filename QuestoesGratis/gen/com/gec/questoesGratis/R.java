@@ -132,20 +132,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         public static final int about_apache_20=0x7f070032;
         public static final int about_created_by=0x7f07002f;
-        public static final int about_feedback_email=0x7f07002c;
-        public static final int about_feedback_subject=0x7f07002a;
-        public static final int about_feedback_text=0x7f07002b;
+        public static final int about_feedback_action=0x7f070025;
+        public static final int about_feedback_email=0x7f070026;
+        public static final int about_feedback_label=0x7f070024;
+        public static final int about_feedback_subject=0x7f070027;
+        public static final int about_feedback_text=0x7f070028;
         public static final int about_gec=0x7f070030;
-        public static final int about_info_uri=0x7f07002e;
-        public static final int about_mail_action=0x7f070025;
-        public static final int about_mail_label=0x7f070024;
-        public static final int about_market_uri=0x7f07002d;
+        public static final int about_market_action=0x7f07002a;
+        public static final int about_market_label=0x7f070029;
+        public static final int about_market_uri=0x7f07002b;
         public static final int about_opensource_under=0x7f070031;
-        public static final int about_rate_action=0x7f070027;
-        public static final int about_rate_label=0x7f070026;
         public static final int about_title=0x7f070023;
-        public static final int about_web_action=0x7f070029;
-        public static final int about_web_label=0x7f070028;
+        public static final int about_web_action=0x7f07002d;
+        public static final int about_web_label=0x7f07002c;
+        public static final int about_web_uri=0x7f07002e;
         public static final int answers_item_image=0x7f070020;
         public static final int answers_title=0x7f07001f;
         public static final int create_ano=0x7f070015;
@@ -201,24 +201,25 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int quizzes_title=0x7f07001d;
     }
     public static final class style {
-        public static final int ActionBarCompat=0x7f08000a;
-        public static final int ActionBarCompatButton=0x7f08000b;
-        public static final int ActionBarCompatLogo=0x7f08000e;
-        public static final int ActionBarCompatProgressIndicator=0x7f08000c;
-        public static final int ActionBarCompatSeparator=0x7f08000d;
-        public static final int ActionBarCompatText=0x7f08000f;
-        public static final int Button=0x7f080005;
-        public static final int CheckBox=0x7f080003;
-        public static final int DashboardButton=0x7f080010;
-        public static final int EditText=0x7f080001;
-        public static final int ImageButton=0x7f080007;
-        public static final int ImportantButton=0x7f080006;
-        public static final int RadioButton=0x7f080002;
-        public static final int ScrollView=0x7f080008;
-        public static final int Separator=0x7f080009;
-        public static final int Spinner=0x7f080004;
-        public static final int TextView=0x7f080000;
-        public static final int Theme_QuestoesGratis=0x7f080011;
+        public static final int ActionBarCompat=0x7f08000b;
+        public static final int ActionBarCompatButton=0x7f08000c;
+        public static final int ActionBarCompatLogo=0x7f08000f;
+        public static final int ActionBarCompatProgressIndicator=0x7f08000d;
+        public static final int ActionBarCompatSeparator=0x7f08000e;
+        public static final int ActionBarCompatText=0x7f080010;
+        public static final int Button=0x7f080006;
+        public static final int CheckBox=0x7f080004;
+        public static final int DashboardButton=0x7f080011;
+        public static final int EditText=0x7f080002;
+        public static final int ImageButton=0x7f080008;
+        public static final int ImportantButton=0x7f080007;
+        public static final int RadioButton=0x7f080003;
+        public static final int ScrollView=0x7f080009;
+        public static final int Separator=0x7f08000a;
+        public static final int Spinner=0x7f080005;
+        public static final int TextView=0x7f080001;
+        public static final int Theme_QuestoesGratis=0x7f080012;
+        public static final int Title=0x7f080000;
     }
     public static final class styleable {
         /** Attributes that can be used with a AppTheme.

@@ -53,27 +53,30 @@
     <string name="create_no_data">Não há questões que atendam ao filtro selecionado, por favor, altere o filtro e tente novamente …</string>
     <string name="create_wait">Aguarde, criando novo questionário …</string>
 
-    <string name="quizzes_title">Meu Histórico:</string>
-    <string name="quizzes_empty">Não há questionários …</string>
+    <string name="quizzes_title">Meus Simulados:</string>
+    <string name="quizzes_empty">Não há simulados …</string>
 
-    <string name="answers_title">Questionário:</string>
+    <string name="answers_title">Simulado:</string>
     <string name="answers_item_image">Conclusão</string>
 
-    <string name="more_title">More</string>
+    <string name="more_title">Mais Questões:</string>
     <string name="more_uri">http://www.questoesGratis.com.br</string>
 
-    <string name="about_title">Sobre</string>
-    <string name="about_mail_label">Críticas, problemas, idéias ou sugestões?</string>
-    <string name="about_mail_action">Email desenvolvedor</string>
-    <string name="about_rate_label">Gostou do Questões Grátis?</string>
-    <string name="about_rate_action">Vote no Android Market</string>
-    <string name="about_web_label">Veja nossos planos:</string>
-    <string name="about_web_action">Visite o website</string>
+    <string name="about_title">Sobre Nós:</string>
+    <string name="about_feedback_label">Críticas, problemas, idéias ou sugestões?</string>
+    <string name="about_feedback_action">Email desenvolvedor</string>
+    <string name="about_feedback_email">johnDoe@somewhere.com</string>
     <string name="about_feedback_subject">Feedback do Questões Grátis</string>
     <string name="about_feedback_text">Qual o seu telefone?\n%s\n\nSeu feedback aqui:\n</string>
-    <string name="about_feedback_email">johnDoe@somewhere.com</string>
+    
+    <string name="about_market_label">Gostou do Questões Grátis?</string>
+    <string name="about_market_action">Vote no Android Market</string>
     <string name="about_market_uri">market://details?id=com.gec.questoesGratis</string>
-    <string name="about_info_uri">http://www.questoesGratis.com.br</string>
+
+    <string name="about_web_label">Veja nossos planos:</string>
+    <string name="about_web_action">Visite o website</string>
+    <string name="about_web_uri">http://www.questoesGratis.com.br</string>
+
     <string name="about_created_by">Escrito por</string>
     <string name="about_gec">G&amp;C Consultoria e Informática Ltda.</string>
     <string name="about_opensource_under">Open-sourced under</string>

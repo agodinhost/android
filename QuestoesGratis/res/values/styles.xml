@@ -2,6 +2,13 @@
 
 <resources>
 
+    <style name="Title" parent="android:style/Widget.TextView">
+	    <item name="android:layout_width">fill_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:layout_margin">10dip</item>
+	    <item name="android:gravity">left</item>
+    </style>
+    
     <style name="TextView" parent="android:style/Widget.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

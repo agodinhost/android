@@ -8,6 +8,10 @@
 
     <LinearLayout style="@style/ActionBarCompat" />
 
+    <TextView
+        style="@style/Title"
+        android:text="@string/more_title" />
+
     <WebView
         android:id="@+id/more_wv"
         android:layout_width="fill_parent"

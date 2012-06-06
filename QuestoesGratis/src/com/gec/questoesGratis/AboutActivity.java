@@ -15,10 +15,11 @@ import com.gec.questoesGratis.tools.ActivityX;
  */
 public final class AboutActivity extends Activity {
 
-   private static final ApplicationX xApp           = ApplicationX.getInstance();
-   private static final String       FEEDBACK_EMAIL = xApp.getString( R.string.about_feedback_email );
-   private static final String       INFO_URI       = xApp.getString( R.string.about_info_uri );
-   private static final String       MARKET_URI     = xApp.getString( R.string.about_market_uri );
+   private static final ApplicationX xApp             = ApplicationX.getInstance();
+   private static final String[]     FEEDBACK_EMAIL   = new String[] { xApp.getString( R.string.about_feedback_email ) };
+   private static final String       FEEDBACK_SUBJECT = xApp.getString( R.string.about_feedback_subject );
+   private static final String       MARKET_URI       = xApp.getString( R.string.about_market_uri );
+   private static final String       WEB_URI          = xApp.getString( R.string.about_web_uri );
 
    @Override
    public void onCreate( Bundle savedInstanceState ) {
@@ -30,27 +31,28 @@ public final class AboutActivity extends Activity {
    /**
     * Sends e-mail to developer with some predefined text.
     */
-   public void mailClicked( View view ) {
-      final Intent i = new Intent( Intent.ACTION_SEND );
-      i.setType( "text/plain" );
-      i.putExtra( Intent.EXTRA_EMAIL, new String[] { FEEDBACK_EMAIL } );
-      i.putExtra( Intent.EXTRA_SUBJECT, getString( R.string.about_feedback_subject ) );
+   public void onClick_FEEDBACK( View view ) {
+      final Intent intent = new Intent( Intent.ACTION_SEND );
+      intent.setType( "text/plain" );
+      intent.putExtra( Intent.EXTRA_EMAIL, FEEDBACK_EMAIL );
+      intent.putExtra( Intent.EXTRA_SUBJECT, FEEDBACK_SUBJECT );
       final String device = Build.MANUFACTURER + " " + Build.MODEL + " (Android " + Build.VERSION.RELEASE + ")";
-      i.putExtra( Intent.EXTRA_TEXT, getString( R.string.about_feedback_text, device ) );
-      startActivity( i );
-   }
-
-   /**
-    * Opens the project website.
-    */
-   public void webClicked( View view ) {
-      startActivity( new Intent( Intent.ACTION_VIEW, Uri.parse( INFO_URI ) ) );
+      intent.putExtra( Intent.EXTRA_TEXT, getString( R.string.about_feedback_text, device ) );
+      startActivity( intent );
    }
 
    /**
     * Opens the Android Market listing.
     */
-   public void rate( View view ) {
+   public void onClick_MARKET( View view ) {
       startActivity( new Intent( Intent.ACTION_VIEW, Uri.parse( MARKET_URI ) ) );
    }
+
+   /**
+    * Opens the project website.
+    */
+   public void onClick_WEB( View view ) {
+      startActivity( new Intent( Intent.ACTION_VIEW, Uri.parse( WEB_URI ) ) );
+   }
+
 }
