@@ -150,7 +150,7 @@ public final class ApplicationX extends Application {
    }
 
    public void updateAnswer( int index, int answerI ) {
-      if( answerI > 0 ) {
+      if( answerI > -1 ) {
          final Answer answer = getAnswer( index );
          answer.setAnswer( answerI );
          dbHelper.updateAnswer( answer.getId(), answer.getAnswer() );
@@ -211,13 +211,18 @@ public final class ApplicationX extends Application {
    }
 
    public boolean isMissingAnyAnswer() {
+      for( Answer answer : quiz.getAnswers() )
+         if( answer.getAnswer() == null )
+            return true;
       return false;
    }
 
    public float finalizeQuiz() {
       final float rating = dbHelper.updateQuiz( quiz.getId(), Status.FINISHED );
-      quiz.setRating( rating );
-      quiz.setStatus( Status.FINISHED );
+      if( rating > -1 ) {
+         quiz.setRating( rating );
+         quiz.setStatus( Status.FINISHED );
+      }
       return rating;
    }
 

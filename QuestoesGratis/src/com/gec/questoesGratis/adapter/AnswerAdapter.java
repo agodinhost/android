@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.adapter;
 
 import android.os.Bundle;
@@ -113,9 +114,7 @@ public final class AnswerAdapter extends FragmentStatePagerAdapter {
 
       @Override
       public void onClick( View view ) {
-         final Answer answer = xApp.getAnswer( iIndex );
          iAnswer = view.getId();
-         answer.setAnswer( iAnswer );
          xApp.updateAnswer( iIndex, iAnswer );
       }
    }

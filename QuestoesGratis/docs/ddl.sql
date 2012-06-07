@@ -23,23 +23,23 @@ CREATE TABLE questions(
 );
 
 
-CREATE TABLE quizzes(
-   _id        INTEGER PRIMARY KEY AUTOINCREMENT,
-   date       DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   filter     TEXT NOT NULL,
-   rating     REAL NOT NULL DEFAULT 0.0,
-   status     INTEGER NOT NULL DEFAULT 0,
-   lastNumber INTEGER NOT NULL DEFAULT 1,
-   total      INTEGER DEFAULT 0
-);
-
-
 CREATE TABLE answers(
    _id        INTEGER PRIMARY KEY AUTOINCREMENT,
    quizId     INTEGER NOT NULL,
    questionId INTEGER NOT NULL,
    number     INTEGER NOT NULL,
    answer     TEXT
+);
+
+
+CREATE TABLE quizzes(
+   _id            INTEGER PRIMARY KEY AUTOINCREMENT,
+   date           DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   filter         TEXT NOT NULL,
+   rating         REAL NOT NULL DEFAULT 0.0,
+   status         INTEGER NOT NULL DEFAULT 0,
+   lastNumber     INTEGER NOT NULL DEFAULT 1,
+   questionsCount INTEGER DEFAULT 0
 );
 
 
@@ -51,16 +51,16 @@ AS SELECT q.*, a.quizId, a._ID as answerId, a.number, a.answer
           a.quizId, a.number;
 
 
-CREATE VIEW IF NOT EXISTS vw_totals
+CREATE VIEW IF NOT EXISTS vw_answers_sum
 AS SELECT v.quizId,
-          q.total,
+          q.questionsCount,
           SUM( 1 ) as rightAnswers
    FROM   vw_answers v,
           quizzes q
    WHERE  q._id = v.quizId
    AND    trim( v.match ) = v.answer
    GROUP  BY
-          v.quizId, q.total
+          v.quizId, q.questionsCount
    ORDER  BY
           v.quizId;
 
@@ -74,7 +74,7 @@ BEGIN
    WHERE  _id   = NEW.questionId;
 
    UPDATE quizzes
-   SET    total = total + 1
+   SET    questionsCount = questionsCount + 1
    WHERE  _id   = NEW.quizId;
 END;
 
@@ -103,7 +103,7 @@ ON answers( quizId ASC, questionId ASC);
 DROP INDEX   IF EXISTS ix_answers_quizId_questionId;
 DROP TRIGGER IF EXISTS tg_answers_au;
 DROP TRIGGER IF EXISTS tg_answers_ai;
-DROP VIEW    IF EXISTS vw_totals;
+DROP VIEW    IF EXISTS vw_answers_sum;
 DROP VIEW    IF EXISTS vw_answers;
 DROP TABLE   IF EXISTS answers;
 DROP TABLE   IF EXISTS quizzes;

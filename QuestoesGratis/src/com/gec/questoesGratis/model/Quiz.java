@@ -38,7 +38,7 @@ public final class Quiz {
    private Float          rating;
    private Status         status;
    private Integer        lastNumber;
-   private Integer        total;
+   private Integer        questionsCount;
    private List< Answer > answers;
 
    public Quiz() {
@@ -96,12 +96,12 @@ public final class Quiz {
       this.lastNumber = lastNumber;
    }
 
-   public Integer getTotal() {
-      return total;
+   public Integer getQuestionsCount() {
+      return questionsCount;
    }
 
-   public void setTotal( Integer total ) {
-      this.total = total;
+   public void setQuestionsCount( Integer questionsCount ) {
+      this.questionsCount = questionsCount;
    }
 
    public List< Answer > getAnswers() {

@@ -321,7 +321,7 @@ public final class DBHelper extends SQLiteOpenHelper {
    public float updateQuiz( Long quizId, Status status ) {
 
       final Cursor c = database.query( //
-            /* table.. */"vw_totals", //
+            /* table.. */"vw_answers_sum", //
             /* columns */null, //
             /* where.. */"quizId=?", //
             /* whereA. */new String[] { quizId.toString() }, //
@@ -330,31 +330,17 @@ public final class DBHelper extends SQLiteOpenHelper {
             /* orderBy */null //
             );
 
-      Integer total = -1;
-      Integer rightAnswers = -1;
+      float rating = 0.0f;
       if( c.moveToNext() ) {
-         total = c.getInt( 0 );
-         rightAnswers = c.getInt( 1 );
+         final float questionsCount = c.getFloat( 1 );
+         final int rightAnswers = c.getInt( 2 );
+         rating = ( rightAnswers / questionsCount ) * 100;
       }
       c.close();
 
-      float rating = 0;
-      if( total > -1 ) {
-         rating = ( rightAnswers / total ) * 100;
-         updateQuiz( quizId, status, rating );
-      }
+      updateQuiz( quizId, status, rating );
+
       return rating;
-   }
-
-   private void updateQuiz( Long quizId, Status status, float rating ) {
-
-      final StringBuffer b = new StringBuffer() //
-            .append( "UPDATE quizzes " ) //
-            .append( "SET    status = " ).append( status.id ).append( ", " ) //
-            .append( "       rating = " ).append( rating ).append( ' ' ) //
-            .append( "WHERE  _id = " ).append( quizId );
-
-      database.execSQL( b.toString() );
    }
 
    // --- PRIVATE CODE ----------------------------------------------------- //
@@ -507,7 +493,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       q.setRating( c.getFloat( EQuizzes_rating ) );
       q.setStatus( Status.valueOf( c.getInt( EQuizzes_status ) ) );
       q.setLastNumber( c.getInt( EQuizzes_lastNumber ) );
-      q.setTotal( c.getInt( EQuizzes_total ) );
+      q.setQuestionsCount( c.getInt( EQuizzes_total ) );
       return q;
    }
 
@@ -550,6 +536,17 @@ public final class DBHelper extends SQLiteOpenHelper {
       q.setMatch( c.getString( EQuestions_match ) );
       q.setUsed( c.getString( EQuestions_used ) );
       return q;
+   }
+
+   private void updateQuiz( Long quizId, Status status, float rating ) {
+
+      final StringBuffer b = new StringBuffer() //
+            .append( "UPDATE quizzes " ) //
+            .append( "SET    status = " ).append( status.id ).append( ", " ) //
+            .append( "       rating = " ).append( rating ).append( ' ' ) //
+            .append( "WHERE  _id = " ).append( quizId );
+
+      database.execSQL( b.toString() );
    }
 
    private static Date getDate( Cursor c, int index ) {

@@ -36,7 +36,7 @@ public final class Answer {
       if( answer == null )
          return -1;
       else
-         return answer.charAt( 0 ) - 'a';
+         return answer.charAt( 0 ) - 'A';
    }
 
    public void setAnswer( String answer ) {
@@ -46,7 +46,7 @@ public final class Answer {
    public void setAnswer( int index ) {
       answer = null;
       if( index > -1 )
-         answer = String.valueOf( (char) ( 'a' + index ) );
+         answer = String.valueOf( (char) ( 'A' + index ) );
    }
 
    public Long getQuestionId() {
