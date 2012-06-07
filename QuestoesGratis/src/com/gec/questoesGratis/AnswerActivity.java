@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import java.util.List;
@@ -36,42 +37,45 @@ public final class AnswerActivity extends FragmentActivity {
       pager.setAdapter( new AnswerAdapter( getSupportFragmentManager() ) );
       xApp.setPager( pager );
 
-      updateNavButtons();
+      toggleNavButtons();
    }
 
    public void onClick_FIRST( View view ) {
       xApp.moveFirst();
-      updateNavButtons();
+      toggleNavButtons();
    }
 
    public void onClick_PREVIOUS( View view ) {
       xApp.movePrevious();
-      updateNavButtons();
+      toggleNavButtons();
    }
 
    public void onClick_NEXT( View view ) {
       xApp.moveNext();
-      updateNavButtons();
+      toggleNavButtons();
    }
 
    public void onClick_LAST( View view ) {
       xApp.moveLast();
-      updateNavButtons();
+      toggleNavButtons();
    }
 
    public void onClick_FINISH( View view ) {
-      DialogX.confirm( this, onClick_confirm, //
-            xApp.isComplete()? //
-                  R.string.answer_confirm_complete: //
-                  R.string.answer_confirm_incomplete );
+      DialogX.confirm( //
+            this, //
+            onClick_confirm, //
+            xApp.isMissingAnyAnswer()? //
+            R.string.answer_confirm_incomplete //
+                  : //
+                  R.string.answer_confirm_complete );
    }
 
-   private void updateNavButtons() {
-      update( R.id.answer_first, R.id.answer_previous, xApp.isFirstAnswer() );
-      update( R.id.answer_last, R.id.answer_next, xApp.isLastAnswer() );
+   private void toggleNavButtons() {
+      toggle( R.id.answer_first, R.id.answer_previous, xApp.isFirstAnswer() );
+      toggle( R.id.answer_last, R.id.answer_next, xApp.isLastAnswer() );
    }
 
-   private void update( int resId1, int resId2, boolean disabled ) {
+   private void toggle( int resId1, int resId2, boolean disabled ) {
       final Button btn1 = (Button) findViewById( resId1 );
       btn1.setEnabled( !disabled );
       final Button btn2 = (Button) findViewById( resId2 );
@@ -84,7 +88,7 @@ public final class AnswerActivity extends FragmentActivity {
       @Override
       public void onClick( DialogInterface dialog, int response ) {
          if( response == android.R.string.yes ) {
-            xApp.rate();
+            final float rating = xApp.finalizeQuiz();
             //TODO: move to screen ...
          }
       }

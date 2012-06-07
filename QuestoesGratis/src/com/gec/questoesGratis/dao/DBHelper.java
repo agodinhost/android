@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.dao;
 
 import static com.gec.questoesGratis.tools.ListX.randomStart;
@@ -211,8 +212,8 @@ public final class DBHelper extends SQLiteOpenHelper {
    public int getQuestionsCount( Filter filter ) {
 
       final StringBuffer b = //
-            new StringBuffer( "SELECT Count(1) FROM questions " ) //
-                  .append( getRawWhere( filter ) );
+      new StringBuffer( "SELECT Count(1) FROM questions " ) //
+            .append( getRawWhere( filter ) );
       final Cursor c = database.rawQuery( b.toString(), null );
       c.moveToFirst();
       int count = c.getInt( 0 );
@@ -317,6 +318,45 @@ public final class DBHelper extends SQLiteOpenHelper {
       /*/ trg_answers_au -> update -> quizzes   /*/
    }
 
+   public float updateQuiz( Long quizId, Status status ) {
+
+      final Cursor c = database.query( //
+            /* table.. */"vw_totals", //
+            /* columns */null, //
+            /* where.. */"quizId=?", //
+            /* whereA. */new String[] { quizId.toString() }, //
+            /* groupBy */null, //
+            /* having. */null, //
+            /* orderBy */null //
+            );
+
+      Integer total = -1;
+      Integer rightAnswers = -1;
+      if( c.moveToNext() ) {
+         total = c.getInt( 0 );
+         rightAnswers = c.getInt( 1 );
+      }
+      c.close();
+
+      float rating = 0;
+      if( total > -1 ) {
+         rating = ( rightAnswers / total ) * 100;
+         updateQuiz( quizId, status, rating );
+      }
+      return rating;
+   }
+
+   private void updateQuiz( Long quizId, Status status, float rating ) {
+
+      final StringBuffer b = new StringBuffer() //
+            .append( "UPDATE quizzes " ) //
+            .append( "SET    status = " ).append( status.id ).append( ", " ) //
+            .append( "       rating = " ).append( rating ).append( ' ' ) //
+            .append( "WHERE  _id = " ).append( quizId );
+
+      database.execSQL( b.toString() );
+   }
+
    // --- PRIVATE CODE ----------------------------------------------------- //
 
    private List< String > getNames( String sql, String columnName ) {
@@ -346,7 +386,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       final StringBuffer b = new StringBuffer();
 
       if( list != null )
-         for( String item: list )
+         for( String item : list )
             b.append( "'" ) //
                   .append( item.trim() ) //
                   .append( "'" ) //
@@ -422,7 +462,7 @@ public final class DBHelper extends SQLiteOpenHelper {
       final Long quizId = quiz.getId();
       final List< Answer > list = quiz.getAnswers();
       if( list != null )
-         for( Answer answer: list )
+         for( Answer answer : list )
             insertAnswer( quizId, answer );
    }
 
@@ -464,9 +504,10 @@ public final class DBHelper extends SQLiteOpenHelper {
       q.setId( c.getLong( EQuizzes_id ) );
       q.setDate( getDate( c, EQuizzes_date ) );
       q.setFilter( c.getString( EQuizzes_filter ) );
-      q.setRating( c.getInt( EQuizzes_rating ) );
+      q.setRating( c.getFloat( EQuizzes_rating ) );
       q.setStatus( Status.valueOf( c.getInt( EQuizzes_status ) ) );
       q.setLastNumber( c.getInt( EQuizzes_lastNumber ) );
+      q.setTotal( c.getInt( EQuizzes_total ) );
       return q;
    }
 
@@ -547,4 +588,5 @@ public final class DBHelper extends SQLiteOpenHelper {
    private static final int EQuizzes_rating       = 3;
    private static final int EQuizzes_status       = 4;
    private static final int EQuizzes_lastNumber   = 5;
+   private static final int EQuizzes_total        = 6;
 }

@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import com.gec.questoesGratis.dao.DBHelper;
 import com.gec.questoesGratis.model.Answer;
 import com.gec.questoesGratis.model.Filter;
 import com.gec.questoesGratis.model.Quiz;
+import com.gec.questoesGratis.model.Quiz.Status;
 
 /**
  * Singleton.
@@ -135,13 +137,15 @@ public final class ApplicationX extends Application {
 
    public Answer getAnswer() {
       return answersCount > 0? //
-            quiz.getAnswers().get( currentAnswer ): //
+      quiz.getAnswers().get( currentAnswer )
+            : //
             null;
    }
 
    public Answer getAnswer( int index ) {
       return answersCount > 0? //
-            quiz.getAnswers().get( index ): //
+      quiz.getAnswers().get( index )
+            : //
             null;
    }
 
@@ -206,12 +210,15 @@ public final class ApplicationX extends Application {
       return currentAnswer == answersCount - 1;
    }
 
-   public boolean isComplete() {
+   public boolean isMissingAnyAnswer() {
       return false;
    }
 
-   public void rate() {
-      
+   public float finalizeQuiz() {
+      final float rating = dbHelper.updateQuiz( quiz.getId(), Status.FINISHED );
+      quiz.setRating( rating );
+      quiz.setStatus( Status.FINISHED );
+      return rating;
    }
 
    public String getFormat2Fabebook() {

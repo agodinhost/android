@@ -1,3 +1,4 @@
+
 package com.gec.questoesGratis.model;
 
 import java.util.Date;
@@ -34,9 +35,10 @@ public final class Quiz {
    private Long           id;
    private Date           date;
    private String         filter;
-   private Integer        rating;
+   private Float          rating;
    private Status         status;
    private Integer        lastNumber;
+   private Integer        total;
    private List< Answer > answers;
 
    public Quiz() {
@@ -70,11 +72,11 @@ public final class Quiz {
       this.filter = filter;
    }
 
-   public Integer getRating() {
+   public Float getRating() {
       return rating;
    }
 
-   public void setRating( Integer rating ) {
+   public void setRating( Float rating ) {
       this.rating = rating;
    }
 
@@ -92,6 +94,14 @@ public final class Quiz {
 
    public void setLastNumber( Integer lastNumber ) {
       this.lastNumber = lastNumber;
+   }
+
+   public Integer getTotal() {
+      return total;
+   }
+
+   public void setTotal( Integer total ) {
+      this.total = total;
    }
 
    public List< Answer > getAnswers() {
