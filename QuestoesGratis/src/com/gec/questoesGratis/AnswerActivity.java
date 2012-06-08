@@ -36,7 +36,6 @@ public final class AnswerActivity extends FragmentActivity {
       final ViewPager pager = (ViewPager) findViewById( R.id.answer_pager );
       pager.setAdapter( new AnswerAdapter( getSupportFragmentManager() ) );
       xApp.setPager( pager );
-
       toggleNavButtons();
    }
 

@@ -24,6 +24,8 @@ OK	- quantidade máxima de questõex vs questões disponíveis (list limits);
 	
 	- botões de navegação desabilitados ...
 	
+	- CreateActivity, deve mostrar a qtd de questões selecionadas no SeekBar;
+	
 	
 	
 References:
